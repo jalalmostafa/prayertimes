@@ -11,19 +11,19 @@
     "message": "In-Browser Prayer Times for Beirut and Notifications",
     "description": "The description of the application"
   },
-  "fajr": { 
+  "fajr": {
     "message": "Morn",
     "description": "Al Fajr Prayers"
   },
-  "shrouk": { 
+  "shrouk": {
     "message": "Sunrise",
     "description": "Rise of Sun"
   },
-  "dhor": { 
+  "dhor": {
     "message": "Noon",
     "description": "Al Dhor Prayers"
   },
-  "maghreb": { 
+  "maghreb": {
     "message": "Sunset",
     "description": "Al Maghreb Prayers"
   },
@@ -42,5 +42,21 @@
   "maghrebNotification": {
     "message": "It is time for sunset prayers!",
     "description": "Maghreb Prayers Notifications"
+  },
+  "header": {
+      "message": "Beirut Prayer Times",
+      "description": "extension header"
+  },
+  "options": {
+      "message": "Options",
+      "description": "Options key"
+  },
+  "notifications": {
+    "message": "Notifications",
+    "description": "notifications key"
+  },
+  "language": {
+    "message": "Language",
+    "description": "language key"
   }
 }

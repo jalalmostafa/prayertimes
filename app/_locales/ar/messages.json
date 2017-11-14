@@ -11,7 +11,7 @@
     "message": "أوقات الصلاة داخل المتصفح",
     "description": "The description of the application"
   },
-  "fajr": { 
+  "fajr": {
     "message": "الفجر",
     "description": "Fajr Prayers"
   },
@@ -19,7 +19,7 @@
     "message": "لقد حان الآن موعد صلاة الفجر",
     "description": "Fajr Prayer Notification"
   },
-  "shrouk": { 
+  "shrouk": {
     "message": "الشروق",
     "description": "Shrouk"
   },
@@ -27,7 +27,7 @@
     "message": "لقد حان الآن موعد صلاة شروق الشمس",
     "description": "Shrouk Notification"
   },
-  "dhor": { 
+  "dhor": {
     "message": "الظهر",
     "description": "Dhor Prayers"
   },
@@ -35,12 +35,28 @@
     "message": "لقد حان الآن موعد صلاة الظهر",
     "description": "Dhor Prayers Notification"
   },
-  "maghreb": { 
+  "maghreb": {
     "message": "المغرب",
     "description": "Maghreb Prayers"
   },
   "maghrebNotification": {
     "message": "لقد حان الآن موعد صلاة المغرب",
     "description": "Maghreb Prayers Notifications"
+  },
+  "header": {
+      "message": "مواقيت الصلاة في بيروت",
+      "description": "extension header"
+  },
+  "options": {
+      "message": "الخيارات",
+      "description": "Options key"
+  },
+  "notifications": {
+    "message": "التنبيهات",
+    "description": "notifications key"
+  },
+  "language": {
+    "message": "اللغة",
+    "description": "language key"
   }
 }

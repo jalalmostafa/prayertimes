@@ -1,14 +1,32 @@
 class I18nService {
+
     constructor(dataService) {
         this._dataService = dataService;
         this._customizeLocale = function(locale) {
-            $.get(chrome.runtime.getURL('_locales/' + locale + '/messages.json')).done(function(data) {
-                this._messages = JSON.parse(data);
+            $.getJSON(chrome.runtime.getURL('_locales/' + locale + '/messages.json')).done(function(data) {
+                this._messages = (data);
                 this._systemLocale = false;
             }.bind(this)).fail(function() {
                 this._systemLocale = true;
             }.bind(this));
         }.bind(this);
+
+        this._getMessage = function(key, messageKey) {
+            let message = {};
+            if (this._systemLocale || typeof(this._systemLocale) === 'undefined') {
+                message['title'] = chrome.i18n.getMessage(key);
+                if (typeof(messageKey) !== 'undefined') {
+                    message['message'] = chrome.i18n.getMessage(messageKey);
+                }
+                return message;
+            }
+            if (typeof(messageKey) !== 'undefined') {
+                message['message'] = this._messages[messageKey].message;
+            }
+            message['title'] = this._messages[key].message;
+            return message;
+        }.bind(this);
+
         this._dataService.language().then(function(lang, systemLocale){
             this._locale = lang;
             this._systemLocale = systemLocale;
@@ -40,54 +58,34 @@ class I18nService {
     }
 
     get fajr() {
-        if (this._systemLocale || this._systemLocale === undefined) {
-            return {
-                'title' : chrome.i18n.getMessage('fajr'),
-                'message': chrome.i18n.getMessage('fajrNotification')
-            };
-        }
-        return {
-            'title' : this._messages.fajr.message,
-            'message': this._messages.fajrNotification.message
-        };
+        return this._getMessage('fajr', 'fajrNotification');
     }
 
     get shrouk() {
-        if (this._systemLocale || this._systemLocale === undefined) {
-            return {
-                'title' : chrome.i18n.getMessage('shrouk'),
-                'message': chrome.i18n.getMessage('shroukNotification')
-            };
-        }
-        return {
-            'title' : this._messages.shrouk.message,
-            'message': this._messages.shroukNotification.message
-        };
+        return this._getMessage('shrouk', 'shroukNotification');
     }
 
     get dhor() {
-        if (this._systemLocale || this._systemLocale === undefined) {
-            return {
-                'title' : chrome.i18n.getMessage('dhor'),
-                'message': chrome.i18n.getMessage('dhorNotification')
-            };
-        }
-        return {
-            'title' : this._messages.dhor.message,
-            'message': this._messages.dhorNotification.message
-        };
+        return this._getMessage('dhor', 'dhorNotification');
     }
 
     get maghreb() {
-        if (this._systemLocale || this._systemLocale === undefined) {
-            return {
-                'title' : chrome.i18n.getMessage('maghreb'),
-                'message': chrome.i18n.getMessage('maghrebNotification')
-            };
-        }
-        return {
-            'title' : this._messages.maghreb.message,
-            'message': this._messages.maghrebNotification.message
-        };
+        return this._getMessage('maghreb', 'maghrebNotification');
+    }
+
+    get header () {
+        return this._getMessage('header');
+    }
+
+    get options() {
+        return this._getMessage('options');
+    }
+
+    get notifications () {
+        return this._getMessage('notifications');
+    }
+
+    get language() {
+        return this._getMessage('language');
     }
 }

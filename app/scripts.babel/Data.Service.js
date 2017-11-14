@@ -1,7 +1,7 @@
 bptimes.service('bptData', ['$q', function ($q) {
 
     let dataService = new DataService();
-    let i18n = new I18nService(dataService);
+    let i18nService = new I18nService(dataService);
 
     this.dataService = dataService;
 
@@ -16,17 +16,10 @@ bptimes.service('bptData', ['$q', function ($q) {
     }
 
     this.language = function (lang) {
-        // let q = $q.defer();
-        // dataService.language(lang).then(function (data) {
-        //     q.resolve(data);
-        // }).catch(function () {
-        //     q.reject();
-        // });
-        // return q.promise;
         if (typeof(lang) === 'undefined') {
-            return i18n.locale;
+            return i18nService.locale;
         } else {
-            i18n.locale = lang;
+            i18nService.locale = lang;
         }
     }
 
@@ -41,4 +34,6 @@ bptimes.service('bptData', ['$q', function ($q) {
     }
 
     this.allLanguages = I18nService.supportedLocales;
+
+    this.i18n = i18nService;
 }]);

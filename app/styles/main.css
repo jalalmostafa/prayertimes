@@ -20,3 +20,7 @@ body {
 .line {
     margin: 0px -30px 10px -30px;
 }
+
+.rtl {
+    direction: rtl !important;
+}
