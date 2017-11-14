@@ -4,15 +4,16 @@ class I18nService {
         this._customizeLocale = function(locale) {
             $.get(chrome.runtime.getURL('_locales/' + locale + '/messages.json')).done(function(data) {
                 this._messages = JSON.parse(data);
-            }).fail(function() {
+                this._systemLocale = false;
+            }.bind(this)).fail(function() {
                 this._systemLocale = true;
-            });
+            }.bind(this));
         }.bind(this);
         this._dataService.language().then(function(lang, systemLocale){
             this._locale = lang;
             this._systemLocale = systemLocale;
             if(!this._systemLocale) {
-                this._getCustomizedLocaleMessages(this._locale);
+                this._customizeLocale(this._locale);
             }
         }.bind(this));
     }
@@ -40,7 +41,7 @@ class I18nService {
 
     get fajr() {
         if (this._systemLocale || this._systemLocale === undefined) {
-            return { 
+            return {
                 'title' : chrome.i18n.getMessage('fajr'),
                 'message': chrome.i18n.getMessage('fajrNotification')
             };
@@ -53,7 +54,7 @@ class I18nService {
 
     get shrouk() {
         if (this._systemLocale || this._systemLocale === undefined) {
-            return { 
+            return {
                 'title' : chrome.i18n.getMessage('shrouk'),
                 'message': chrome.i18n.getMessage('shroukNotification')
             };
@@ -66,7 +67,7 @@ class I18nService {
 
     get dhor() {
         if (this._systemLocale || this._systemLocale === undefined) {
-            return { 
+            return {
                 'title' : chrome.i18n.getMessage('dhor'),
                 'message': chrome.i18n.getMessage('dhorNotification')
             };
@@ -79,7 +80,7 @@ class I18nService {
 
     get maghreb() {
         if (this._systemLocale || this._systemLocale === undefined) {
-            return { 
+            return {
                 'title' : chrome.i18n.getMessage('maghreb'),
                 'message': chrome.i18n.getMessage('maghrebNotification')
             };
@@ -88,5 +89,5 @@ class I18nService {
             'title' : this._messages.maghreb.message,
             'message': this._messages.maghrebNotification.message
         };
-    } 
+    }
 }
