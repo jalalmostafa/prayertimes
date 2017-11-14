@@ -1,0 +1,4 @@
+<div class="" ng-controller="options">
+        Notification: <input type="checkbox" ng-model="notify" ng-change="notifyChange()"/>
+        Language: <select ng-options="lang.symbol as lang.title for lang in supportedLocales" ng-model="locale" ng-change="localeChange()"></select>
+</div>

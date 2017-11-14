@@ -1,0 +1,46 @@
+{
+  "symbol": {
+    "message": "ar",
+    "description": "locale symbol"
+  },
+  "appName": {
+    "message": "أوقات الصلاة لمدينة بيروت",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "أوقات الصلاة داخل المتصفح",
+    "description": "The description of the application"
+  },
+  "fajr": { 
+    "message": "الفجر",
+    "description": "Fajr Prayers"
+  },
+  "fajrNotification": {
+    "message": "لقد حان الآن موعد صلاة الفجر",
+    "description": "Fajr Prayer Notification"
+  },
+  "shrouk": { 
+    "message": "الشروق",
+    "description": "Shrouk"
+  },
+  "shroukNotification": {
+    "message": "لقد حان الآن موعد صلاة شروق الشمس",
+    "description": "Shrouk Notification"
+  },
+  "dhor": { 
+    "message": "الظهر",
+    "description": "Dhor Prayers"
+  },
+  "dhorNotification":{
+    "message": "لقد حان الآن موعد صلاة الظهر",
+    "description": "Dhor Prayers Notification"
+  },
+  "maghreb": { 
+    "message": "المغرب",
+    "description": "Maghreb Prayers"
+  },
+  "maghrebNotification": {
+    "message": "لقد حان الآن موعد صلاة المغرب",
+    "description": "Maghreb Prayers Notifications"
+  }
+}

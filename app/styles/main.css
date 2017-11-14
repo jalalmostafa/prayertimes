@@ -1,0 +1,22 @@
+body {
+    padding: 10px;
+    width:325px;
+    height: 280px;
+}
+
+.main-icon {
+    color: #4CAF50;
+    padding-left: 10px;
+}
+
+.small-icon {
+    color: #4CAF50;
+}
+
+.app-entry {
+    margin-left: 0 !important;
+}
+
+.line {
+    margin: 0px -30px 10px -30px;
+}

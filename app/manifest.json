@@ -1,0 +1,46 @@
+{
+  "name": "__MSG_appName__",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "__MSG_appDescription__",
+  "icons": {
+    "16": "images/small-mosque.png",
+    "128": "images/small-mosque.png"
+  },
+  "web_accessible_resources": [
+    "images/small-mosque.png"
+  ],
+  "browser_action": {
+    "default_icon": {
+      "19": "images/small-mosque.png",
+      "38": "images/small-mosque.png"
+    },
+    "default_title": "Beirut Prayer Times",
+    "default_popup": "popup.html"
+  },
+  "default_locale": "ar",
+  "background": {
+    "scripts": [
+      "bower_components/jquery/dist/jquery.js",
+      "bower_components/moment/moment.js",
+      "scripts/AlarmService.js",
+      "scripts/DateTime.js",
+      "scripts/DataService.js",
+      "scripts/I18nService.js",
+      "scripts/background.js"
+    ]
+    ,"persistent": false
+  },
+  "permissions": [
+    "http://almanar.com.lb/*",
+    "https://almanar.com.lb/*",
+    "background",
+    "alarms",
+    "notifications",
+    "storage"
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  }
+}

@@ -1,0 +1,42 @@
+<div class="" ng-controller="popup">
+    <div class="row">
+        <span class="col-md-1">
+            <i class="flaticon-small-mosque flaticon-lg main-icon"></i>
+        </span>
+        <span class="col-md-9">
+            <h3 class="app-header">Beirut Prayer Times</h3>
+        </span>
+    </div>
+    <hr class="col-md-12 line" />
+    <div class="row app-entry">
+        <span class="col-md-2">
+            <i class="flaticon-md flaticon-subah-prayer small-icon"></i>
+        </span>
+        <span class="col-md-7">{{ fajr.key }}</span>
+        <span class="col-md-3">{{ fajr.value }}</span>
+    </div>
+    <div class="row app-entry">
+        <span class="col-md-2">
+            <i class="flaticon-md flaticon-ramadan-sunrise small-icon"></i>
+        </span>
+        <span class="col-md-7">{{ shrouk.key }}</span>
+        <span class="col-md-3">{{ shrouk.value }}</span>
+    </div>
+    <div class="row app-entry">
+        <span class="col-md-2">
+            <i class="flaticon-md flaticon-zuhar-prayer small-icon"></i>
+        </span>
+        <span class="col-md-7">{{ dhor.key }}</span>
+        <span class="col-md-3">{{ dhor.value }}</span>
+    </div>
+    <div class="row app-entry">
+        <span class="col-md-2">
+            <i class="flaticon-md flaticon-maghrib-prayer small-icon"></i>
+        </span>
+        <span class="col-md-7">{{ maghreb.key }}</span>
+        <span class="col-md-3">{{ maghreb.value }}</span>
+    </div>
+    <div class="pull-right">
+        <a class="btn btn-success" href="#!opts">Options</a>
+    </div>
+</div>
