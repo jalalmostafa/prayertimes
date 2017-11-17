@@ -1,14 +1,8 @@
 'use strict';
 
-chrome.runtime.onInstalled.addListener(details => {
-    console.log(details);
-});
-
-// chrome.browserAction.setBadgeText({text: '\'Allo'});
-
 let data = new DataService();
 let alarms = new AlarmService();
-let i18n = new I18nService(data);
+let i18n = new I18nService();
 
 alarms.callback = function (alarm) {
     let alarmData = alarms.get(alarm.name);
@@ -48,5 +42,5 @@ data.times().then(function (times) {
             }
         }
     });
-    
+
 });

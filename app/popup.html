@@ -1,29 +1,78 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <link href="styles/main.css" rel="stylesheet">
-        <link href="styles\ramadan-pack\font\flaticon.css" rel="stylesheet">
-        <link href="bower_components\bootstrap\dist\css\bootstrap.css" rel="stylesheet">
-        <script src="scripts/AlManarProvider.js"></script>
-        <script src="scripts/DataService.js"></script>
-        <script src="scripts/DateTime.js"></script>
-        <script src="scripts/I18nService.js"></script>        
-        <script src="bower_components\angular\angular.js"></script>
-        <script src="bower_components\angular-route\angular-route.js"></script>
-        <script src="bower_components\jquery\dist\jquery.js"></script>
-        <script src="bower_components\bootstrap\dist\js\bootstrap.js"></script>
-        <script src="bower_components\moment\moment.js"></script>        
-        <script src="scripts/app.js"></script>
-        <script src="scripts/PopUp.Controller.js"></script>
-        <script src="scripts/Options.Controller.js"></script>
-        
-        <script src="scripts/Data.Service.js"></script>
-        <script src="scripts/Config.Service.js"></script>
-    </head>
-    <body ng-app="bptimes" id="main">
-      <div class="container">
-            <div ng-view></div>
+
+<head>
+    <meta charset="utf-8">
+    <link href="styles/main.css" rel="stylesheet">
+    <link href="styles\ramadan-pack\font\flaticon.css" rel="stylesheet">
+    <link href="bower_components\bootstrap\dist\css\bootstrap.css" rel="stylesheet">
+    <script src="scripts/AlManarProvider.js"></script>
+    <script src="scripts/DataService.js"></script>
+    <script src="scripts/DateTime.js"></script>
+    <script src="scripts/I18nService.js"></script>
+    <script src="bower_components\angular\angular.js"></script>
+    <script src="bower_components\angular-route\angular-route.js"></script>
+    <script src="bower_components\jquery\dist\jquery.js"></script>
+    <script src="bower_components\bootstrap\dist\js\bootstrap.js"></script>
+    <script src="bower_components\moment\moment.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/PopUp.Controller.js"></script>
+    <script src="scripts/Options.Controller.js"></script>
+
+    <script src="scripts/Data.Service.js"></script>
+    <script src="scripts/Config.Service.js"></script>
+</head>
+
+<body ng-app="bptimes" id="main">
+    <div class="container">
+        <!doctype html>
+        <div class="" ng-controller="popup" ng-class="{'rtl' : arabic == true}">
+            <div class="row">
+                <span class="col-md-1">
+                    <i class="flaticon-small-mosque flaticon-lg main-icon"></i>
+                </span>
+                <span class="col-md-9">
+                    <h3 class="app-header">{{header}}</h3>
+                </span>
+            </div>
+            <hr class="col-md-12 line" />
+            <div>
+                <div class="row app-entry">
+                    <span class="col-md-2">
+                        <i class="flaticon-md flaticon-subah-prayer small-icon"></i>
+                    </span>
+                    <span class="col-md-7">{{ fajr.key }}</span>
+                    <span class="col-md-3">{{ fajr.value }}</span>
+                </div>
+                <div class="row app-entry">
+                    <span class="col-md-2">
+                        <i class="flaticon-md flaticon-ramadan-sunrise small-icon"></i>
+                    </span>
+                    <span class="col-md-7">{{ shrouk.key }}</span>
+                    <span class="col-md-3">{{ shrouk.value }}</span>
+                </div>
+                <div class="row app-entry">
+                    <span class="col-md-2">
+                        <i class="flaticon-md flaticon-zuhar-prayer small-icon"></i>
+                    </span>
+                    <span class="col-md-7">{{ dhor.key }}</span>
+                    <span class="col-md-3">{{ dhor.value }}</span>
+                </div>
+                <div class="row app-entry">
+                    <span class="col-md-2">
+                        <i class="flaticon-md flaticon-maghrib-prayer small-icon"></i>
+                    </span>
+                    <span class="col-md-7">{{ maghreb.key }}</span>
+                    <span class="col-md-3">{{ maghreb.value }}</span>
+                </div>
+            </div>
+
+            <div class="pull-right form-group">
+                <label for="notifications">{{notifications}}</label>
+                <input type="checkbox" class="form-control" id="notifications" ng-model="notify" ng-change="notifyChange()" />
+            </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

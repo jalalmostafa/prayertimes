@@ -1,9 +1,8 @@
 bptimes.service('bptData', ['$q', function ($q) {
 
     let dataService = new DataService();
-    let i18nService = new I18nService(dataService);
+    let i18nService = new I18nService();
 
-    this.dataService = dataService;
 
     this.times = function () {
         let q = $q.defer();
@@ -32,8 +31,6 @@ bptimes.service('bptData', ['$q', function ($q) {
         });
         return q.promise;
     }
-
-    this.allLanguages = I18nService.supportedLocales;
 
     this.i18n = i18nService;
 }]);

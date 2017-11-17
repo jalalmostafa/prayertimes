@@ -28,8 +28,8 @@
       "scripts/DataService.js",
       "scripts/I18nService.js",
       "scripts/background.js"
-    ]
-    ,"persistent": false
+    ],
+    "persistent": false
   },
   "permissions": [
     "http://almanar.com.lb/*",
@@ -38,9 +38,5 @@
     "alarms",
     "notifications",
     "storage"
-  ],
-  "options_ui": {
-    "page": "options.html",
-    "chrome_style": true
-  }
+  ]
 }

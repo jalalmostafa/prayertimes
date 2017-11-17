@@ -44,19 +44,11 @@
     "description": "Maghreb Prayers Notifications"
   },
   "header": {
-      "message": "مواقيت الصلاة في بيروت",
+      "message": "Beirut Prayer Times",
       "description": "extension header"
   },
-  "options": {
-      "message": "الخيارات",
-      "description": "Options key"
-  },
   "notifications": {
-    "message": "التنبيهات",
+    "message": "Notifications",
     "description": "notifications key"
-  },
-  "language": {
-    "message": "اللغة",
-    "description": "language key"
   }
 }

@@ -1,5 +1,0 @@
-<!doctype html>
-<div class="" ng-controller="options" ng-class="arabic ? rtl : ltr">
-        {{notifications}}: <input type="checkbox" ng-model="notify" ng-change="notifyChange()"/> <br/>
-        {{language}}: <select ng-options="lang.symbol as lang.title for lang in supportedLocales" ng-model="locale" ng-change="localeChange()"></select>
-</div>
