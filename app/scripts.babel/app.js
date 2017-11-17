@@ -1,1 +1,1 @@
-let bptimes = angular.module('bptimes', ['ngRoute']);
+let bptimes = angular.module('bptimes', ['uiSwitch']);
