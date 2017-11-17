@@ -1,3 +1,13 @@
+@font-face {
+    font-family: "cairo";
+    src: url('../fonts/Cairo/Cairo-Light.ttf') ;
+}
+
+@font-face {
+    font-family: "roboto";
+    src: url('../fonts/Roboto/Roboto-Thin.ttf') ;
+}
+
 body {
     padding: 10px;
     width:325px;
@@ -5,7 +15,7 @@ body {
 }
 
 .main-icon {
-    color: #4CAF50;
+    color: rgb(100, 189, 99);
     font-size: 13pt;
     display: flex;
 }
@@ -15,11 +25,12 @@ body {
     align-items: center;
     width: 100%;
     height: 100%;
-    font-size: 20pt;
+    font-size: 22pt;
+    font-family: 'roboto';
 }
 
 .small-icon {
-    color: #4CAF50;
+    color: rgb(100, 189, 99);
     flex-grow: 1;
     margin-right: 10px;
     font-size: 14pt;
@@ -30,6 +41,7 @@ body {
     text-align: end;
     margin-left: 10px;
     font-size: 18pt;
+    font-family: 'cairo';
 }
 
 .app-entry {
@@ -59,4 +71,22 @@ body {
 
 .header {
     margin: 10px 0;
+}
+
+.notifications {
+    display: flex;
+    margin: 10px 0;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.notifications-label {
+    font-size: 12pt;
+    font-family: 'roboto';
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.notifications-control {
+    margin-right: 10px;
 }

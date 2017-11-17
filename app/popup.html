@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link href="styles/main.css" rel="stylesheet">
     <link href="styles\ramadan-pack\font\flaticon.css" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components\angular-ui-switch\angular-ui-switch.css"/>
     <script src="scripts/AlManarProvider.js"></script>
     <script src="scripts/DataService.js"></script>
     <script src="scripts/DateTime.js"></script>
@@ -58,8 +59,11 @@
                 </div>
             </div>
 
-            <div class="pull-right form-group">
-                <switch id="notifications" name="enabled" ng-model="notify" class="green" ng-change="notifyChange()" on="{{notifications}}"></switch>
+            <div class="notifications">
+                <label for="notifications" class="notifications-label">{{notifications}}</label>
+                <span class="notifications-control">
+                    <switch id="notifications" class="green" name="enabled" ng-model="notify" ng-change="notifyChange()"></switch>
+                </span>
             </div>
         </div>
     </div>
