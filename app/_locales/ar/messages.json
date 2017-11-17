@@ -4,11 +4,11 @@
     "description": "locale symbol"
   },
   "appName": {
-    "message": "أوقات الصلاة لمدينة بيروت",
+    "message": "Beirut Prayer Times",
     "description": "The name of the application"
   },
   "appDescription": {
-    "message": "أوقات الصلاة داخل المتصفح",
+    "message": "Inside-Browser Prayer Times and Notifications",
     "description": "The description of the application"
   },
   "fajr": {
