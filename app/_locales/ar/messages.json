@@ -50,5 +50,9 @@
   "notifications": {
     "message": "Notifications",
     "description": "notifications key"
+  },
+  "notificationsMessage": {
+      "message": "Prayer notifications will appear here!",
+      "description": "onInstalled notification"
   }
 }

@@ -47,4 +47,8 @@ class I18nService {
     get language() {
         return this._getMessage('language');
     }
+
+    get notificationsMessage() {
+        return this._getMessage('notificationsMessage');
+    }
 }
