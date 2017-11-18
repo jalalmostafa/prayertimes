@@ -21,8 +21,9 @@
   "default_locale": "ar",
   "background": {
     "scripts": [
-      "bower_components/jquery/dist/jquery.js",
-      "bower_components/moment/moment.js",
+      "scripts/jquery.js",
+      "scripts/moment.js",
+      "scripts/AlManarProvider.js",
       "scripts/AlarmService.js",
       "scripts/DateTime.js",
       "scripts/DataService.js",

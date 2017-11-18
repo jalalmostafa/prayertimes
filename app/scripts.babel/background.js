@@ -20,8 +20,6 @@ alarms.callback = function (alarm) {
 };
 
 data.times().then(function (times) {
-    let defaultAlarm = alarms.create('aaa', (moment().unix() + 3) * 1000, 'NOW', 'MEH');
-    // alarms.clearAll();
     data.notify().then(function(notify) {
         if(notify) {
             let now = moment();
@@ -36,9 +34,6 @@ data.times().then(function (times) {
             }
             if (!now.isAfter(times.maghreb)) {
                 alarms.create('maghrebAlarm', moment(times.maghreb).unix() * 1000, i18n.maghreb.title, i18n.maghreb.message);
-            }
-            if (true) {
-                alarms.create('testalarm', moment('2017-11-13T22:52:00+02:00').unix() * 1000, i18n.maghreb.title, i18n.maghreb.message);
             }
         }
     });
