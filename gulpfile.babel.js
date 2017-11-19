@@ -159,7 +159,7 @@ gulp.task('wiredep', () => {
 gulp.task('package', () => {
     var manifest = require('./dist/manifest.json');
     return gulp.src('dist/**')
-        .pipe($.zip('chrome prayertimes-' + manifest.version + '.crx'))
+        .pipe($.zip('chrome prayertimes-' + manifest.version + '.zip'))
         .pipe(gulp.dest('package'));
 });
 
