@@ -1,12 +1,12 @@
-bptimes.controller('popup', ['$scope', 'bptData', function ($scope, bptData) {
+bptimes.controller('popup', ['$scope', 'bptData', '$q', function ($scope, bptData, $q) {
+    let times;
 
     let dateToHourString = function (date) {
-        return DateTime.toHoursMinutes(date);
+        let hourFormat = $scope.format ? 'hh' : 'HH';
+        return moment(date).format(hourFormat + ':mm');
     }
 
-    $scope.header = bptData.i18n.header.title;
-
-    bptData.times().then(function (times) {
+    let process = function () {
         $scope.fajr = {
             'key': bptData.i18n.fajr.title,
             'value': dateToHourString(times.fajr)
@@ -23,6 +23,15 @@ bptimes.controller('popup', ['$scope', 'bptData', function ($scope, bptData) {
             'key': bptData.i18n.maghreb.title,
             'value': dateToHourString(times.maghreb)
         };
+    }
+
+    $scope.header = bptData.i18n.header.title;
+
+    $q.all([bptData.times(), bptData.hourFormat()]).then(function (data) {
+        times = data[0];
+        $scope.format = data[1] || false;
+
+        process();
     }, function () {});
 
     $scope.notify = true;
@@ -38,4 +47,9 @@ bptimes.controller('popup', ['$scope', 'bptData', function ($scope, bptData) {
 
         });
     };
+
+    $scope.notifyFormatChange = function() {
+        bptData.hourFormat($scope.format);
+        process();
+    }
 }]);

@@ -67,4 +67,16 @@ class DataService {
         });
         return q.promise();
     }
+
+    hourFormat(format) {
+        let q = $.Deferred();
+        chrome.storage.local.get('format', function (l) {
+            if (typeof (format) === 'undefined') {
+                q.resolve(l.format);
+            } else {
+                chrome.storage.local.set({ format }, q.resolve);
+            }
+        });
+        return q.promise();
+    }
 }
