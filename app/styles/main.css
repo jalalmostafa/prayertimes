@@ -73,20 +73,20 @@ body {
     margin: 10px 0;
 }
 
-.notifications {
+.notifications, .hour-format {
     display: flex;
     margin: 10px 0;
     justify-content: space-between;
     align-items: end;
 }
 
-.notifications-label {
+.notifications-label, .hour-format-label {
     font-size: 12pt;
     font-family: 'roboto';
     font-weight: bold;
     margin-left: 10px;
 }
 
-.notifications-control {
+.notifications-control, .hour-format-control {
     margin-right: 10px;
 }

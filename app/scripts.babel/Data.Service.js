@@ -32,5 +32,15 @@ bptimes.service('bptData', ['$q', function ($q) {
         return q.promise;
     }
 
+    this.hourFormat = function (format) {
+        let q = $q.defer();
+        dataService.hourFormat(format).then(function (data) {
+            q.resolve(data);
+        }).catch(function () {
+            q.reject();
+        });
+        return q.promise;
+    }
+
     this.i18n = i18nService;
 }]);

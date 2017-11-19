@@ -62,6 +62,13 @@
                 </div>
             </div>
 
+            <div class="hour-format">
+                <label for="hourFormat" class="hour-format-label">12H Format</label>
+                <span class="hour-format-control">
+                    <switch id="hourFormat" class="green" name="enabled" ng-model="format" ng-change="notifyFormatChange()"></switch>
+                </span>
+            </div>
+
             <div class="notifications">
                 <label for="notifications" class="notifications-label">{{notifications}}</label>
                 <span class="notifications-control">
