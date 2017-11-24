@@ -87,18 +87,18 @@ gulp.task('html', () => {
 
 gulp.task('chromeManifest', () => {
     return gulp.src('app/manifest.json')
-        // .pipe($.chromeManifest({
-        //     buildnumber: true,
-        //     background: {
-        //         target: 'scripts/background.js'
-        //     }
-        // }))
-        // .pipe($.if('*.css', $.cleanCss({
-        //     compatibility: '*'
-        // })))
-        // .pipe($.if('*.js', $.sourcemaps.init()))
-        // .pipe($.if('*.js', $.uglify()))
-        // .pipe($.if('*.js', $.sourcemaps.write('.')))
+        .pipe($.chromeManifest({
+            buildnumber: true,
+            background: {
+                target: 'scripts/background.js'
+            }
+        }))
+        .pipe($.if('*.css', $.cleanCss({
+            compatibility: '*'
+        })))
+        .pipe($.if('*.js', $.sourcemaps.init()))
+        .pipe($.if('*.js', $.uglify()))
+        .pipe($.if('*.js', $.sourcemaps.write('.')))
         .pipe(gulp.dest('dist'));
 });
 
