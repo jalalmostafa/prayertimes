@@ -171,7 +171,7 @@ gulp.task('bowerify', () => {
 
 gulp.task('build', (cb) => {
     runSequence(
-        'wiredep', 'bowerify', 'lint', 'babel', 'chromeManifest', ['html', 'images', 'extras'], 'size', cb);
+        'wiredep', 'bowerify', 'lint', 'babel', ['html', 'images', 'extras'], 'chromeManifest', 'size', cb);
 });
 
 gulp.task('default', ['clean'], cb => {

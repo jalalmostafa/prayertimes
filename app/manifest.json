@@ -29,8 +29,7 @@
       "scripts/DataService.js",
       "scripts/I18nService.js",
       "scripts/background.js"
-    ],
-    "persistent": false
+    ]
   },
   "permissions": [
     "http://almanar.com.lb/*",
