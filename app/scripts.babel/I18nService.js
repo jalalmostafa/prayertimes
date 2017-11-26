@@ -51,4 +51,8 @@ class I18nService {
     get notificationsMessage() {
         return this._getMessage('notificationsMessage');
     }
+
+    get updateMessage() {
+        return this._getMessage('updateMessage');
+    }
 }

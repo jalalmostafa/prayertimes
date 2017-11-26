@@ -4,21 +4,37 @@ let data = new DataService();
 let alarms = new AlarmService();
 let i18n = new I18nService();
 
-let playDefaultSound = function() {
+let playDefaultSound = function () {
     let audio = new Audio();
     audio.src = '../assets/solemn.mp3';
     audio.play();
 };
 
-chrome.runtime.onInstalled.addListener(function() {
+let onInstallUpdate = function(msg) {
     chrome.notifications.create('onInstalled', {
         'type': 'basic',
         'iconUrl': 'images/small-mosque.png',
         'title': i18n.header.title,
-        'message': i18n.notificationsMessage.title
+        'message': msg
     }, function () {
         playDefaultSound();
     });
+};
+
+chrome.runtime.onInstalled.addListener(function (details) {
+    let msg = i18n.notificationsMessage.title;
+    if (details.reason) {
+        switch (details.reason) {
+            case 'install':
+                onInstallUpdate(i18n.notificationsMessage.title);
+                break;
+            case 'update':
+                onInstallUpdate(i18n.updateMessage.title);
+                break;
+            default:
+                break;
+        }
+    }
 });
 
 alarms.callback = function (alarm) {
@@ -35,8 +51,8 @@ alarms.callback = function (alarm) {
 };
 
 data.times().then(function (times) {
-    data.notify().then(function(notify) {
-        if(notify) {
+    data.notify().then(function (notify) {
+        if (notify) {
             let now = moment();
             if (!now.isAfter(times.fajr)) {
                 alarms.create('fajrAlarm', moment(times.fajr).unix() * 1000, i18n.fajr.title, i18n.fajr.message);

@@ -54,5 +54,9 @@
   "notificationsMessage": {
       "message": "Prayer notifications will appear here!",
       "description": "onInstalled notification"
+  },
+  "updateMessage": {
+      "message": "Beirut Prayer Times has been updated! Click on the icon in the bar abov to check what is new!",
+      "description": "On update message"
   }
 }
