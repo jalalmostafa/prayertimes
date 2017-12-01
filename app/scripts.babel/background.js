@@ -17,7 +17,6 @@ let onInstallUpdate = function (msg, header) {
     });
 };
 
-
 let data = new DataService();
 let alarms = new AlarmService();
 let i18n = new I18nService();

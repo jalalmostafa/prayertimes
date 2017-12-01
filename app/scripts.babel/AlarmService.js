@@ -15,7 +15,7 @@ class AlarmService {
         this._alarms[alarmName] = {
             'title': title,
             'message': message,
-            'timeout': this.setTimeout(this._callback, when - moment().unix())
+            'timeout': this.setTimeout(this._callback, when - (moment().unix()*1000))
         };
     }
 
