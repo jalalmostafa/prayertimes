@@ -2,34 +2,30 @@ class AlarmService {
 
     constructor() {
         this._alarms = {};
+        this.setTimeout = window.setTimeout;
+        this.clearTimeout = window.clearTimeout;
+        this._callback = function () {};
     }
 
     set callback(callback) {
-        chrome.alarms.onAlarm.addListener(callback);
+        this._callback = callback;
     }
 
     create(alarmName, when, title, message) {
-        chrome.alarms.create(alarmName, { 'when': when });
         this._alarms[alarmName] = {
             'title': title,
-            'message': message
-        }
+            'message': message,
+            'timeout': this.setTimeout(this._callback, when - moment().unix())
+        };
     }
 
     clear(alarmName) {
-        chrome.alarms.clear(alarmName);
-    }
-    
-    clearAll() {
-        chrome.alarms.clearAll();
+        this.clearTimeout(this._alarms[alarmName].timeout);
+        delete this._alarms[alarmName];
     }
 
-    all() {
-        let q = $.Deferred();
-        chrome.alarms.getAll(function(alarms) {
-            q.resolve(alarms);
-        });
-        return q.promise();
+    clearAll() {
+        Object.keys(this._alarms).map(key => this.clear(key));
     }
 
     get(alarmName) {

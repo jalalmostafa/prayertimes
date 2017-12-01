@@ -1,42 +1,26 @@
 'use strict';
 
-let data = new DataService();
-let alarms = new AlarmService();
-let i18n = new I18nService();
-
 let playDefaultSound = function () {
     let audio = new Audio();
     audio.src = '../assets/solemn.mp3';
     audio.play();
 };
 
-let onInstallUpdate = function(msg) {
+let onInstallUpdate = function (msg, header) {
     chrome.notifications.create('onInstalled', {
         'type': 'basic',
         'iconUrl': 'images/small-mosque.png',
-        'title': i18n.header.title,
+        'title': header,
         'message': msg
     }, function () {
         playDefaultSound();
     });
 };
 
-chrome.runtime.onInstalled.addListener(function (details) {
-    let msg = i18n.notificationsMessage.title;
-    if (details.reason) {
-        switch (details.reason) {
-            case 'install':
-                onInstallUpdate(i18n.notificationsMessage.title);
-                break;
-            case 'update':
-                onInstallUpdate(i18n.updateMessage.title);
-                break;
-            default:
-                break;
-        }
-    }
-});
 
+let data = new DataService();
+let alarms = new AlarmService();
+let i18n = new I18nService();
 alarms.callback = function (alarm) {
     let alarmData = alarms.get(alarm.name);
     chrome.notifications.create(alarm.name, {
@@ -68,5 +52,21 @@ data.times().then(function (times) {
             }
         }
     });
+});
 
+chrome.runtime.onInstalled.addListener(function (details) {
+    let i18n = new I18nService();
+    let msg = i18n.notificationsMessage.title;
+    if (details.reason) {
+        switch (details.reason) {
+            case 'install':
+                onInstallUpdate(i18n.notificationsMessage.title, i18n.header.title);
+                break;
+            case 'update':
+                onInstallUpdate(i18n.updateMessage.title, i18n.header.title);
+                break;
+            default:
+                break;
+        }
+    }
 });
