@@ -1,22 +1,18 @@
 class AlarmService {
 
-    constructor() {
+    constructor(callback) {
         this._alarms = {};
-        this.setTimeout = window.setTimeout;
-        this.clearTimeout = window.clearTimeout;
-        this._callback = function () {};
-    }
-
-    set callback(callback) {
-        this._callback = callback;
+        this.setTimeout = window.setTimeout.bind(window);
+        this.clearTimeout = window.clearTimeout.bind(window);
+        this._callback = callback || function () {};
     }
 
     create(alarmName, when, title, message) {
         this._alarms[alarmName] = {
             'title': title,
-            'message': message,
-            'timeout': this.setTimeout(this._callback, when - (moment().unix()*1000))
+            'message': message
         };
+        this._alarms.timeout = this.setTimeout(this._callback, when - (moment().unix() * 1e3), this._alarms[alarmName]);
     }
 
     clear(alarmName) {

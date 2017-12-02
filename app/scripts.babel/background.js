@@ -18,20 +18,17 @@ let onInstallUpdate = function (msg, header) {
 };
 
 let data = new DataService();
-let alarms = new AlarmService();
 let i18n = new I18nService();
-alarms.callback = function (alarm) {
-    let alarmData = alarms.get(alarm.name);
+let alarms = new AlarmService(function (alarm) {
     chrome.notifications.create(alarm.name, {
         'type': 'basic',
         'iconUrl': 'images/adhan-call.png',
-        'title': alarmData.title,
-        'message': alarmData.message
+        'title': alarm.title,
+        'message': alarm.message
     }, function () {
         playDefaultSound();
     });
-
-};
+});
 
 data.times().then(function (times) {
     data.notify().then(function (notify) {
