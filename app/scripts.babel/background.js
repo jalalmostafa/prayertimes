@@ -52,7 +52,6 @@ data.times().then(function (times) {
 
 chrome.runtime.onInstalled.addListener(function (details) {
     let i18n = new I18nService();
-    let msg = i18n.notificationsMessage.title;
     if (details.reason) {
         switch (details.reason) {
             case 'install':
