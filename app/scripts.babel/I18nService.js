@@ -55,4 +55,8 @@ class I18nService {
     get updateMessage() {
         return this._getMessage('updateMessage');
     }
+
+    get fixMessage() {
+        return this._getMessage('fixMessage');
+    }
 }
