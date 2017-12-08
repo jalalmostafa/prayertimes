@@ -58,5 +58,9 @@
   "updateMessage": {
       "message": "Beirut Prayer Times has been updated! Click on the icon in the bar abov to check what is new!",
       "description": "On update message"
+  },
+  "fixMessage": {
+    "message": "Hoooray! We have fixed an issue!",
+    "description": "show this when updating the extensions for fixing bugs"
   }
 }

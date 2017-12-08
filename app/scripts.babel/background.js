@@ -52,14 +52,13 @@ data.times().then(function (times) {
 
 chrome.runtime.onInstalled.addListener(function (details) {
     let i18n = new I18nService();
-    let msg = i18n.notificationsMessage.title;
     if (details.reason) {
         switch (details.reason) {
             case 'install':
                 onInstallUpdate(i18n.notificationsMessage.title, i18n.header.title);
                 break;
             case 'update':
-                onInstallUpdate(i18n.updateMessage.title, i18n.header.title);
+                onInstallUpdate(i18n.fixMessage.title, i18n.header.title);
                 break;
             default:
                 break;
