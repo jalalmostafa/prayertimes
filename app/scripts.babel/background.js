@@ -49,26 +49,34 @@ let run = function () {
     $.when(data.times(), data.notifications(), data.hourFormat()).then(function (times, notifications, format) {
         format = format ? 'h:mm' : 'HH:mm';
         let now = moment();
-        if (!now.isAfter(moment(times.fajr, format)) && notifications.fajr) {
-            alarms.create('fajrAlarm', moment(times.fajr).unix() * 1000, i18n.fajr.title, i18n.fajr.message);
+        const formattedFajr = moment(times.fajr, format);
+        const formattedImsak = moment(times.imsak, format);
+        const formattedSunrise = moment(times.sunrise, format);
+        const formattedDhuhr = moment(times.dhuhr, format);
+        const formattedAsr = moment(times.asr, format);
+        const formattedMaghrib = moment(times.maghrib, format);
+        const formattedIsha = moment(times.isha, format);
+
+        if (!now.isAfter(formattedFajr) && notifications.fajr) {
+            alarms.create('fajrAlarm', formattedFajr.unix() * 1000, i18n.fajr.title, i18n.fajr.message);
         }
-        if (!now.isAfter(moment(times.imsak, format)) && notifications.imsak) {
-            alarms.create('imsakAlarm', moment(times.imsak).unix() * 1000, i18n.imsak.title, i18n.imsak.message);
+        if (!now.isAfter(formattedImsak) && notifications.imsak) {
+            alarms.create('imsakAlarm', formattedImsak.unix() * 1000, i18n.imsak.title, i18n.imsak.message);
         }
-        if (!now.isAfter(moment(times.sunrise, format)) && notifications.sunrise) {
-            alarms.create('shroukAlarm', moment(times.sunrise).unix() * 1000, i18n.sunrise.title, i18n.sunrise.message);
+        if (!now.isAfter(formattedSunrise) && notifications.sunrise) {
+            alarms.create('shroukAlarm', formattedSunrise.unix() * 1000, i18n.sunrise.title, i18n.sunrise.message);
         }
-        if (!now.isAfter(moment(times.dhuhr, format)) && notifications.dhuhr) {
-            alarms.create('dhuhrAlarm', moment(times.dhuhr).unix() * 1000, i18n.dhuhr.title, i18n.dhuhr.message);
+        if (!now.isAfter(formattedDhuhr) && notifications.dhuhr) {
+            alarms.create('dhuhrAlarm', formattedDhuhr.unix() * 1000, i18n.dhuhr.title, i18n.dhuhr.message);
         }
-        if (!now.isAfter(moment(times.asr, format)) && notifications.asr) {
-            alarms.create('asrAlarm', moment(times.asr).unix() * 1000, i18n.asr.title, i18n.asr.message);
+        if (!now.isAfter(formattedAsr) && notifications.asr) {
+            alarms.create('asrAlarm', formattedAsr.unix() * 1000, i18n.asr.title, i18n.asr.message);
         }
-        if (!now.isAfter(moment(times.maghrib, format)) && notifications.maghrib) {
-            alarms.create('maghribAlarm', moment(times.maghrib).unix() * 1000, i18n.maghrib.title, i18n.maghrib.message);
+        if (!now.isAfter(formattedMaghrib) && notifications.maghrib) {
+            alarms.create('maghribAlarm', formattedMaghrib.unix() * 1000, i18n.maghrib.title, i18n.maghrib.message);
         }
-        if (!now.isAfter(moment(times.isha, format)) && notifications.isha) {
-            alarms.create('maghrebAlarm', moment(times.isha).unix() * 1000, i18n.isha.title, i18n.isha.message);
+        if (!now.isAfter(formattedIsha) && notifications.isha) {
+            alarms.create('maghrebAlarm', formattedIsha.unix() * 1000, i18n.isha.title, i18n.isha.message);
         }
     });
     let tomorrow = Math.ceil((moment().add(1, 'days').startOf('day').unix() - moment().unix()) * 1e3);

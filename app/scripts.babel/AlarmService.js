@@ -9,7 +9,7 @@ class AlarmService {
 
     create(alarmName, when, title, message) {
         this._alarms[alarmName] = {
-            'title': title + ' *********Dev. ',
+            'title': title,
             'message': message
         };
         this._alarms.timeout = this.setTimeout(this._callback, Math.ceil(when - (moment().unix() * 1e3)), this._alarms[alarmName]);
