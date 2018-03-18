@@ -20,20 +20,10 @@
   },
   "default_locale": "ar",
   "background": {
-    "scripts": [
-      "scripts/jquery.js",
-      "scripts/moment.js",
-      "scripts/AlManarProvider.js",
-      "scripts/AlarmService.js",
-      "scripts/DateTime.js",
-      "scripts/DataService.js",
-      "scripts/I18nService.js",
-      "scripts/background.js"
-    ]
+    "page": "background.html"
   },
   "permissions": [
-    "http://almanar.com.lb/*",
-    "https://almanar.com.lb/*",
+    "geolocation",
     "background",
     "alarms",
     "notifications",

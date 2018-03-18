@@ -11,9 +11,14 @@ class AlManarProvider {
             times.maghreb = DateTime.parseHoursMinutes(htmlElm.find('.moghreb-t').text());
             times.fulldate = htmlElm.find('.full-date').text();
             times.date = DateTime.today;
-            chrome.storage.local.set({ 'times': times }, function () { });
+            chrome.storage.local.set({
+                'times': times
+            }, function (err) {
+                console.log('Failure storing new data', err);
+            });
             q.resolve(times);
-        }).fail(function () {
+        }).fail(function (err) {
+            console.log('Failure retrieving new data', err);
             q.reject();
         });
         return q.promise();

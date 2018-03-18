@@ -1,16 +1,17 @@
 @font-face {
     font-family: "cairo";
-    src: url('../fonts/Cairo/Cairo-Light.ttf') ;
+    src: url('../fonts/Cairo/Cairo-Light.ttf');
 }
 
 @font-face {
     font-family: "roboto";
-    src: url('../fonts/Roboto/Roboto-Thin.ttf') ;
+    src: url('../fonts/Roboto/Roboto-Thin.ttf');
 }
 
 body {
     padding: 10px;
-    width:325px;
+    padding-top: 0;
+    width: 325px;
     height: 350px;
 }
 
@@ -40,8 +41,21 @@ body {
     flex-grow: 2;
     text-align: end;
     margin-left: 10px;
-    font-size: 18pt;
+    font-size: 16pt;
     font-family: 'cairo';
+}
+
+.prayer-on,
+.prayer-off {
+    cursor: pointer;
+}
+
+.prayer-off {
+    color: #B0BEC5;
+}
+
+.prayer-on {
+    color: rgb(100, 189, 99);
 }
 
 .app-entry {
@@ -73,20 +87,33 @@ body {
     margin: 10px 0;
 }
 
-.notifications, .hour-format {
+.notifications,
+.hour-format,
+.method {
     display: flex;
     margin: 10px 0;
     justify-content: space-between;
-    align-items: end;
+    align-items: center;
 }
 
-.notifications-label, .hour-format-label {
+.notifications-label,
+.hour-format-label,
+.method-label {
     font-size: 12pt;
     font-family: 'roboto';
     font-weight: bold;
     margin-left: 10px;
 }
 
-.notifications-control, .hour-format-control {
+.notifications-control,
+.hour-format-control,
+.method-control {
+    display: flex;
+    justify-content: flex-end;
     margin-right: 10px;
+}
+
+#method {
+    height: 35px;
+    width: 80%;
 }

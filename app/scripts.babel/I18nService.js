@@ -9,7 +9,7 @@ class I18nService {
                 message['message'] = chrome.i18n.getMessage(messageKey);
             }
             return message;
-        }
+        };
     }
 
     get locale() {
@@ -20,16 +20,28 @@ class I18nService {
         return this._getMessage('fajr', 'fajrNotification');
     }
 
-    get shrouk() {
-        return this._getMessage('shrouk', 'shroukNotification');
+    get imsak() {
+        return this._getMessage('imsak', 'imsakNotification');
     }
 
-    get dhor() {
-        return this._getMessage('dhor', 'dhorNotification');
+    get sunrise() {
+        return this._getMessage('sunrise', 'sunriseNotification');
     }
 
-    get maghreb() {
-        return this._getMessage('maghreb', 'maghrebNotification');
+    get dhuhr() {
+        return this._getMessage('dhuhr', 'dhuhrNotification');
+    }
+
+    get asr() {
+        return this._getMessage('asr', 'asrNotification');
+    }
+
+    get maghrib() {
+        return this._getMessage('maghrib', 'maghribNotification');
+    }
+
+    get isha() {
+        return this._getMessage('isha', 'ishaNotification');
     }
 
     get header() {
@@ -58,5 +70,13 @@ class I18nService {
 
     get fixMessage() {
         return this._getMessage('fixMessage');
+    }
+
+    get format() {
+        return this._getMessage('format');
+    }
+
+    get method() {
+        return this._getMessage('method');
     }
 }

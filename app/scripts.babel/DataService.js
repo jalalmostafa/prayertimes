@@ -1,80 +1,48 @@
 class DataService {
 
-    constructor() {}
-
     times() {
         let q = $.Deferred();
-        chrome.storage.local.get('times', function (l) {
-            if ('times' in l && l.times.date == DateTime.today) {
-                q.resolve(l.times);
-            } else {
-                // update data. get from internet -> update cache and latest -> return new data
-                new AlManarProvider().times().then(function (data) {
-                    chrome.storage.local.set({
-                        'times': data
-                    }, function () {});
-                    q.resolve(data);
-                }).catch(function () {
-                    q.reject();
-                });
-            }
-        });
-        return q.promise();
-    }
+        let boundMethod = this.method.bind(this);
+        let boundFormat = this.hourFormat.bind(this);
 
-    language(lang) {
-        let q = $.Deferred();
-        chrome.storage.local.get('language', function (l) {
-            if (typeof (lang) === 'undefined') {
-                if ('language' in l) {
-                    q.resolve(l.language, false);
-                } else {
-                    q.resolve(chrome.i18n.getMessage('symbol'), true);
-                }
-            } else {
-                let mappedLocales = I18nService.supportedLocales.map(v => v.symbol);
-                if (mappedLocales.indexOf(lang) > -1) {
-                    chrome.storage.local.set({
-                        'language': lang
-                    });
-                    q.resolve(lang, false);
-                } else {
-                    q.reject();
-                }
-            }
-        });
-        return q.promise();
-    }
+        $.when(boundMethod(), boundFormat())
+            .then(function (method, format) {
+                format = format ? '12hNS' : '24h';
+                new CalculationProvider().times(method, format).then(q.resolve).catch(q.reject);
+            }, q.reject);
 
-    notify(yesno) {
-        let q = $.Deferred();
-        chrome.storage.local.get('notifications', function (l) {
-            if (typeof (yesno) === 'undefined') {
-                if ('notifications' in l) {
-                    q.resolve(l.notifications);
-                } else {
-                    q.resolve(true);
-                }
-            } else {
-                if (typeof (yesno) === 'boolean') {
-                    chrome.storage.local.set({
-                        'notifications': yesno
-                    }, q.resolve);
-                } else {
-                    q.reject();
-                }
-            }
-        });
         return q.promise();
     }
 
     hourFormat(format) {
+        return this._field(format, 'format', false);
+    }
+
+    method(method) {
+        return this._field(method, 'method', 'Tehran');
+    }
+
+    notifications(notifications) {
+        return this._field(notifications, 'notifications', {
+            'fajr': true,
+            'imsak': true,
+            'sunrise': false,
+            'dhuhr': true,
+            'asr': false,
+            'maghrib': true,
+            'isha': false
+        });
+    }
+
+    _field(field, fieldName, defaultValue) {
         let q = $.Deferred();
-        chrome.storage.local.get('format', function (l) {
-            if (typeof (format) === 'undefined') {
-                q.resolve(l.format);
+        chrome.storage.local.get(fieldName, function (l) {
+            if (typeof (field) === 'undefined') {
+                q.resolve(l[fieldName] || defaultValue);
             } else {
-                chrome.storage.local.set({ format }, q.resolve);
+                let obj = {};
+                obj[fieldName] = field;
+                chrome.storage.local.set(obj, q.resolve);
             }
         });
         return q.promise();

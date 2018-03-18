@@ -3,12 +3,15 @@
 
 <head>
     <meta charset="utf-8">
+    <title>Prayer Times</title>
     <link href="styles/main.css" rel="stylesheet">
     <link href="styles\ramadan\flaticon.css" rel="stylesheet">
     <!-- bower:css -->
     <link href="styles/angular-ui-switch.css" rel="stylesheet">
     <!-- endbower -->
+    <script src="scripts/PrayTimes.js"></script>
     <script src="scripts/AlManarProvider.js"></script>
+    <script src="scripts/CalculationProvider.js"></script>
     <script src="scripts/DataService.js"></script>
     <script src="scripts/DateTime.js"></script>
     <script src="scripts/I18nService.js"></script>
@@ -37,44 +40,100 @@
                         <i class="flaticon-md flaticon-subah-prayer"></i>
                     </span>
                     <span class="prayer-text">{{ fajr.key }}</span>
-                    <span class="prayer-text">{{ fajr.value }}</span>
+                    <span class="prayer-text">
+                        <a class="flaticon-sm flaticon-adhan-call" ng-class="fajr.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('fajr')"></a>
+                        {{ fajr.value }}
+                    </span>
+                </div>
+                <div class="row app-entry">
+                    <span class="small-icon">
+                        <i class="flaticon-md flaticon-arabian-lantern"></i>
+                    </span>
+                    <span class="prayer-text">{{ imsak.key }}</span>
+                    <span class="prayer-text">
+                        <a class="flaticon-sm flaticon-adhan-call" ng-class="imsak.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('imsak')"></a>
+                        {{ imsak.value }}
+                    </span>
                 </div>
                 <div class="row app-entry">
                     <span class="small-icon">
                         <i class="flaticon-md flaticon-ramadan-sunrise"></i>
                     </span>
-                    <span class="prayer-text">{{ shrouk.key }}</span>
-                    <span class="prayer-text">{{ shrouk.value }}</span>
+                    <span class="prayer-text">{{ sunrise.key }}</span>
+                    <span class="prayer-text">
+                        <a class="flaticon-sm flaticon-adhan-call" ng-class="sunrise.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('sunrise')"></a>
+                        {{ sunrise.value }}</span>
                 </div>
                 <div class="row app-entry">
                     <span class="small-icon">
                         <i class="flaticon-md flaticon-zuhar-prayer"></i>
                     </span>
-                    <span class="prayer-text">{{ dhor.key }}</span>
-                    <span class="prayer-text">{{ dhor.value }}</span>
+                    <span class="prayer-text">{{ dhuhr.key }}</span>
+                    <span class="prayer-text">
+                        <a class="flaticon-sm flaticon-adhan-call" ng-class="dhuhr.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('dhuhr')"></a>
+                        {{ dhuhr.value }}
+                    </span>
+                </div>
+                <div class="row app-entry">
+                    <span class="small-icon">
+                        <i class="flaticon-md flaticon-ramadn-azhar"></i>
+                    </span>
+                    <span class="prayer-text">{{ asr.key }}</span>
+                    <span class="prayer-text">
+                        <a class="flaticon-sm flaticon-adhan-call" ng-class="asr.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('asr')"></a>
+                        {{ asr.value }}
+                    </span>
                 </div>
                 <div class="row app-entry">
                     <span class="small-icon">
                         <i class="flaticon-md flaticon-maghrib-prayer"></i>
                     </span>
-                    <span class="prayer-text">{{ maghreb.key }}</span>
-                    <span class="prayer-text">{{ maghreb.value }}</span>
+                    <span class="prayer-text">{{ maghrib.key }}</span>
+                    <span class="prayer-text">
+                        <a class="flaticon-sm flaticon-adhan-call" ng-class="maghrib.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('maghrib')"></a>
+                        {{ maghrib.value }}
+                    </span>
+                </div>
+                <div class="row app-entry">
+                    <span class="small-icon">
+                        <i class="flaticon-md flaticon-isha-prayer"></i>
+                    </span>
+                    <span class="prayer-text">{{ isha.key }}</span>
+                    <span class="prayer-text">
+                        <a class="flaticon-sm flaticon-adhan-call" ng-class="isha.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('isha')"></a>
+                        {{ isha.value }}
+                    </span>
                 </div>
             </div>
 
-            <div class="hour-format">
-                <label for="hourFormat" class="hour-format-label">12H Format</label>
-                <span class="hour-format-control">
-                    <switch id="hourFormat" class="green" name="enabled" ng-model="format" ng-change="notifyFormatChange()"></switch>
+            <div class="method">
+                <label for="method" class="method-label">{{methodKey}}</label>
+                <span class="method-control">
+                    <select id="method" ng-model="method" ng-change="methodChanged()">
+                        <option value="MWL">{{methods.MWL.name}}</option>
+                        <option value="ISNA">{{methods.ISNA.name}}</option>
+                        <option value="Egypt">{{methods.Egypt.name}}</option>
+                        <option value="Makkah">{{methods.Makkah.name}}</option>
+                        <option value="Karachi">{{methods.Karachi.name}}</option>
+                        <option value="Tehran" selected>{{methods.Tehran.name}}</option>
+                        <option value="Jafari">{{methods.Jafari.name}}</option>
+                    </select>
                 </span>
             </div>
 
-            <div class="notifications">
-                <label for="notifications" class="notifications-label">{{notifications}}</label>
-                <span class="notifications-control">
-                    <switch id="notifications" class="green" name="enabled" ng-model="notify" ng-change="notifyChange()"></switch>
+            <div class="hour-format">
+                <label for="hourFormat" class="hour-format-label">{{formatKey}}</label>
+                <span class="hour-format-control">
+                    <switch id="hourFormat" class="green small" name="enabled" ng-model="format" ng-change="formatChanged()"></switch>
                 </span>
             </div>
+
+            <!-- <div class="notifications">
+                <label for="notifications" class="notifications-label">{{notificationsKey}}</label>
+                <span class="notifications-control">
+                    <switch id="notifications" class="green" name="enabled" ng-model="notify" ng-change="notifyChanged()"></switch>
+                </span>
+            </div> -->
         </div>
     </div>
 </body>

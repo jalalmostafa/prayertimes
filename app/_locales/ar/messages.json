@@ -1,66 +1,98 @@
 {
-  "symbol": {
-    "message": "ar",
-    "description": "locale symbol"
-  },
-  "appName": {
-    "message": "Beirut Prayer Times",
-    "description": "The name of the application"
-  },
-  "appDescription": {
-    "message": "Inside-Browser Prayer Times and Notifications",
-    "description": "The description of the application"
-  },
-  "fajr": {
-    "message": "الفجر",
-    "description": "Fajr Prayers"
-  },
-  "fajrNotification": {
-    "message": "لقد حان الآن موعد صلاة الفجر",
-    "description": "Fajr Prayer Notification"
-  },
-  "shrouk": {
-    "message": "الشروق",
-    "description": "Shrouk"
-  },
-  "shroukNotification": {
-    "message": "لقد حان الآن موعد شروق الشمس",
-    "description": "Shrouk Notification"
-  },
-  "dhor": {
-    "message": "الظهر",
-    "description": "Dhor Prayers"
-  },
-  "dhorNotification":{
-    "message": "لقد حان الآن موعد صلاة الظهر",
-    "description": "Dhor Prayers Notification"
-  },
-  "maghreb": {
-    "message": "المغرب",
-    "description": "Maghreb Prayers"
-  },
-  "maghrebNotification": {
-    "message": "لقد حان الآن موعد صلاة المغرب",
-    "description": "Maghreb Prayers Notifications"
-  },
-  "header": {
-      "message": "Beirut Prayer Times",
-      "description": "extension header"
-  },
-  "notifications": {
-    "message": "Notifications",
-    "description": "notifications key"
-  },
-  "notificationsMessage": {
-      "message": "Prayer notifications will appear here!",
-      "description": "onInstalled notification"
-  },
-  "updateMessage": {
-      "message": "Beirut Prayer Times has been updated! Click on the icon in the bar abov to check what is new!",
-      "description": "On update message"
-  },
-  "fixMessage": {
-    "message": "Hoooray! We have fixed an issue!",
-    "description": "show this when updating the extensions for fixing bugs"
-  }
+    "symbol": {
+        "message": "ar",
+        "description": "locale symbol"
+    },
+    "appName": {
+        "message": "Prayer Times",
+        "description": "The name of the application"
+    },
+    "appDescription": {
+        "message": "In-Browser Prayer Times and Notifications",
+        "description": "The description of the application"
+    },
+    "fajr": {
+        "message": "الفجر",
+        "description": "Fajr Prayers"
+    },
+    "fajrNotification": {
+        "message": "لقد حان الآن موعد صلاة الفجر",
+        "description": "Fajr Prayer Notification"
+    },
+    "imsak": {
+        "message": "الإمساك",
+        "description": "Imsak Prayers"
+    },
+    "imsakNotification": {
+        "message": "لقد حان الآن موعد الإمساك",
+        "description": "Imsak Notification"
+    },
+    "sunrise": {
+        "message": "الشروق",
+        "description": "Shrouk"
+    },
+    "sunriseNotification": {
+        "message": "لقد حان الآن موعد شروق الشمس",
+        "description": "Shrouk Notification"
+    },
+    "dhuhr": {
+        "message": "الظهر",
+        "description": "Dhor Prayers"
+    },
+    "dhuhrNotification": {
+        "message": "لقد حان الآن موعد صلاة الظهر",
+        "description": "Dhor Prayers Notification"
+    },
+    "asr": {
+        "message": "العصر",
+        "description": "Asr Prayers"
+    },
+    "asrNotification": {
+        "message": "لقد حان الآن موعد صلاةالعصر",
+        "description": "Asr Prayers"
+    },
+    "maghrib": {
+        "message": "المغرب",
+        "description": "Maghreb Prayers"
+    },
+    "maghribNotification": {
+        "message": "لقد حان الآن موعد صلاة المغرب",
+        "description": "Maghreb Prayers Notifications"
+    },
+    "isha": {
+        "message": "العشاء",
+        "description": "Isha Prayers Notifications"
+    },
+    "ishaNotification": {
+        "message": "لقد حان الآن موعد صلاة العشاء",
+        "description": "Isha Prayers Notifications"
+    },
+    "header": {
+        "message": "Prayer Times",
+        "description": "extension header"
+    },
+    "notifications": {
+        "message": "Notifications",
+        "description": "notifications key"
+    },
+    "notificationsMessage": {
+        "message": "Prayer notifications will appear here!",
+        "description": "onInstalled notification"
+    },
+    "updateMessage": {
+        "message": "Beirut Prayer Times has been updated! Click on the icon in the bar abov to check what is new!",
+        "description": "On update message"
+    },
+    "fixMessage": {
+        "message": "Hoooray! We have fixed an issue!",
+        "description": "show this when updating the extensions for fixing bugs"
+    },
+    "format": {
+        "message": "12H Format",
+        "description": ""
+    },
+    "method": {
+        "message": "Calculation",
+        "description": ""
+    }
 }
