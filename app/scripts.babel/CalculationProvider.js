@@ -1,18 +1,26 @@
 class CalculationProvider {
 
-    constructor(position) {
-        this.position = position;
-    }
-
     times(method, format) {
+        let getTimes = (loc) => {
+            const tz = this._timezone();
+            let _times = prayTimes.getTimes(new Date(), loc, tz, 'auto', format);
+            _times.date = moment().format('YYYY-MM-DD');
+            return _times;
+        };
         let q = $.Deferred();
-        let boundTimezone = this._timezone.bind(this);
         prayTimes.setMethod(method);
-        navigator.geolocation.getCurrentPosition(function (pos) {
-            let loc = [pos.coords.longitude, pos.coords.latitude, pos.coords.altitude];
-            let times = prayTimes.getTimes(new Date(), loc, boundTimezone(), 'auto', format);
-            q.resolve(times);
-        }, q.reject);
+        navigator.geolocation.getCurrentPosition(pos => {
+            let loc = [pos.coords.latitude, pos.coords.longitude];
+            q.resolve(getTimes(loc));
+        }, (err) => {
+            $.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDwz8JXCM_GkBHLyWFjDUVQHljGboVxHpw', (pos) => {
+                const loc = [pos.location.lat, pos.location.lng];
+                console.log(loc);
+                q.resolve(getTimes(loc));
+            }).catch(() => q.reject(JSON.stringify(err)));
+        }, {
+            timeout: 2000
+        });
         return q.promise();
     }
 

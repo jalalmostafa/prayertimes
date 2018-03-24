@@ -1,31 +1,84 @@
 'use strict';
-
-let playDefaultSound = function () {
-    let audio = new Audio();
+const playDefaultSound = function () {
+    const audio = new Audio();
     audio.src = '../assets/solemn.mp3';
     audio.play();
 };
 
-let onInstallUpdate = function (msg, header) {
+const Messages = {
+    'fajrAlarm': {
+        title: chrome.i18n.getMessage('fajr'),
+        message: chrome.i18n.getMessage('fajrNotification')
+    },
+    'imsakAlarm': {
+        title: chrome.i18n.getMessage('imsak'),
+        message: chrome.i18n.getMessage('imsakNotification')
+    },
+    'shroukAlarm': {
+        title: chrome.i18n.getMessage('sunrise'),
+        message: chrome.i18n.getMessage('sunriseNotification')
+    },
+    'dhuhrAlarm': {
+        title: chrome.i18n.getMessage('dhuhr'),
+        message: chrome.i18n.getMessage('dhuhrNotification')
+    },
+    'asrAlarm': {
+        title: chrome.i18n.getMessage('asr'),
+        message: chrome.i18n.getMessage('asrNotification')
+    },
+    'maghribAlarm': {
+        title: chrome.i18n.getMessage('maghrib'),
+        message: chrome.i18n.getMessage('maghribNotification')
+    },
+    'ishaAlarm': {
+        title: chrome.i18n.getMessage('isha'),
+        message: chrome.i18n.getMessage('ishaNotification')
+    },
+    'header': {
+        title: chrome.i18n.getMessage('header')
+    },
+    'options': {
+        title: chrome.i18n.getMessage('options')
+    },
+    'notifications': {
+        title: chrome.i18n.getMessage('notifications')
+    },
+    'notificationsMessage': {
+        title: chrome.i18n.getMessage('notificationsMessage')
+    },
+    'updateMessage': {
+        title: chrome.i18n.getMessage('updateMessage')
+    },
+    'fixMessage': {
+        title: chrome.i18n.getMessage('fixMessage')
+    },
+    'format': {
+        title: chrome.i18n.getMessage('format')
+    },
+    'method': {
+        title: chrome.i18n.getMessage('method')
+    }
+};
+
+const onInstallUpdate = function (msg, header) {
     chrome.notifications.create('onInstalled', {
         'type': 'basic',
         'iconUrl': 'images/small-mosque.png',
         'title': header,
         'message': msg
-    }, function () {
+    }, () => {
         playDefaultSound();
     });
 };
 
-chrome.runtime.onInstalled.addListener(function (details) {
-    let i18n = new I18nService();
+chrome.runtime.onInstalled.addListener((details) => {
     if (details.reason) {
         switch (details.reason) {
             case 'install':
-                onInstallUpdate(i18n.notificationsMessage.title + 'Dev.', i18n.header.title);
+                onInstallUpdate(Messages.notificationsMessage.title, Messages.header.title);
                 break;
             case 'update':
-                // onInstallUpdate(i18n.fixMessage.title, i18n.header.title);
+                // onInstallUpdate(Messages.fixMessage.title, Messages.header.title);
                 break;
             default:
                 break;
@@ -33,22 +86,24 @@ chrome.runtime.onInstalled.addListener(function (details) {
     }
 });
 
-let data = new DataService();
-let i18n = new I18nService();
-let alarms = new AlarmService(function (alarm) {
+chrome.alarms.onAlarm.addListener((alarm) => {
+    const alarmData = Messages[alarm.name];
     chrome.notifications.create(alarm.name, {
         'type': 'basic',
         'iconUrl': 'images/adhan-call.png',
-        'title': alarm.title,
-        'message': alarm.message
+        'title': alarmData.title + 'BETA',
+        'message': alarmData.message,
+        'requireInteraction': true,
     }, function () {
         playDefaultSound();
     });
 });
-let run = function () {
-    $.when(data.times(), data.notifications(), data.hourFormat()).then(function (times, notifications, format) {
+
+const run = function () {
+    const data = new DataService();
+    $.when(data.times(), data.notifications(), data.hourFormat()).then((times, notifications, format) => {
         format = format ? 'h:mm' : 'HH:mm';
-        let now = moment();
+        const now = moment();
         const formattedFajr = moment(times.fajr, format);
         const formattedImsak = moment(times.imsak, format);
         const formattedSunrise = moment(times.sunrise, format);
@@ -58,29 +113,61 @@ let run = function () {
         const formattedIsha = moment(times.isha, format);
 
         if (!now.isAfter(formattedFajr) && notifications.fajr) {
-            alarms.create('fajrAlarm', formattedFajr.unix() * 1000, i18n.fajr.title, i18n.fajr.message);
+            chrome.alarms.create('fajrAlarm', {
+                'when': formattedFajr.unix() * 1000
+            });
         }
         if (!now.isAfter(formattedImsak) && notifications.imsak) {
-            alarms.create('imsakAlarm', formattedImsak.unix() * 1000, i18n.imsak.title, i18n.imsak.message);
+            chrome.alarms.create('imsakAlarm', {
+                'when': formattedImsak.unix() * 1000
+            });
         }
         if (!now.isAfter(formattedSunrise) && notifications.sunrise) {
-            alarms.create('shroukAlarm', formattedSunrise.unix() * 1000, i18n.sunrise.title, i18n.sunrise.message);
+            chrome.alarms.create('shroukAlarm', {
+                'when': formattedSunrise.unix() * 1000
+            });
         }
         if (!now.isAfter(formattedDhuhr) && notifications.dhuhr) {
-            alarms.create('dhuhrAlarm', formattedDhuhr.unix() * 1000, i18n.dhuhr.title, i18n.dhuhr.message);
+            chrome.alarms.create('dhuhrAlarm', {
+                'when': formattedDhuhr.unix() * 1000
+            });
         }
         if (!now.isAfter(formattedAsr) && notifications.asr) {
-            alarms.create('asrAlarm', formattedAsr.unix() * 1000, i18n.asr.title, i18n.asr.message);
+            chrome.alarms.create('asrAlarm', {
+                'when': formattedAsr.unix() * 1000
+            });
         }
         if (!now.isAfter(formattedMaghrib) && notifications.maghrib) {
-            alarms.create('maghribAlarm', formattedMaghrib.unix() * 1000, i18n.maghrib.title, i18n.maghrib.message);
+            chrome.alarms.create('maghribAlarm', {
+                'when': formattedMaghrib.unix() * 1000
+            });
         }
         if (!now.isAfter(formattedIsha) && notifications.isha) {
-            alarms.create('maghrebAlarm', formattedIsha.unix() * 1000, i18n.isha.title, i18n.isha.message);
+            chrome.alarms.create('ishaAlarm', {
+                'when': formattedIsha.unix() * 1000
+            });
         }
     });
-    let tomorrow = Math.ceil((moment().add(1, 'days').startOf('day').unix() - moment().unix()) * 1e3);
-    setTimeout(run, tomorrow);
+    const tomorrow = moment().add(1, 'days').startOf('day').unix() * 1e3;
+    const duration = Math.ceil((tomorrow - moment().unix() * 1e3) * 1e3);
+    chrome.alarms.create('tomorrow', {
+        'when': tomorrow
+    });
 };
 
 run();
+
+chrome.runtime.onConnect.addListener(function (port) {
+    port.onMessage.addListener(msg => {
+        if (msg.command === 'configChanged') {
+            chrome.alarms.clearAll((wasCleared) => {
+                wasCleared ? port.postMessage({
+                    changed: true
+                }) : port.postMessage({
+                    changed: false
+                });
+                run();
+            });
+        }
+    });
+});

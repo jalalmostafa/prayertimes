@@ -1,32 +1,34 @@
 {
-  "name": "__MSG_appName__",
-  "version": "0.0.3",
-  "manifest_version": 2,
-  "description": "__MSG_appDescription__",
-  "icons": {
-    "16": "images/small-mosque.png",
-    "128": "images/small-mosque.png"
-  },
-  "web_accessible_resources": [
-    "images/small-mosque.png"
-  ],
-  "browser_action": {
-    "default_icon": {
-      "19": "images/small-mosque.png",
-      "38": "images/small-mosque.png"
+    "name": "__MSG_appName__",
+    "version": "0.0.3",
+    "manifest_version": 2,
+    "description": "__MSG_appDescription__",
+    "icons": {
+        "16": "images/small-mosque.png",
+        "128": "images/small-mosque.png"
     },
-    "default_title": "Beirut Prayer Times",
-    "default_popup": "popup.html"
-  },
-  "default_locale": "ar",
-  "background": {
-    "page": "background.html"
-  },
-  "permissions": [
-    "geolocation",
-    "background",
-    "alarms",
-    "notifications",
-    "storage"
-  ]
+    "web_accessible_resources": [
+        "images/small-mosque.png"
+    ],
+    "browser_action": {
+        "default_icon": {
+            "19": "images/small-mosque.png",
+            "38": "images/small-mosque.png"
+        },
+        "default_title": "Prayer Times",
+        "default_popup": "popup.html"
+    },
+    "default_locale": "ar",
+    "background": {
+        "page": "background.html",
+        "persistent": false
+    },
+    "permissions": [
+        "https://www.googleapis.com/geolocation/v1/geolocate?key=*",
+        "geolocation",
+        "background",
+        "alarms",
+        "notifications",
+        "storage"
+    ]
 }

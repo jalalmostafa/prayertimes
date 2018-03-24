@@ -13,24 +13,25 @@ const $ = gulpLoadPlugins();
 
 gulp.task('extras', () => {
     return gulp.src([
-        'app/*.*',
-        'app/_locales/**',
-        'app/scripts/**/*.*',
-        'app/styles/**/*.*',
-        'app/fonts/**/*.*',
-        'app/assets/**/*.*',
-        '!app/scripts.babel',
-        '!app/*.json',
-        '!app/*.html',
-    ], {
-        base: 'app',
-        dot: true
-    })
-    .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', $.cleanCss({
-        compatibility: '*'
-    })))
-    .pipe(gulp.dest('dist'));
+            'app/*.*',
+            'app/_locales/**',
+            'app/scripts/**/*.*',
+            'app/styles/**/*.*',
+            'app/fonts/**/*.*',
+            'app/assets/**/*.*',
+            'app/webfonts/**/*.*',
+            '!app/scripts.babel',
+            '!app/*.json',
+            '!app/*.html',
+        ], {
+            base: 'app',
+            dot: true
+        })
+        .pipe($.if('*.js', $.uglify()))
+        .pipe($.if('*.css', $.cleanCss({
+            compatibility: '*'
+        })))
+        .pipe(gulp.dest('dist'));
 });
 
 function lint(files, options) {
@@ -138,11 +139,11 @@ gulp.task('wiredep', () => {
             fileTypes: {
                 html: {
                     replace: {
-                        js: function(filePath) {
+                        js: function (filePath) {
                             let basename = path.basename(filePath);
                             return '<script src="scripts/' + basename + '"></script>';
                         },
-                        css: function(filePath) {
+                        css: function (filePath) {
                             let basename = path.basename(filePath);
                             return '<link href="styles/' + basename + '" rel="stylesheet">';
                         }

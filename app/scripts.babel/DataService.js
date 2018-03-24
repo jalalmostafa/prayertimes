@@ -1,15 +1,26 @@
 class DataService {
 
-    times() {
+    times(format) {
         let q = $.Deferred();
-        let boundMethod = this.method.bind(this);
-        let boundFormat = this.hourFormat.bind(this);
-
-        $.when(boundMethod(), boundFormat())
-            .then(function (method, format) {
-                format = format ? '12hNS' : '24h';
-                new CalculationProvider().times(method, format).then(q.resolve).catch(q.reject);
-            }, q.reject);
+        const boundMethod = this.method.bind(this);
+        format = format ? '12hNS' : '24h';
+        chrome.storage.local.get('times', function (l) {
+            if ('times' in l && l.times.date == moment().format('YYYY-MM-DD')) {
+                q.resolve(l.times);
+            } else {
+                boundMethod().then(function (method) {
+                    new CalculationProvider().times(method, format).then((data) => {
+                        chrome.storage.local.set({
+                            'times': data
+                        }, (val) => {
+                            q.resolve(data);
+                        });
+                    }).catch(() => {
+                        q.reject();
+                    });
+                }).catch(() => q.reject());
+            }
+        });
 
         return q.promise();
     }
@@ -42,7 +53,9 @@ class DataService {
             } else {
                 let obj = {};
                 obj[fieldName] = field;
-                chrome.storage.local.set(obj, q.resolve);
+                chrome.storage.local.set(obj, (val) => {
+                    q.resolve(val);
+                });
             }
         });
         return q.promise();
