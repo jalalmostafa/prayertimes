@@ -22,51 +22,52 @@ bptimes.controller('popup', ['$scope', 'bptData', 'bptI18n', '$q', function ($sc
         'key': bptI18n.isha.title
     };
 
-    let loadPage = function () {
-        bptData.hourFormat().then(format => {
+    const loadPage = function () {
+        $q.all([bptData.times(), bptData.notifications(), bptData.hourFormat()]).then(data => {
+            const times = data[0];
+            const format = data[2];
+            notify = data[1];
             $scope.format = format;
-            $q.all([bptData.times(format), bptData.notifications()]).then(data => {
-                let times = data[0];
-                notify = data[1];
-                $scope.fajr = Object.assign($scope.fajr, {
-                    'value': times.fajr,
-                    'notify': notify.fajr
-                });
-                $scope.imsak = Object.assign($scope.imsak, {
-                    'value': times.imsak,
-                    'notify': notify.imsak
-                });
-                $scope.sunrise = Object.assign($scope.sunrise, {
-                    'value': times.sunrise,
-                    'notify': notify.sunrise
-                });
-                $scope.dhuhr = Object.assign($scope.dhuhr, {
-                    'value': times.dhuhr,
-                    'notify': notify.dhuhr
-                });
-                $scope.asr = Object.assign($scope.asr, {
-                    'value': times.asr,
-                    'notify': notify.asr
-                });
-                $scope.maghrib = Object.assign($scope.maghrib, {
-                    'value': times.maghrib,
-                    'notify': notify.maghrib
-                });
-                $scope.isha = Object.assign($scope.isha, {
-                    'value': times.isha,
-                    'notify': notify.isha
-                });
-            }).then(() => {
-                const port = chrome.runtime.connect({
-                    name: 'bptBackground'
-                });
-                if (port) {
-                    port.postMessage({
-                        command: 'configChanged'
-                    });
-                }
+            console.log(format, times);
+            $scope.fajr = Object.assign($scope.fajr, {
+                'value': times.fajr,
+                'notify': notify.fajr
+            });
+            $scope.imsak = Object.assign($scope.imsak, {
+                'value': times.imsak,
+                'notify': notify.imsak
+            });
+            $scope.sunrise = Object.assign($scope.sunrise, {
+                'value': times.sunrise,
+                'notify': notify.sunrise
+            });
+            $scope.dhuhr = Object.assign($scope.dhuhr, {
+                'value': times.dhuhr,
+                'notify': notify.dhuhr
+            });
+            $scope.asr = Object.assign($scope.asr, {
+                'value': times.asr,
+                'notify': notify.asr
+            });
+            $scope.maghrib = Object.assign($scope.maghrib, {
+                'value': times.maghrib,
+                'notify': notify.maghrib
+            });
+            $scope.isha = Object.assign($scope.isha, {
+                'value': times.isha,
+                'notify': notify.isha
             });
         });
+    };
+
+    const updateTimes = function (times) {
+        $scope.fajr.value = times.fajr;
+        $scope.imsak.value = times.imsak;
+        $scope.sunrise.value = times.sunrise;
+        $scope.dhuhr.value = times.dhuhr;
+        $scope.asr.value = times.asr;
+        $scope.maghrib.value = times.maghrib;
+        $scope.isha.value = times.isha;
     };
 
     $scope.header = bptI18n.header.title;
@@ -84,17 +85,51 @@ bptimes.controller('popup', ['$scope', 'bptData', 'bptI18n', '$q', function ($sc
     $scope.notifyChanged = function (notifyField) {
         if (notify) {
             notify[notifyField] = !!!notify[notifyField];
-            bptData.notifications(notify).then(() => loadPage());
+            bptData.notifications(notify).then(notifications => {
+                console.log('notifications', notifications);
+                $scope.fajr.notify = notifications.fajr;
+                $scope.imsak.notify = notifications.imsak;
+                $scope.sunrise.notify = notifications.sunrise;
+                $scope.dhuhr.notify = notifications.dhuhr;
+                $scope.asr.notify = notifications.asr;
+                $scope.maghrib.notify = notifications.maghrib;
+                $scope.isha.notify = notifications.isha;
+            }).then(() => {
+                const port = chrome.runtime.connect({
+                    name: 'bptBackground'
+                });
+                if (port) {
+                    port.postMessage({
+                        command: 'configChanged'
+                    });
+                }
+            });
         }
     };
 
     $scope.methodKey = bptI18n.method.title;
     $scope.formatKey = bptI18n.format.title;
     $scope.methods = prayTimes.methods;
+
     $scope.methodChanged = function () {
-        bptData.method($scope.method).then(() => loadPage());
+        bptData.times($scope.method, $scope.format).then(times => {
+            updateTimes(times);
+        }).then(() => {
+            const port = chrome.runtime.connect({
+                name: 'bptBackground'
+            });
+            if (port) {
+                port.postMessage({
+                    command: 'configChanged'
+                });
+            }
+        });
     };
+
     $scope.formatChanged = function () {
-        bptData.hourFormat($scope.format).then(() => loadPage());
+        const format = $scope.format;
+        bptData.times($scope.method, format).then(times => {
+            updateTimes(times);
+        });
     };
 }]);

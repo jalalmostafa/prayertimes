@@ -12,7 +12,6 @@ body {
     padding: 10px;
     padding-top: 0;
     width: 325px;
-    height: 350px;
 }
 
 .main-icon {
@@ -32,16 +31,12 @@ body {
 
 .small-icon {
     color: rgb(100, 189, 99);
-    flex-grow: 1;
     margin-right: 10px;
     font-size: 14pt;
 }
 
 .prayer-text {
-    flex-grow: 2;
-    text-align: end;
-    margin-left: 10px;
-    font-size: 16pt;
+    font-size: 17pt;
     font-family: 'cairo';
 }
 
@@ -71,16 +66,16 @@ body {
 .row {
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    align-items: baseline;
     width: 100%;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .content {
     align-content: baseline;
     display: flex;
     flex-direction: column;
-    margin: 30px 0;
+    margin: 15px 10px;
 }
 
 .header {

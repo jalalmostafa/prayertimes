@@ -2,10 +2,10 @@ bptimes.service('bptData', ['$q', function ($q) {
 
     let dataService = new DataService();
 
-    this.times = function (format) {
+    this.times = function (method, format) {
         let q = $q.defer();
-        dataService.times(format)
-            .then((times) => q.resolve(times))
+        dataService.times(method, format)
+            .then(times => q.resolve(times))
             .catch(() => q.reject());
         return q.promise;
     };

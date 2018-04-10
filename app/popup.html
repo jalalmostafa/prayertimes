@@ -37,22 +37,22 @@
             <div class="content">
                 <div class="row app-entry">
                     <span class="small-icon">
-                        <i class="flaticon-md flaticon-subah-prayer"></i>
+                        <i class="flaticon-md flaticon-arabian-lantern"></i>
                     </span>
-                    <span class="prayer-text">{{ fajr.key }}</span>
-                    <span class="prayer-text">
-                        <a class="fas fa-bell" ng-class="fajr.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('fajr')"></a>
-                        {{ fajr.value }}
+                    <span class="prayer-text">{{ imsak.key }}</span>
+                    <span>
+                        <span class="prayer-text">{{ imsak.value }}</span>
+                        <a class="fas fa-bell small-icon" ng-class="imsak.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('imsak')"></a>
                     </span>
                 </div>
                 <div class="row app-entry">
                     <span class="small-icon">
-                        <i class="flaticon-md flaticon-arabian-lantern"></i>
+                        <i class="flaticon-md flaticon-subah-prayer"></i>
                     </span>
-                    <span class="prayer-text">{{ imsak.key }}</span>
-                    <span class="prayer-text">
-                        <a class="fas fa-bell" ng-class="imsak.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('imsak')"></a>
-                        {{ imsak.value }}
+                    <span class="prayer-text">{{ fajr.key }}</span>
+                    <span>
+                        <span class="prayer-text">{{ fajr.value }}</span>
+                        <a class="fas fa-bell small-icon" ng-class="fajr.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('fajr')"></a>
                     </span>
                 </div>
                 <div class="row app-entry">
@@ -60,18 +60,19 @@
                         <i class="flaticon-md flaticon-ramadan-sunrise"></i>
                     </span>
                     <span class="prayer-text">{{ sunrise.key }}</span>
-                    <span class="prayer-text">
-                        <a class="fas fa-bell" ng-class="sunrise.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('sunrise')"></a>
-                        {{ sunrise.value }}</span>
+                    <span>
+                        <span class="prayer-text">{{ sunrise.value }}</span>
+                        <a class="fas fa-bell small-icon" ng-class="sunrise.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('sunrise')"></a>
+                    </span>
                 </div>
                 <div class="row app-entry">
                     <span class="small-icon">
                         <i class="flaticon-md flaticon-zuhar-prayer"></i>
                     </span>
                     <span class="prayer-text">{{ dhuhr.key }}</span>
-                    <span class="prayer-text">
-                        <a class="fas fa-bell" ng-class="dhuhr.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('dhuhr')"></a>
-                        {{ dhuhr.value }}
+                    <span>
+                        <span class="prayer-text">{{ dhuhr.value }}</span>
+                        <a class="fas fa-bell small-icon" ng-class="dhuhr.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('dhuhr')"></a>
                     </span>
                 </div>
                 <div class="row app-entry">
@@ -79,9 +80,9 @@
                         <i class="flaticon-md flaticon-ramadn-azhar"></i>
                     </span>
                     <span class="prayer-text">{{ asr.key }}</span>
-                    <span class="prayer-text">
-                        <a class="fas fa-bell" ng-class="asr.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('asr')"></a>
-                        {{ asr.value }}
+                    <span>
+                        <span class="prayer-text">{{ asr.value }}</span>
+                        <a class="fas fa-bell small-icon" ng-class="asr.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('asr')"></a>
                     </span>
                 </div>
                 <div class="row app-entry">
@@ -89,9 +90,9 @@
                         <i class="flaticon-md flaticon-maghrib-prayer"></i>
                     </span>
                     <span class="prayer-text">{{ maghrib.key }}</span>
-                    <span class="prayer-text">
-                        <a class="fas fa-bell" ng-class="maghrib.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('maghrib')"></a>
-                        {{ maghrib.value }}
+                    <span>
+                        <span class="prayer-text">{{ maghrib.value }}</span>
+                        <a class="fas fa-bell small-icon" ng-class="maghrib.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('maghrib')"></a>
                     </span>
                 </div>
                 <div class="row app-entry">
@@ -99,9 +100,9 @@
                         <i class="flaticon-md flaticon-isha-prayer"></i>
                     </span>
                     <span class="prayer-text">{{ isha.key }}</span>
-                    <span class="prayer-text">
-                        <a class="fas fa-bell" ng-class="isha.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('isha')"></a>
-                        {{ isha.value }}
+                    <span>
+                        <span class="prayer-text">{{ isha.value }}</span>
+                        <a class="fas fa-bell small-icon" ng-class="isha.notify ? 'prayer-on' : 'prayer-off'" ng-click="notifyChanged('isha')"></a>
                     </span>
                 </div>
             </div>

@@ -1,24 +1,29 @@
 class DataService {
 
-    times(format) {
+    times(method, format) {
         let q = $.Deferred();
         const boundMethod = this.method.bind(this);
-        format = format ? '12hNS' : '24h';
-        chrome.storage.local.get('times', function (l) {
-            if ('times' in l && l.times.date == moment().format('YYYY-MM-DD')) {
+        chrome.storage.local.get(['times', 'format', 'method'], function (l) {
+            console.log('data', format);
+            if ('times' in l && l.times.date == moment().format('YYYY-MM-DD') &&
+                (l.format == format || typeof (format) === 'undefined') &&
+                (l.method == method || typeof (method) === 'undefined')) {
+                console.log('old0');
                 q.resolve(l.times);
             } else {
-                boundMethod().then(function (method) {
-                    new CalculationProvider().times(method, format).then((data) => {
-                        chrome.storage.local.set({
-                            'times': data
-                        }, (val) => {
-                            q.resolve(data);
-                        });
-                    }).catch(() => {
-                        q.reject();
+                const formatString = format ? '12hNS' : '24h';
+                console.log('new', format);
+                new CalculationProvider().times(method, formatString).then((data) => {
+                    chrome.storage.local.set({
+                        'times': data,
+                        'format': format,
+                        'method': method
+                    }, () => {
+                        q.resolve(data);
                     });
-                }).catch(() => q.reject());
+                }).catch(() => {
+                    q.reject();
+                });
             }
         });
 
@@ -53,8 +58,8 @@ class DataService {
             } else {
                 let obj = {};
                 obj[fieldName] = field;
-                chrome.storage.local.set(obj, (val) => {
-                    q.resolve(val);
+                chrome.storage.local.set(obj, () => {
+                    q.resolve(obj[fieldName]);
                 });
             }
         });

@@ -48,7 +48,7 @@
         "description": "Asr Prayers"
     },
     "asrNotification": {
-        "message": "لقد حان الآن موعد صلاةالعصر",
+        "message": "لقد حان الآن موعد صلاة العصر",
         "description": "Asr Prayers"
     },
     "maghrib": {
