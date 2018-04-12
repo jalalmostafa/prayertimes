@@ -142,6 +142,7 @@ chrome.runtime.onInstalled.addListener((details) => {
                 onInstallUpdate(Messages.notificationsMessage.title, Messages.header.title);
                 break;
             case 'update':
+                chrome.storage.local.clear();
                 // onInstallUpdate(Messages.fixMessage.title, Messages.header.title);
                 break;
             default:
