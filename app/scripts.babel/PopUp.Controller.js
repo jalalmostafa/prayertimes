@@ -22,6 +22,10 @@ bptimes.controller('popup', ['$scope', 'bptData', 'bptI18n', '$q', function ($sc
         'key': bptI18n.isha.title
     };
 
+    const reformat = function (time, format) {
+        return !format ? time : moment(time, 'h:mm A').format('hh:mm A');;
+    };
+
     const loadPage = function () {
         $q.all([bptData.times(), bptData.notifications(), bptData.hourFormat()]).then(data => {
             const times = data[0];
@@ -30,44 +34,44 @@ bptimes.controller('popup', ['$scope', 'bptData', 'bptI18n', '$q', function ($sc
             $scope.format = format;
             console.log(format, times);
             $scope.fajr = Object.assign($scope.fajr, {
-                'value': times.fajr,
+                'value': reformat(times.fajr, format),
                 'notify': notify.fajr
             });
             $scope.imsak = Object.assign($scope.imsak, {
-                'value': times.imsak,
+                'value': reformat(times.imsak, format),
                 'notify': notify.imsak
             });
             $scope.sunrise = Object.assign($scope.sunrise, {
-                'value': times.sunrise,
+                'value': reformat(times.sunrise, format),
                 'notify': notify.sunrise
             });
             $scope.dhuhr = Object.assign($scope.dhuhr, {
-                'value': times.dhuhr,
+                'value': reformat(times.dhuhr, format),
                 'notify': notify.dhuhr
             });
             $scope.asr = Object.assign($scope.asr, {
-                'value': times.asr,
+                'value': reformat(times.asr, format),
                 'notify': notify.asr
             });
             $scope.maghrib = Object.assign($scope.maghrib, {
-                'value': times.maghrib,
+                'value': reformat(times.maghrib, format),
                 'notify': notify.maghrib
             });
             $scope.isha = Object.assign($scope.isha, {
-                'value': times.isha,
+                'value': reformat(times.isha, format),
                 'notify': notify.isha
             });
         });
     };
 
-    const updateTimes = function (times) {
-        $scope.fajr.value = times.fajr;
-        $scope.imsak.value = times.imsak;
-        $scope.sunrise.value = times.sunrise;
-        $scope.dhuhr.value = times.dhuhr;
-        $scope.asr.value = times.asr;
-        $scope.maghrib.value = times.maghrib;
-        $scope.isha.value = times.isha;
+    const updateTimes = function (times, format) {
+        $scope.fajr.value = reformat(times.fajr, format);
+        $scope.imsak.value = reformat(times.imsak, format);
+        $scope.sunrise.value = reformat(times.sunrise, format);
+        $scope.dhuhr.value = reformat(times.dhuhr, format);
+        $scope.asr.value = reformat(times.asr, format);
+        $scope.maghrib.value = reformat(times.maghrib, format);
+        $scope.isha.value = reformat(times.isha, format);
     };
 
     $scope.header = bptI18n.header.title;
@@ -113,7 +117,7 @@ bptimes.controller('popup', ['$scope', 'bptData', 'bptI18n', '$q', function ($sc
 
     $scope.methodChanged = function () {
         bptData.times($scope.method, $scope.format).then(times => {
-            updateTimes(times);
+            updateTimes(times, $scope.format);
         }).then(() => {
             const port = chrome.runtime.connect({
                 name: 'bptBackground'
@@ -129,7 +133,7 @@ bptimes.controller('popup', ['$scope', 'bptData', 'bptI18n', '$q', function ($sc
     $scope.formatChanged = function () {
         const format = $scope.format;
         bptData.times($scope.method, format).then(times => {
-            updateTimes(times);
+            updateTimes(times, format);
         });
     };
 }]);

@@ -11,7 +11,13 @@ class DataService {
                 console.log('old0');
                 q.resolve(l.times);
             } else {
-                const formatString = format ? '12hNS' : '24h';
+                if (typeof (format) === 'undefined') {
+                    format = l.format || false;
+                }
+                if (typeof (method) === 'undefined') {
+                    method = l.method || 'Tehran';
+                }
+                const formatString = format ? '12h' : '24h';
                 console.log('new', format);
                 new CalculationProvider().times(method, formatString).then((data) => {
                     chrome.storage.local.set({
