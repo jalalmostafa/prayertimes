@@ -63,9 +63,10 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
     }
 
     notifyChanged = async (key: Prayer) => {
-        const notifs = this.state.notifs
-        notifs[key] = !notifs[key]
-        const newNotifs = await store.notifications(notifs)
+        const { notifs } = this.state
+        const notifsCopy = Object.assign({}, notifs)
+        notifsCopy[key] = !notifsCopy[key]
+        const newNotifs = await store.notifications(notifsCopy)
         this.setState({
             notifs: newNotifs,
         })

@@ -12,22 +12,9 @@ interface IEntryProps {
     notifyChanged: (key: Prayer) => void
 }
 
-interface IEntryState {
-    notify: boolean
-}
-
-export class PrayerTimeEntry extends React.Component<IEntryProps, IEntryState> {
-
-    state = {
-        notify: this.props.notify,
-    }
-
+export class PrayerTimeEntry extends React.Component<IEntryProps, {}> {
     notifyChanged = () => {
-        const { notify } = this.state
         this.props.notifyChanged(this.props.code)
-        this.setState({
-            notify: !notify,
-        })
     }
 
     render() {
@@ -36,7 +23,7 @@ export class PrayerTimeEntry extends React.Component<IEntryProps, IEntryState> {
                 <span onClick={this.notifyChanged}>
                     <FontAwesomeIcon
                         icon="bell"
-                        className={'small-icon ' + (this.state.notify ? 'prayer-on' : 'prayer-off')}
+                        className={'small-icon ' + (this.props.notify ? 'prayer-on' : 'prayer-off')}
                     />
                     <span className="prayer-text">{this.props.time}</span>
                 </span>
