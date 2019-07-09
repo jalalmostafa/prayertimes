@@ -3,6 +3,7 @@ node_modules
 temp
 .tmp
 dist
+build
 .sass-cache
 app/bower_components
 test/bower_components
@@ -11,3 +12,4 @@ app/scripts
 app/styles
 *.crx
 *.pem
+*.log

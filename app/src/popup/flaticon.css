@@ -1,0 +1,239 @@
+/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 22/06/2016 15:21
+  	*/
+
+@font-face {
+    font-family: "Flaticon";
+    src: url("../../webfonts/ramadan/Flaticon.eot");
+    src: url("../../webfonts/ramadan/Flaticon.eot?#iefix") format("embedded-opentype"),
+        url("../../webfonts/ramadan/Flaticon.woff") format("woff"),
+        url("../../webfonts/ramadan/Flaticon.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="flaticon-"]:before,
+[class*=" flaticon-"]:before,
+[class^="flaticon-"]:after,
+[class*=" flaticon-"]:after {
+    font-family: Flaticon;
+    font-size: 20px;
+    font-style: normal;
+    /*margin-left: 20px;*/
+}
+
+.flaticon-adhan-call:before {
+    content: "\f100";
+}
+
+.flaticon-arabian-lantern:before {
+    content: "\f101";
+}
+
+.flaticon-arabian-magic-lamp:before {
+    content: "\f102";
+}
+
+.flaticon-arabic-lamp:before {
+    content: "\f103";
+}
+
+.flaticon-camel-facing-left:before {
+    content: "\f104";
+}
+
+.flaticon-eyd-drum:before {
+    content: "\f105";
+}
+
+.flaticon-eyd-gun:before {
+    content: "\f106";
+}
+
+.flaticon-forbidden-foods:before {
+    content: "\f107";
+}
+
+.flaticon-hamsa-hand:before {
+    content: "\f108";
+}
+
+.flaticon-hijab:before {
+    content: "\f109";
+}
+
+.flaticon-hijab-veil:before {
+    content: "\f10a";
+}
+
+.flaticon-isha-prayer:before {
+    content: "\f10b";
+}
+
+.flaticon-islamic-friday-prayer:before {
+    content: "\f10c";
+}
+
+.flaticon-islamic-ghusl:before {
+    content: "\f10d";
+}
+
+.flaticon-islamic-halal:before {
+    content: "\f10e";
+}
+
+.flaticon-islamic-minbar:before {
+    content: "\f10f";
+}
+
+.flaticon-islamic-mosque:before {
+    content: "\f110";
+}
+
+.flaticon-islamic-pray:before {
+    content: "\f111";
+}
+
+.flaticon-islamic-prayer:before {
+    content: "\f112";
+}
+
+.flaticon-islamic-ramadan:before {
+    content: "\f113";
+}
+
+.flaticon-islamic-wudu:before {
+    content: "\f114";
+}
+
+.flaticon-kaaba-building:before {
+    content: "\f115";
+}
+
+.flaticon-maghrib-prayer:before {
+    content: "\f116";
+}
+
+.flaticon-muslim-man:before {
+    content: "\f117";
+}
+
+.flaticon-muslim-man-praying:before {
+    content: "\f118";
+}
+
+.flaticon-muslim-praying:before {
+    content: "\f119";
+}
+
+.flaticon-muslim-praying-hands:before {
+    content: "\f11a";
+}
+
+.flaticon-muslim-woman-praying:before {
+    content: "\f11b";
+}
+
+.flaticon-old-oil-lamp:before {
+    content: "\f11c";
+}
+
+.flaticon-prayer-beads:before {
+    content: "\f11d";
+}
+
+.flaticon-qibla:before {
+    content: "\f11e";
+}
+
+.flaticon-quran-book:before {
+    content: "\f11f";
+}
+
+.flaticon-quran-rehal:before {
+    content: "\f120";
+}
+
+.flaticon-ramadan-crescent-moon:before {
+    content: "\f121";
+}
+
+.flaticon-ramadan-fasting:before {
+    content: "\f122";
+}
+
+.flaticon-ramadan-iftar:before {
+    content: "\f123";
+}
+
+.flaticon-ramadan-month:before {
+    content: "\f124";
+}
+
+.flaticon-ramadan-sunrise:before {
+    content: "\f125";
+}
+
+.flaticon-ramadn-azhar:before {
+    content: "\f126";
+}
+
+.flaticon-raya-rosary:before {
+    content: "\f127";
+}
+
+.flaticon-rub-el-hizb:before {
+    content: "\f128";
+}
+
+.flaticon-ruku-posture:before {
+    content: "\f129";
+}
+
+.flaticon-sadaqah:before {
+    content: "\f12a";
+}
+
+.flaticon-shrine:before {
+    content: "\f12b";
+}
+
+.flaticon-small-mosque:before {
+    content: "\f12c";
+}
+
+.flaticon-star-and-crescent-moon:before {
+    content: "\f12d";
+}
+
+.flaticon-subah-prayer:before {
+    content: "\f12e";
+}
+
+.flaticon-sufi-mystic:before {
+    content: "\f12f";
+}
+
+.flaticon-sujud-posture:before {
+    content: "\f130";
+}
+
+.flaticon-zuhar-prayer:before {
+    content: "\f131";
+}
+
+.flaticon-sm::before,
+.flaticon-sm::after {
+    font-size: 1em;
+}
+
+.flaticon-md::before,
+.flaticon-sm::after {
+    font-size: 2em;
+}
+
+.flaticon-lg::before,
+.flaticon-sm::after {
+    font-size: 4em;
+}
