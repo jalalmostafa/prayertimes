@@ -45,9 +45,11 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
     }
 
     formatChanged = async (checked: boolean) => {
-        const times = await store.prayerTimes(this.state.method, checked)
+        const format = await store.hourFormat(checked)
+        const ts = this.state.times
+        const times = this.updateTimes(ts, format)
         this.setState({
-            format: checked,
+            format,
             times,
         })
     }

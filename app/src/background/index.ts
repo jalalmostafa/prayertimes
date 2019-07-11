@@ -98,31 +98,31 @@ const run = async () => {
     const formattedMaghrib = moment(times.maghrib, format)
     const formattedIsha = moment(times.isha, format)
 
-    if (!now.isAfter(formattedFajr) && notifications.fajr) {
+    if (!now.isSameOrAfter(formattedFajr) && notifications.fajr) {
         createAlarm('fajr', formattedFajr)
     }
 
-    if (!now.isAfter(formattedImsak) && notifications.imsak) {
+    if (!now.isSameOrAfter(formattedImsak) && notifications.imsak) {
         createAlarm('imsak', formattedImsak)
     }
 
-    if (!now.isAfter(formattedSunrise) && notifications.sunrise) {
+    if (!now.isSameOrAfter(formattedSunrise) && notifications.sunrise) {
         createAlarm('sunrise', formattedSunrise)
     }
 
-    if (!now.isAfter(formattedDhuhr) && notifications.dhuhr) {
+    if (!now.isSameOrAfter(formattedDhuhr) && notifications.dhuhr) {
         createAlarm('dhuhr', formattedDhuhr)
     }
 
-    if (!now.isAfter(formattedAsr) && notifications.asr) {
+    if (!now.isSameOrAfter(formattedAsr) && notifications.asr) {
         createAlarm('asr', formattedAsr)
     }
 
-    if (!now.isAfter(formattedMaghrib) && notifications.maghrib) {
+    if (!now.isSameOrAfter(formattedMaghrib) && notifications.maghrib) {
         createAlarm('maghrib', formattedMaghrib)
     }
 
-    if (!now.isAfter(formattedIsha) && notifications.isha) {
+    if (!now.isSameOrAfter(formattedIsha) && notifications.isha) {
         createAlarm('isha', formattedIsha)
     }
 
@@ -171,7 +171,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
         const times = store.prayerTimes()
         const deadline = moment(times[alarm.name], 'HH:mm').add(5, 'minutes')
 
-        if (!now.isAfter(deadline)) {
+        if (!now.isSameOrAfter(deadline)) {
             chrome.notifications.create(alarm.name, {
                 iconUrl: 'images/adhan-call.png',
                 message: alarmData.message,

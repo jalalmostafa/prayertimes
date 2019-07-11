@@ -58,15 +58,15 @@ export namespace store {
     }
 
     export function hourFormat(format?: boolean): Promise<boolean> {
-        return !!format ? setField<boolean>('format', format) : getFieldOrDefault<boolean>('format', defaultFormat)
+        return format ? setField<boolean>('format', format) : getFieldOrDefault<boolean>('format', defaultFormat)
     }
 
     export function method(calcMethod?: string): Promise<string> {
-        return !!calcMethod ? setField<string>('method', calcMethod) : getFieldOrDefault<string>('method', defaultMethod)
+        return typeof calcMethod !== 'undefined' ? setField<string>('method', calcMethod) : getFieldOrDefault<string>('method', defaultMethod)
     }
 
     export function notifications(notifs?: PrayerNotifications): Promise<PrayerNotifications> {
-        return !!notifs ? setField<PrayerNotifications>('notifications', notifs)
+        return typeof notifs !== 'undefined' ? setField<PrayerNotifications>('notifications', notifs)
             : getFieldOrDefault<PrayerNotifications>('notifications', defaultNotifications)
     }
 
