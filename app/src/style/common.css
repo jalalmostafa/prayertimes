@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "cairo";
+    src: url('../../fonts/Cairo/Cairo-Light.ttf');
+}
+
+@font-face {
+    font-family: "roboto";
+    src: url('../../fonts/Roboto/Roboto-Thin.ttf');
+}
+
+:root{
+    --color-accent: rgb(100, 189, 99);
+    --color-off: #B0BEC5;
+    --color-line: #ECEFF1;
+    --color-shadow: #bbb;
+    --margin-border: 10px;
+}

@@ -1,0 +1,55 @@
+@import url('../style/common.css');
+
+body {
+    margin: 0;
+}
+
+.header {
+    padding: 5px 0;
+    box-shadow: 0px 0 5px var(--color-shadow);
+    margin-bottom: 15px;
+}
+
+.header-content {
+    display: flex;
+    padding-left: var(--margin-border);
+}
+
+.header-icon {
+    color: var(--color-accent);
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hour-format,
+.method {
+    display: flex;
+    margin: var(--margin-border) 0;
+    align-items: center;
+}
+
+.hour-format-label,
+.method-label {
+    font-size: 16pt;
+    font-family: 'roboto';
+    font-weight: bold;
+    margin-left: var(--margin-border);
+    width: 150px;
+}
+
+.hour-format-control,
+.method-control {
+    display: flex;
+    justify-content: flex-end;
+    width: 500px;
+    margin-right: var(--margin-border);
+}
+
+.method-control select {
+    height: 35px;
+    width: 80%;
+}

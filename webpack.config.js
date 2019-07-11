@@ -8,7 +8,8 @@ module.exports = {
     mode: process.env.NODE_ENV,
     entry: {
         popup: './app/src/popup/index.tsx',
-        background: './app/src/background/index.ts'
+        background: './app/src/background/index.ts',
+        options: './app/src/options/index.tsx',
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
@@ -66,6 +67,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             chunks: ['popup'],
             filename: 'popup.html',
+            title: Package.productName
+        }),
+        new HtmlWebpackPlugin({
+            chunks: ['options'],
+            filename: 'options.html',
             title: Package.productName
         })
     ]

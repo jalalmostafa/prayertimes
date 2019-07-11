@@ -1,21 +1,19 @@
-import './flaticon.css'
+import '../style/flaticon.css'
 import './main.css'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment'
-import Switch from 'rc-switch'
 import React from 'react'
 
 import { IAppPrayerTimes } from '../common/calculator'
 import { i18n } from '../common/i18n-service'
-import { methods, Prayer } from '../common/prayer-times'
+import { Prayer } from '../common/prayer-times'
 import { PrayerNotifications, store } from '../common/store'
 import { PrayerTimeEntry } from './prayer-time-entry'
 
 interface IPopupState {
-    format: boolean
     times: IAppPrayerTimes
     notifs: PrayerNotifications
-    method: string
 }
 
 export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
@@ -33,8 +31,6 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
     }
 
     state = {
-        format: store.defaultFormat,
-        method: store.defaultMethod,
         notifs: store.defaultNotifications,
         times: store.defaultPrayerTimes,
     }
@@ -42,26 +38,6 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
     constructor(props: Readonly<{}>) {
         super(props)
         this.loadPage()
-    }
-
-    formatChanged = async (checked: boolean) => {
-        const format = await store.hourFormat(checked)
-        const ts = this.state.times
-        const times = this.updateTimes(ts, format)
-        this.setState({
-            format,
-            times,
-        })
-    }
-
-    methodChanged = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const { value } = e.target
-        const times = await store.prayerTimes(value, this.state.format)
-        this.setState({
-            method: value,
-            times,
-        })
-        this.notifyBackground()
     }
 
     notifyChanged = async (key: Prayer) => {
@@ -72,7 +48,13 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
         this.setState({
             notifs: newNotifs,
         })
-        this.notifyBackground()
+        store.notifyBackground()
+    }
+
+    goToOptionsPage = () => {
+        chrome.runtime.openOptionsPage ?
+            chrome.runtime.openOptionsPage() :
+            window.open(chrome.runtime.getURL('options.html'))
     }
 
     render() {
@@ -96,31 +78,8 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
                         />,
                     )}
                 </div>
-                <div className="method">
-                    <label htmlFor="method" className="method-label">{i18n.method.title}</label>
-                    <span className="method-control">
-                        <select
-                            id="method"
-                            value={this.state.method}
-                            onChange={this.methodChanged}
-                        >
-                            {Object.keys(methods).map((m) => <option key={m} value={m}>{methods[m].name}</option>)}
-                        </select>
-                    </span>
-                </div>
-
-                <div className="hour-format">
-                    <label htmlFor="hourFormat" className="hour-format-label">{i18n.format.title}</label>
-                    <span className="hour-format-control">
-                        <span id="hourFormat" className="green small">
-                            <Switch
-                                checked={this.state.format}
-                                checkedChildren=""
-                                unCheckedChildren=""
-                                onChange={this.formatChanged}
-                            />
-                        </span>
-                    </span>
+                <div className="options" onClick={this.goToOptionsPage}>
+                    <FontAwesomeIcon icon="cogs" className="options-icon" />
                 </div>
             </div>
         )
@@ -140,25 +99,14 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
     }
 
     private async loadPage() {
-        const [t, format, notifs, method] =
-            await Promise.all([store.prayerTimes(), store.hourFormat(), store.notifications(), store.method()])
+        const [t, format, notifs] =
+            await Promise.all([store.prayerTimes(), store.hourFormat(), store.notifications()])
 
         const times = this.updateTimes(t, format)
 
         this.setState({
-            format: format || store.defaultFormat,
-            method: method || store.defaultMethod,
             notifs: notifs || store.defaultNotifications,
             times: times || store.defaultPrayerTimes,
         })
-    }
-
-    private notifyBackground() {
-        const port = chrome.runtime.connect()
-        if (port) {
-            port.postMessage({
-                command: 'config-changed',
-            })
-        }
     }
 }

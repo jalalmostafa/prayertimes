@@ -34,19 +34,20 @@ export namespace store {
         sunset: false,
     }
 
-    export function prayerTimes(calcMethod?: string, format?: boolean): Promise<IAppPrayerTimes> {
+    export function prayerTimes(calcMethod?: string): Promise<IAppPrayerTimes> {
         return new Promise<IAppPrayerTimes>((resolve) => {
             chrome.storage.local.get(['times', 'format', 'method'], async (result) => {
                 if (result.times &&
                     result.times.date === moment().format(DateFormat) &&
-                    result.format === format &&
                     result.method === calcMethod) {
                     resolve(result.times)
                 } else {
                     const methd = calcMethod as MethodType || defaultMethod
-                    const times = await calculator.prayerTimes(methd, format ? '12h' : '24h')
+                    const times = await calculator.prayerTimes(methd)
+
+                    notifyBackground()
+
                     chrome.storage.local.set({
-                        format,
                         method: calcMethod,
                         times,
                     }, () => {
@@ -62,7 +63,13 @@ export namespace store {
     }
 
     export function method(calcMethod?: string): Promise<string> {
-        return typeof calcMethod !== 'undefined' ? setField<string>('method', calcMethod) : getFieldOrDefault<string>('method', defaultMethod)
+        if (typeof calcMethod === 'undefined') {
+            return getFieldOrDefault<string>('method', defaultMethod)
+        }
+
+        const methd = setField<string>('method', calcMethod)
+        notifyBackground()
+        return methd
     }
 
     export function notifications(notifs?: PrayerNotifications): Promise<PrayerNotifications> {
@@ -86,5 +93,14 @@ export namespace store {
                 resolve(obj[fieldName] as T)
             })
         })
+    }
+
+    export function notifyBackground() {
+        const port = chrome.runtime.connect()
+        if (port) {
+            port.postMessage({
+                command: 'config-changed',
+            })
+        }
     }
 }

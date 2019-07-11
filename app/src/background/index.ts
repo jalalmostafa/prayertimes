@@ -171,7 +171,10 @@ chrome.alarms.onAlarm.addListener((alarm) => {
         const times = store.prayerTimes()
         const deadline = moment(times[alarm.name], 'HH:mm').add(5, 'minutes')
 
-        if (!now.isSameOrAfter(deadline)) {
+        console.warn(deadline.format())
+        console.warn(now.format())
+
+        if (deadline && !now.isSameOrAfter(deadline)) {
             chrome.notifications.create(alarm.name, {
                 iconUrl: 'images/adhan-call.png',
                 message: alarmData.message,
