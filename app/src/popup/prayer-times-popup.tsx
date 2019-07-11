@@ -77,9 +77,9 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
                             notify={this.state.notifs[p]}
                         />,
                     )}
-                </div>
-                <div className="options" onClick={this.goToOptionsPage}>
-                    <FontAwesomeIcon icon="cogs" className="options-icon" />
+                    <div className="options" onClick={this.goToOptionsPage}>
+                        <FontAwesomeIcon icon="cogs" className="options-icon" />
+                    </div>
                 </div>
             </div>
         )

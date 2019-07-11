@@ -23,13 +23,13 @@ body {
 
 .small-icon {
     color: var(--color-accent);
-    margin-right: var(--margin-border);
     font-size: 14pt;
 }
 
 .prayer-text {
-    font-size: 17pt;
+    font-size: 16pt;
     font-family: 'cairo';
+    margin-left: var(--margin-border);
 }
 
 .prayer-on,
@@ -93,8 +93,13 @@ body {
     margin-right: var(--margin-border);
 }
 
-.options-icon {
+.options {
     display: flex;
     justify-content: flex-end;
-    margin-right: var(--margin-border);
+}
+
+.options-icon {
+    color: var(--color-accent);
+    font-size: 16pt;
+    cursor: pointer;
 }
