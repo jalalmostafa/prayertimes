@@ -84,10 +84,10 @@ const createAlarm = (alarmName: Prayer | 'tomorrow', momentObj: Moment) => {
 }
 
 const run = async () => {
-    const results = await Promise.all([store.prayerTimes(), store.notifications(), store.hourFormat()])
-    const format = results[2] as boolean ? 'h:mm A' : 'HH:mm'
-    const notifications = results[1] as PrayerNotifications
+    const results = await Promise.all([store.prayerTimes(), store.notifications()])
     const times = results[0] as IAppPrayerTimes
+    const notifications = results[1] as PrayerNotifications
+    const format = 'HH:mm'
 
     const now = moment()
     const formattedFajr = moment(times.fajr, format)

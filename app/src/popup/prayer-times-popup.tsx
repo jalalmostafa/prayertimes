@@ -86,7 +86,7 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
     }
 
     private reformat(time: string, format: boolean) {
-        return !format ? time : moment(time, 'h:mm A').format('hh:mm A')
+        return !format ? time : moment(time, 'HH:mm').format('hh:mm A')
     }
 
     private updateTimes(times: IAppPrayerTimes, format: boolean): IAppPrayerTimes {
