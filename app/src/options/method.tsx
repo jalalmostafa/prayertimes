@@ -13,7 +13,8 @@ export class Method extends React.Component<IMethodProps, {}> {
 
     methodChanged = async (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target
-        await store.method(value)
+        await store.prayerTimes(value)
+        store.notifyBackground()
         this.props.onChange(value as MethodType)
     }
 

@@ -42,13 +42,11 @@ export namespace store {
                     result.method === calcMethod) {
                     resolve(result.times)
                 } else {
-                    const methd = calcMethod as MethodType || defaultMethod
+                    const methd = (typeof calcMethod === 'undefined' ? result.method : calcMethod as MethodType) || defaultMethod
                     const times = await calculator.prayerTimes(methd)
 
-                    notifyBackground()
-
                     chrome.storage.local.set({
-                        method: calcMethod,
+                        method: methd,
                         times,
                     }, () => {
                         resolve(times)
@@ -96,7 +94,7 @@ export namespace store {
     }
 
     export function notifyBackground() {
-        const port = chrome.runtime.connect()
+        const port = chrome.runtime.connect({ name: 'background' })
         if (port) {
             port.postMessage({
                 command: 'config-changed',

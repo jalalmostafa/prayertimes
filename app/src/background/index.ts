@@ -130,22 +130,24 @@ const run = async () => {
     createAlarm('tomorrow', tomorrow)
 }
 
-run()
-
 chrome.runtime.onConnect.addListener((port) => {
-    port.onMessage.addListener((msg) => {
-        if (msg.command === 'config-changed') {
-            chrome.alarms.clearAll((wasCleared) => {
-                wasCleared ? port.postMessage({
-                    changed: true,
-                }) : port.postMessage({
-                    changed: false,
+    if (port.name === 'background') {
+        port.onMessage.addListener((msg) => {
+            if (msg.command === 'config-changed') {
+                chrome.alarms.clearAll((wasCleared) => {
+                    wasCleared ? port.postMessage({
+                        changed: true,
+                    }) : port.postMessage({
+                        changed: false,
+                    })
+                    run()
                 })
-                run()
-            })
-        }
-    })
+            }
+        })
+    }
 })
+
+run()
 
 chrome.runtime.onInstalled.addListener((details) => {
     if (details.reason) {

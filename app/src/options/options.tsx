@@ -26,7 +26,7 @@ export class Options extends React.Component<{}, IOptionsState> {
         this.loadPage()
     }
 
-    onMethodChange = (method: MethodType) => {
+    onMethodChange = async (method: MethodType) => {
         this.setState({
             method,
         })
