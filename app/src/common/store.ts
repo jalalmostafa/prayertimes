@@ -57,7 +57,7 @@ export namespace store {
     }
 
     export function hourFormat(format?: boolean): Promise<boolean> {
-        return format ? setField<boolean>('format', format) : getFieldOrDefault<boolean>('format', defaultFormat)
+        return typeof format !== 'undefined' ? setField<boolean>('format', format) : getFieldOrDefault<boolean>('format', defaultFormat)
     }
 
     export function method(calcMethod?: string): Promise<string> {
