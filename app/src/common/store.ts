@@ -1,16 +1,16 @@
 import moment from 'moment'
 
-import { calculator, IAppPrayerTimes } from './calculator'
+import { calculator, IAppPrayerTimes, LatLng } from './calculator'
 import { MethodType, Prayer } from './prayer-times'
 
 export type PrayerNotifications = Record<Prayer, boolean>
 
 export namespace store {
-    const DateFormat = 'YYYY-MM-DD'
+    const dateFormat = 'YYYY-MM-DD'
 
     export const defaultPrayerTimes: IAppPrayerTimes = {
         asr: '--:--',
-        date: moment().format(DateFormat),
+        date: moment().format(dateFormat),
         dhuhr: '--:--',
         fajr: '--:--',
         imsak: '--:--',
@@ -38,12 +38,13 @@ export namespace store {
         return new Promise<IAppPrayerTimes>((resolve) => {
             chrome.storage.local.get(['times', 'format', 'method'], async (result) => {
                 if (result.times &&
-                    result.times.date === moment().format(DateFormat) &&
+                    result.times.date === moment().format(dateFormat) &&
                     result.method === calcMethod) {
                     resolve(result.times)
                 } else {
                     const methd = (typeof calcMethod === 'undefined' ? result.method : calcMethod as MethodType) || defaultMethod
-                    const times = await calculator.prayerTimes(methd)
+                    const loc = await location()
+                    const times = await calculator.prayerTimes(methd, loc)
 
                     chrome.storage.local.set({
                         method: methd,
@@ -73,6 +74,11 @@ export namespace store {
     export function notifications(notifs?: PrayerNotifications): Promise<PrayerNotifications> {
         return typeof notifs !== 'undefined' ? setField<PrayerNotifications>('notifications', notifs)
             : getFieldOrDefault<PrayerNotifications>('notifications', defaultNotifications)
+    }
+
+    export async function location(latlng?: LatLng): Promise<LatLng> {
+        return typeof latlng !== 'undefined' ? setField<LatLng>('location', latlng)
+            : getFieldOrDefault<LatLng>('location', await calculator.location())
     }
 
     function getFieldOrDefault<T>(fieldName: string, defaultValue: T): Promise<T> {

@@ -4,26 +4,35 @@ import React from 'react'
 import { i18n } from '../common/i18n-service'
 import { store } from '../common/store'
 
-interface IFormatProps {
+interface IFormatState {
     value: boolean
-    onChange: (format: boolean) => void
 }
 
-export class HourFormat extends React.Component<IFormatProps, {}> {
+export class HourFormat extends React.Component<{}, IFormatState> {
+
+    constructor(props: {}) {
+        super(props)
+        this.state = {
+            value: store.defaultFormat,
+        }
+        this.loadPage()
+    }
 
     formatChanged = async (checked: boolean) => {
         const format = await store.hourFormat(checked)
-        this.props.onChange(format)
+        this.setState({
+            value: format,
+        })
     }
 
     render() {
         return (
             <div className="hour-format">
-                <label htmlFor="hourFormat" className="hour-format-label">{i18n.format.title}</label>
+                <label htmlFor="hourFormat" className="hour-format-label">{i18n.format}</label>
                 <span className="hour-format-control">
                     <span id="hourFormat" className="green small">
                         <Switch
-                            checked={this.props.value}
+                            checked={this.state.value}
                             checkedChildren=""
                             unCheckedChildren=""
                             onChange={this.formatChanged}
@@ -32,5 +41,12 @@ export class HourFormat extends React.Component<IFormatProps, {}> {
                 </span>
             </div>
         )
+    }
+
+    private async loadPage() {
+        const format = await store.hourFormat() || store.defaultFormat
+        this.setState({
+            value: format,
+        })
     }
 }

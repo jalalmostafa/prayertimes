@@ -28,7 +28,6 @@ body {
 .hour-format,
 .method {
     display: flex;
-    margin: var(--margin-border) 0;
     align-items: center;
 }
 
@@ -37,7 +36,6 @@ body {
     font-size: 16pt;
     font-family: 'roboto';
     font-weight: bold;
-    margin-left: var(--margin-border);
     width: 150px;
 }
 
@@ -46,10 +44,33 @@ body {
     display: flex;
     justify-content: flex-end;
     width: 500px;
-    margin-right: var(--margin-border);
 }
 
 .method-control select {
     height: 35px;
     width: 80%;
+}
+
+.location-control {
+    height: 300px;
+    border: 1px solid var(--color-line);
+    margin-top: var(--margin-border);
+}
+
+.location-desc {
+    font-size: 12pt;
+    font-style: oblique;
+    color: var(--color-shadow);
+}
+
+.location-marker {
+    font-size: 45px;
+    color: var(--color-accent);
+    position: absolute;
+    top: -45px;
+    left: -15px;
+}
+
+.options-wrapper>* {
+    margin-bottom: 15px;
 }

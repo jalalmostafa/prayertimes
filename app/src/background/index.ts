@@ -3,66 +3,12 @@ import '../../assets/solemn.mp3'
 import moment, { Moment } from 'moment'
 
 import { IAppPrayerTimes } from '../common/calculator'
+import { i18n, ILocalized } from '../common/i18n-service'
 import { Prayer } from '../common/prayer-times'
 import { PrayerNotifications, store } from '../common/store'
 
 const playDefaultSound = () => {
     new Audio('solemn.mp3').play()
-}
-
-const Messages = {
-    asr: {
-        message: chrome.i18n.getMessage('asrNotification'),
-        title: chrome.i18n.getMessage('asr'),
-    },
-    dhuhr: {
-        message: chrome.i18n.getMessage('dhuhrNotification'),
-        title: chrome.i18n.getMessage('dhuhr'),
-    },
-    fajr: {
-        message: chrome.i18n.getMessage('fajrNotification'),
-        title: chrome.i18n.getMessage('fajr'),
-    },
-    fixMessage: {
-        title: chrome.i18n.getMessage('fixMessage'),
-    },
-    format: {
-        title: chrome.i18n.getMessage('format'),
-    },
-    header: {
-        title: chrome.i18n.getMessage('header'),
-    },
-    imsak: {
-        message: chrome.i18n.getMessage('imsakNotification'),
-        title: chrome.i18n.getMessage('imsak'),
-    },
-    isha: {
-        message: chrome.i18n.getMessage('ishaNotification'),
-        title: chrome.i18n.getMessage('isha'),
-    },
-    maghrib: {
-        message: chrome.i18n.getMessage('maghribNotification'),
-        title: chrome.i18n.getMessage('maghrib'),
-    },
-    method: {
-        title: chrome.i18n.getMessage('method'),
-    },
-    notifications: {
-        title: chrome.i18n.getMessage('notifications'),
-    },
-    notificationsMessage: {
-        title: chrome.i18n.getMessage('notificationsMessage'),
-    },
-    options: {
-        title: chrome.i18n.getMessage('options'),
-    },
-    sunrise: {
-        message: chrome.i18n.getMessage('sunriseNotification'),
-        title: chrome.i18n.getMessage('sunrise'),
-    },
-    updateMessage: {
-        title: chrome.i18n.getMessage('updateMessage'),
-    },
 }
 
 const onInstallUpdate = (msg: string, header: string) => {
@@ -153,10 +99,10 @@ chrome.runtime.onInstalled.addListener((details) => {
     if (details.reason) {
         switch (details.reason) {
             case 'install':
-                onInstallUpdate(Messages.notificationsMessage.title, Messages.header.title)
+                onInstallUpdate(i18n.notificationsMessage, i18n.header)
                 break
             case 'update':
-                // onInstallUpdate(Messages.fixMessage.title, Messages.header.title);
+                // onInstallUpdate(i18n.fixMessage, i18n.header);
                 break
             default:
                 break
@@ -164,19 +110,20 @@ chrome.runtime.onInstalled.addListener((details) => {
     }
 })
 
-chrome.alarms.onAlarm.addListener((alarm) => {
+chrome.alarms.onAlarm.addListener(async (alarm) => {
     if (alarm.name === 'tomorrow') {
         run()
     } else {
-        const alarmData = Messages[alarm.name]
+        const alarmData: ILocalized = i18n[alarm.name]
         const now = moment()
-        const times = store.prayerTimes()
+        const times = await store.prayerTimes()
         const deadline = moment(times[alarm.name], 'HH:mm').add(5, 'minutes')
 
+        console.warn(times, alarm, times[alarm.name])
         console.warn(deadline.format())
         console.warn(now.format())
 
-        if (deadline && !now.isSameOrAfter(deadline)) {
+        if (deadline.isValid() && !now.isAfter(deadline)) {
             chrome.notifications.create(alarm.name, {
                 iconUrl: 'images/adhan-call.png',
                 message: alarmData.message,

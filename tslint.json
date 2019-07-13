@@ -4,6 +4,7 @@
         "tslint-react"
     ],
     "rules": {
+        "variable-name": [true, "allow-leading-underscore"],
         "jsx-no-multiline-js": false,
         "no-namespace": false,
         "member-access": false,

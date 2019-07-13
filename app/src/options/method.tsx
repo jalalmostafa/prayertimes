@@ -1,31 +1,41 @@
-import * as React from 'react'
+import React from 'react'
 
 import { i18n } from '../common/i18n-service'
 import { methods, MethodType } from '../common/prayer-times'
 import { store } from '../common/store'
 
-interface IMethodProps {
+interface IMethodState {
     value: MethodType
-    onChange: (newMethod: MethodType) => void
 }
 
-export class Method extends React.Component<IMethodProps, {}> {
+export class Method extends React.Component<{}, IMethodState> {
+
+    constructor(props: {}) {
+        super(props)
+        this.state = {
+            value: store.defaultMethod,
+        }
+        this.loadPage()
+    }
 
     methodChanged = async (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target
         await store.prayerTimes(value)
         store.notifyBackground()
-        this.props.onChange(value as MethodType)
+        const method = (value || store.defaultMethod) as MethodType
+        this.setState({
+            value: method,
+        })
     }
 
     render() {
         return (
             <div className="method">
-                <label htmlFor="method" className="method-label">{i18n.method.title}</label>
+                <label htmlFor="method" className="method-label">{i18n.method}</label>
                 <span className="method-control">
                     <select
                         id="method"
-                        value={this.props.value}
+                        value={this.state.value}
                         onChange={this.methodChanged}
                     >
                         {Object.keys(methods).map((m) => <option key={m} value={m}>{methods[m].name}</option>)}
@@ -33,5 +43,12 @@ export class Method extends React.Component<IMethodProps, {}> {
                 </span>
             </div>
         )
+    }
+
+    private async loadPage() {
+        const method = (await store.method() || store.defaultMethod) as MethodType
+        this.setState({
+            value: method,
+        })
     }
 }

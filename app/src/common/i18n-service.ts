@@ -1,15 +1,13 @@
 import { Prayer } from './prayer-times'
 
-interface ILocalized {
+export interface ILocalized {
     title: string
     message?: string
 }
 
 class I18nService {
-    getAppMessage(key: string): ILocalized {
-        return {
-            title: chrome.i18n.getMessage(key),
-        }
+    getAppMessage(key: string): string {
+        return chrome.i18n.getMessage(key)
     }
 
     private getPrayerMessage(key: Prayer, messageKey: string): ILocalized {
@@ -77,6 +75,18 @@ class I18nService {
 
     get method() {
         return this.getAppMessage('method')
+    }
+
+    get location() {
+        return this.getAppMessage('location')
+    }
+
+    get locationDesc() {
+        return this.getAppMessage('locationDesc')
+    }
+
+    get apiKey() {
+        return this.getAppMessage('apiKey')
     }
 }
 

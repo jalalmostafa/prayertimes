@@ -62,7 +62,7 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
             <div className="container">
                 <div className="row header">
                     <i className="flaticon-small-mosque flaticon-lg main-icon" />
-                    <h3 className="header-text">{i18n.header.title}</h3>
+                    <h3 className="header-text">{i18n.header}</h3>
                 </div>
                 <hr className="line" />
                 <div className="content">
