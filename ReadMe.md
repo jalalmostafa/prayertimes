@@ -7,5 +7,11 @@ In-Browser Prayer Notifications and Times
 Technology stack: React - TypeScript - Webpack
 
 - `yarn install`
-- Setup Google Geolocation and Maps APIs and then add the API key in `_locales/ar/messages.json` (field `apiKey`)
+- Create `config.env` in root directory and set the following properties:
+
+```bash
+# Google Geolocation and Maps APIs
+GMAPS_API_KEY=AIzaSyDwz8JXCM_GkBHLyWFjDUVQHljGboVxHpw
+```
+
 - `yarn start`

@@ -13,3 +13,4 @@ app/styles
 *.crx
 *.pem
 *.log
+*.env

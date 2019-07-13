@@ -1,6 +1,11 @@
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const DefinePlugin = require('webpack').DefinePlugin
+const DotEnv = require('dotenv').config({
+    path: './config.env'
+})
+
 const Package = require('./package.json')
 
 module.exports = {
@@ -73,6 +78,9 @@ module.exports = {
             chunks: ['options'],
             filename: 'options.html',
             title: Package.productName
+        }),
+        new DefinePlugin({
+            __GMAPS_API_KEY__: JSON.stringify(process.env.GMAPS_API_KEY),
         })
     ]
 }

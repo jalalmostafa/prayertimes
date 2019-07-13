@@ -45,7 +45,7 @@ export class Location extends React.Component<{}, ILocationState> {
                 <div className="location-desc">{i18n.locationDesc}</div>
                 <div className="location-control" id="location">
                     <GoogleMapReact
-                        bootstrapURLKeys={{ key: i18n.apiKey }}
+                        bootstrapURLKeys={{ key: __GMAPS_API_KEY__ }}
                         options={mapOptions}
                         zoom={10}
                         center={{ lat, lng }}

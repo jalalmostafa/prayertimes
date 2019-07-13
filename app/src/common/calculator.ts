@@ -1,7 +1,6 @@
 import ky from 'ky'
 import moment from 'moment'
 
-import { i18n } from './i18n-service'
 import prayTimes, { CoordinatesTuple, DateTuple, IPrayerTimes, MethodType } from './prayer-times'
 
 export interface IAppPrayerTimes extends IPrayerTimes {
@@ -35,7 +34,7 @@ export namespace calculator {
                 resolve(loc)
             }, async () => {
                 const data = await ky
-                    .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${i18n.apiKey}`)
+                    .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${__GMAPS_API_KEY__}`)
                     .json<{ location: { lat: number; lng: number }, accuracy: number }>()
                 const loc: CoordinatesTuple = [data.location.lat, data.location.lng]
                 resolve(loc)

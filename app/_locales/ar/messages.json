@@ -102,9 +102,5 @@
     "locationDesc": {
         "message": "Place a marker on the map to specify your location (default: your current location)",
         "description": ""
-    },
-    "apiKey": {
-        "message": "AIzaSyDwz8JXCM_GkBHLyWFjDUVQHljGboVxHpw",
-        "description": ""
     }
 }
