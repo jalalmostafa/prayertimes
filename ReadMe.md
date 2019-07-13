@@ -1,6 +1,6 @@
 # Prayer Times
 
-In-Browser Prayer Notifications and Times
+In-Browser Prayer Times and Notifications
 
 ## How to Build
 
