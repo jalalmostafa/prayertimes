@@ -88,7 +88,7 @@
         "description": "show this when updating the extensions for fixing bugs"
     },
     "format": {
-        "message": "12H Format",
+        "message": "A.M./P.M.",
         "description": ""
     },
     "method": {
@@ -100,7 +100,7 @@
         "description": ""
     },
     "locationDesc": {
-        "message": "Place a marker on the map to specify your location (default: your current location)",
+        "message": "Place a marker on the map to specify your location (default: auto-detect your current location)",
         "description": ""
     }
 }

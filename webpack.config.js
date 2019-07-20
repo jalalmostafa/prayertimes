@@ -2,9 +2,7 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const DefinePlugin = require('webpack').DefinePlugin
-const DotEnv = require('dotenv').config({
-    path: './config.env'
-})
+const DotEnv = require('dotenv').config()
 
 const Package = require('./package.json')
 

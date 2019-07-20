@@ -110,18 +110,13 @@ chrome.runtime.onInstalled.addListener((details) => {
     }
 })
 
-chrome.alarms.onAlarm.addListener(async (alarm) => {
+chrome.alarms.onAlarm.addListener((alarm) => {
     if (alarm.name === 'tomorrow') {
         run()
     } else {
         const alarmData: ILocalized = i18n[alarm.name]
         const now = moment()
-        const times = await store.prayerTimes()
-        const deadline = moment(times[alarm.name], 'HH:mm').add(5, 'minutes')
-
-        console.warn(times, alarm, times[alarm.name])
-        console.warn(deadline.format())
-        console.warn(now.format())
+        const deadline = moment(alarm.scheduledTime).add(5, 'minutes')
 
         if (deadline.isValid() && !now.isAfter(deadline)) {
             chrome.notifications.create(alarm.name, {
