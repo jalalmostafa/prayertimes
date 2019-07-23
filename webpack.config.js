@@ -1,9 +1,10 @@
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const DefinePlugin = require('webpack').DefinePlugin
-const DotEnv = require('dotenv').config()
+const ZipWebpackPlugin = require('zip-webpack-plugin')
+const DefineWebpackPlugin = require('webpack').DefinePlugin
 
+const DotEnv = require('dotenv').config()
 const Package = require('./package.json')
 
 module.exports = {
@@ -77,8 +78,25 @@ module.exports = {
             filename: 'options.html',
             title: Package.productName
         }),
-        new DefinePlugin({
+        new DefineWebpackPlugin({
             __GMAPS_API_KEY__: JSON.stringify(process.env.GMAPS_API_KEY),
+        }),
+        new ZipWebpackPlugin({
+            path: path.join(__dirname, 'dist'),
+            filename: Package.name,
+            exclude: [/\.map$/],
+            // OPTIONAL: see https://github.com/thejoshwolfe/yazl#addfilerealpath-metadatapath-options
+            fileOptions: {
+                mtime: new Date(),
+                mode: 0o100664,
+                compress: true,
+                forceZip64Format: false,
+            },
+
+            // OPTIONAL: see https://github.com/thejoshwolfe/yazl#endoptions-finalsizecallback
+            zipOptions: {
+                forceZip64Format: false,
+            },
         })
     ]
 }

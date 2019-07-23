@@ -6,6 +6,7 @@
         "start": "yarn run build:dev",
         "build": "cross-env NODE_ENV=production webpack --progress",
         "build:dev": "cross-env NODE_ENV=development webpack --progress",
+        "zip": "yarn run build",
         "lint": "tslint --project tsconfig.json --type-check --force"
     },
     "devDependencies": {
@@ -28,7 +29,8 @@
         "tslint-react": "^4.0.0",
         "typescript": "^3.5.2",
         "webpack": "^4.35.2",
-        "webpack-cli": "^3.3.5"
+        "webpack-cli": "^3.3.5",
+        "zip-webpack-plugin": "^3.0.0"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.19",
