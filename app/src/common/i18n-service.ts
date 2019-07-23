@@ -84,10 +84,6 @@ class I18nService {
     get locationDesc() {
         return this.getAppMessage('locationDesc')
     }
-
-    get apiKey() {
-        return this.getAppMessage('apiKey')
-    }
 }
 
 export const i18n = new I18nService()

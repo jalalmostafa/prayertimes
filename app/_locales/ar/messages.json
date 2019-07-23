@@ -80,7 +80,7 @@
         "description": "onInstalled notification"
     },
     "updateMessage": {
-        "message": "Beirut Prayer Times has been updated!",
+        "message": "Wow, Prayer Times has been updated!",
         "description": "On update message"
     },
     "fixMessage": {

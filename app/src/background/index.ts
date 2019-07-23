@@ -102,7 +102,7 @@ chrome.runtime.onInstalled.addListener((details) => {
                 onInstallUpdate(i18n.notificationsMessage, i18n.header)
                 break
             case 'update':
-                // onInstallUpdate(i18n.fixMessage, i18n.header);
+                onInstallUpdate(i18n.updateMessage, i18n.header)
                 break
             default:
                 break
