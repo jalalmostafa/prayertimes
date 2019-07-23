@@ -1,5 +1,7 @@
 # Prayer Times
 
+![alt](https://raw.githubusercontent.com/jalalmostafa/chrome-prayertimes/master/web_store/small-mosque.png)
+
 In-Browser Prayer Times and Notifications
 
 Features:
