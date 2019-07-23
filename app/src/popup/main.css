@@ -1,0 +1,102 @@
+@import url('../style/common.css');
+
+body {
+    padding: var(--margin-border);
+    padding-top: 0;
+    width: 325px;
+}
+
+.main-icon {
+    color: var(--color-accent);
+    font-size: 13pt;
+}
+
+.header-text {
+    margin-left: 5px;
+    margin-bottom: 10px;
+    font-size: 22pt;
+    font-weight: bold;
+    font-family: 'roboto';
+}
+
+.small-icon {
+    color: var(--color-accent);
+    font-size: 14pt;
+}
+
+.prayer-text {
+    font-size: 16pt;
+    font-family: 'cairo';
+    margin-left: var(--margin-border);
+}
+
+.prayer-on,
+.prayer-off {
+    cursor: pointer;
+}
+
+.prayer-off {
+    color: var(--color-off);
+}
+
+.prayer-on {
+    color: var(--color-accent);
+}
+
+.line {
+    margin: 0px -30px var(--margin-border) -30px;
+    border: 1px solid var(--color-line);
+}
+
+.row {
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.content {
+    align-content: baseline;
+    display: flex;
+    flex-direction: column;
+    margin: 15px var(--margin-border);
+    margin-bottom: 0px;
+}
+
+.header {
+    margin: var(--margin-border) 0;
+    align-items: end;
+    justify-content: end;
+}
+
+.notifications {
+    display: flex;
+    margin: var(--margin-border) 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notifications-label {
+    font-size: 12pt;
+    font-family: 'roboto';
+    font-weight: bold;
+    margin-left: var(--margin-border);
+}
+
+.notifications-control {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: var(--margin-border);
+}
+
+.options {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.options-icon {
+    color: var(--color-accent);
+    font-size: 16pt;
+    cursor: pointer;
+}

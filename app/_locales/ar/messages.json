@@ -80,7 +80,7 @@
         "description": "onInstalled notification"
     },
     "updateMessage": {
-        "message": "Beirut Prayer Times has been updated! Click on the icon in the bar abov to check what is new!",
+        "message": "Wow, Prayer Times has been updated!",
         "description": "On update message"
     },
     "fixMessage": {
@@ -88,11 +88,19 @@
         "description": "show this when updating the extensions for fixing bugs"
     },
     "format": {
-        "message": "12H Format",
+        "message": "A.M./P.M.",
         "description": ""
     },
     "method": {
         "message": "Calculation",
+        "description": ""
+    },
+    "location": {
+        "message": "Location",
+        "description": ""
+    },
+    "locationDesc": {
+        "message": "Place a marker on the map to specify your location (default: auto-detect your current location)",
         "description": ""
     }
 }

@@ -1,1 +1,0 @@
-let bptimes = angular.module('bptimes', ['uiSwitch']);
