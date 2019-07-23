@@ -11,6 +11,8 @@ Features:
 - Choose your location manually
 - A.M./P.M. and 24Hours format
 
+[![badge](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://chrome.google.com/webstore/detail/prayer-times/ipkhkglhpmngdkgclngmlpkekkpplbgm)
+
 ## How to Build
 
 Technology stack: React - TypeScript - Webpack
