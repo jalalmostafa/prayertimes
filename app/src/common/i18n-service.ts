@@ -84,6 +84,12 @@ class I18nService {
     get locationDesc() {
         return this.getAppMessage('locationDesc')
     }
+
+    get isRtl() {
+        const locale = chrome.i18n.getUILanguage()
+        const lang = locale.split('-')[0] || locale
+        return lang === 'ar' || lang === 'fa'
+    }
 }
 
 export const i18n = new I18nService()

@@ -58,11 +58,12 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
     }
 
     render() {
+        const rtl = i18n.isRtl
         return (
             <div className="container">
-                <div className="row header">
+                <div className={rtl ? 'row header rtl-style' : 'row header'}>
                     <i className="flaticon-small-mosque flaticon-lg main-icon" />
-                    <p className="header-text">{i18n.header}</p>
+                    <p className={rtl ? 'header-text cairo-style' : 'header-text'}>{i18n.header}</p>
                 </div>
                 <hr className="line" />
                 <div className="content">

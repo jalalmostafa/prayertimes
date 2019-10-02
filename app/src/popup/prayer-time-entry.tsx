@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 
 import { Prayer } from '../common/prayer-times'
+import { i18n } from '../common/i18n-service'
 
 interface IEntryProps {
     code: Prayer
@@ -27,7 +28,7 @@ export class PrayerTimeEntry extends React.Component<IEntryProps, {}> {
                     />
                     <span className="prayer-text">{this.props.time}</span>
                 </span>
-                <span className="prayer-text">{this.props.message}</span>
+                <span className={i18n.isRtl ? 'prayer-text cairo-style' : 'prayer-text'}>{this.props.message}</span>
                 <span className="small-icon">
                     <i className={'flaticon-md ' + this.props.icon} />
                 </span>

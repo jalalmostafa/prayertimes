@@ -16,16 +16,17 @@ export class Options extends React.Component {
     }
 
     render() {
+        const rtl = i18n.isRtl
         return (
-            <div>
+            <div className={rtl ? 'rtl-style' : ''}>
                 <div className="header">
                     <span className="header-content">
                         <i className="flaticon-small-mosque flaticon-lg main-icon header-icon" />
-                        <h1>{i18n.header}</h1>
+                        <h1 className={rtl ? 'cairo-style' : ''}>{i18n.header}</h1>
                     </span>
                 </div>
                 <div className="options-container">
-                    <div className="options-wrapper">
+                    <div className={rtl ? 'options-wrapper cairo-style' : 'options-wrapper'}>
                         <Location />
                         <Method />
                         <HourFormat />

@@ -8,7 +8,15 @@
     src: url('../../fonts/Roboto/Roboto-Thin.ttf');
 }
 
-:root{
+.rtl-style {
+    direction: rtl;
+}
+
+.cairo-style {
+    font-family: 'cairo' !important;
+}
+
+:root {
     --color-accent: rgb(100, 189, 99);
     --color-off: #B0BEC5;
     --color-line: #ECEFF1;

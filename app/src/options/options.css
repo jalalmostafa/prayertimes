@@ -34,7 +34,6 @@ body {
 .hour-format-label,
 .method-label {
     font-size: 16pt;
-    font-family: 'roboto';
     font-weight: bold;
     width: 150px;
 }
@@ -69,6 +68,10 @@ body {
     position: absolute;
     top: -45px;
     left: -15px;
+}
+
+.options-wrapper {
+    font-family: 'roboto';
 }
 
 .options-wrapper>* {

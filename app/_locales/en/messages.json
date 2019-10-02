@@ -1,93 +1,93 @@
 {
     "symbol": {
-        "message": "ar",
+        "message": "en",
         "description": "locale symbol"
     },
     "longAppName": {
-        "message": "مواقيت الصلاة: إشعارات الصلاة في المتصفح"
+        "message": "Prayer Times: In-Browser Prayer Notifications"
     },
     "appName": {
-        "message": "مواقيت الصلاة",
+        "message": "Prayer Times",
         "description": "The name of the application"
     },
     "appDescription": {
-        "message": "إشعارات مواقيت الصلاة داخل المتصفح",
+        "message": "In-Browser Prayer Times and Notifications",
         "description": "The description of the application"
     },
     "fajr": {
-        "message": "الفجر",
+        "message": "Fajr",
         "description": "Fajr Prayers"
     },
     "fajrNotification": {
-        "message": "لقد حان الآن موعد صلاة الفجر",
+        "message": "It's the time for Fajr prayers",
         "description": "Fajr Prayer Notification"
     },
     "imsak": {
-        "message": "الإمساك",
+        "message": "Imsak",
         "description": "Imsak Prayers"
     },
     "imsakNotification": {
-        "message": "لقد حان الآن موعد الإمساك",
+        "message": "It's the time for Imsak",
         "description": "Imsak Notification"
     },
     "sunrise": {
-        "message": "الشروق",
-        "description": "Shrouk"
+        "message": "Sunrise",
+        "description": "Sunrise"
     },
     "sunriseNotification": {
-        "message": "لقد حان الآن موعد شروق الشمس",
+        "message": "The sun has risen!",
         "description": "Shrouk Notification"
     },
     "dhuhr": {
-        "message": "الظهر",
+        "message": "Dhuhr",
         "description": "Dhor Prayers"
     },
     "dhuhrNotification": {
-        "message": "لقد حان الآن موعد صلاة الظهر",
+        "message": "It's the time for Dhuhr prayers",
         "description": "Dhor Prayers Notification"
     },
     "asr": {
-        "message": "العصر",
+        "message": "Asr",
         "description": "Asr Prayers"
     },
     "asrNotification": {
-        "message": "لقد حان الآن موعد صلاة العصر",
+        "message": "It's the time for Asr prayers",
         "description": "Asr Prayers"
     },
     "maghrib": {
-        "message": "المغرب",
-        "description": "Maghreb Prayers"
+        "message": "Maghrib",
+        "description": "Maghrib Prayers"
     },
     "maghribNotification": {
-        "message": "لقد حان الآن موعد صلاة المغرب",
+        "message": "It's the time for Maghrib prayers",
         "description": "Maghreb Prayers Notifications"
     },
     "isha": {
-        "message": "العشاء",
+        "message": "Isha",
         "description": "Isha Prayers Notifications"
     },
     "ishaNotification": {
-        "message": "لقد حان الآن موعد صلاة العشاء",
+        "message": "It's the time for Isha prayers",
         "description": "Isha Prayers Notifications"
     },
     "header": {
-        "message": "مواقيت الصلاة",
+        "message": "Prayer Times",
         "description": "extension header"
     },
     "notifications": {
-        "message": "الإشعارات",
+        "message": "Notifications",
         "description": "notifications key"
     },
     "notificationsMessage": {
-        "message": "الإشعارات ستظهر هنا",
+        "message": "Prayer notifications will appear here!",
         "description": "onInstalled notification"
     },
     "updateMessage": {
-        "message": "مذهل! تحديث جديد لتطبيق مواقيت الصلاة",
+        "message": "Wow, Prayer Times has been updated!",
         "description": "On update message"
     },
     "fixMessage": {
-        "message": "رائع! لقد قمنا بإصلاح مشكلة في التطبيق",
+        "message": "Hoooray! We have fixed an issue!",
         "description": "show this when updating the extensions for fixing bugs"
     },
     "format": {
@@ -95,15 +95,15 @@
         "description": ""
     },
     "method": {
-        "message": "طريقة الحساب",
+        "message": "Calculation",
         "description": ""
     },
     "location": {
-        "message": "المكان",
+        "message": "Location",
         "description": ""
     },
     "locationDesc": {
-        "message": "ضع علامة على الخريطة لتحديد مكانك (التحديد الآلي لمكانك الحالي سيستخدم إفتراضياً)",
+        "message": "Place a marker on the map to specify your location (default: auto-detect your current location)",
         "description": ""
     }
 }

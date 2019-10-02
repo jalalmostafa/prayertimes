@@ -26,7 +26,7 @@ body {
 
 .prayer-text {
     font-size: 16pt;
-    font-family: 'cairo';
+    font-family: 'roboto';
     margin-left: var(--margin-border);
 }
 
