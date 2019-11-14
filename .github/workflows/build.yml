@@ -1,0 +1,20 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1.1.0
+    - name: Install Yarn
+      run: npm install -g yarn
+    - name: Create .env file
+      run: echo "GMAPS_API_KEY=test_key" > .env
+    - name: Install Deps
+      run: yarn install
+    - name: Build
+      run: yarn start
