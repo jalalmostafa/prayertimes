@@ -12,11 +12,19 @@ body {
 }
 
 .header-text {
-    margin-left: 5px;
-    margin-bottom: 10px;
-    font-size: 22pt;
     font-weight: bold;
     font-family: 'roboto';
+}
+
+.header-text-title {
+    font-size: 22pt;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.header-text-date {
+    font-size: 12pt;
+    margin: 0;
 }
 
 .small-icon {
@@ -64,9 +72,8 @@ body {
 }
 
 .header {
+    align-items: center;
     margin: var(--margin-border) 0;
-    align-items: end;
-    justify-content: end;
 }
 
 .notifications {
@@ -90,9 +97,9 @@ body {
 }
 
 .options {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 15px;
+    align-self: flex-end;
+    margin-bottom: var(--margin-border);
+    margin-right: var(--margin-border);
 }
 
 .options-icon {

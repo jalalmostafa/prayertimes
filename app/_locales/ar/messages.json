@@ -105,5 +105,9 @@
     "locationDesc": {
         "message": "ضع علامة على الخريطة لتحديد مكانك (التحديد الآلي لمكانك الحالي سيستخدم إفتراضياً)",
         "description": ""
+    },
+    "hijriDateAdjustment": {
+        "message": "تنظيم التاريخ الهجري (أيام)",
+        "description": ""
     }
 }

@@ -30,9 +30,9 @@ export class Method extends React.Component<{}, IMethodState> {
 
     render() {
         return (
-            <div className="method">
-                <label htmlFor="method" className="method-label">{i18n.method}</label>
-                <span className="method-control">
+            <div className="option-container">
+                <label htmlFor="method" className="option-label">{i18n.method}</label>
+                <span className="option-control">
                     <select
                         id="method"
                         value={this.state.value}

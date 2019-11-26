@@ -105,5 +105,9 @@
     "locationDesc": {
         "message": "Placez un marqueur sur la carte pour spécifier votre position (par défaut: automatiquement votre position actuelle)",
         "description": ""
+    },
+    "hijriDateAdjustment": {
+        "message": "Ajustements de date Hijri (jours)",
+        "description": ""
     }
 }

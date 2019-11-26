@@ -25,29 +25,26 @@ body {
     align-items: center;
 }
 
-.hour-format,
-.method {
+.option-container {
     display: flex;
     align-items: center;
 }
 
-.hour-format-label,
-.method-label {
+.option-label {
     font-size: 16pt;
     font-weight: bold;
-    width: 150px;
+    width: 300px;
 }
 
-.hour-format-control,
-.method-control {
+.option-control {
     display: flex;
     justify-content: flex-end;
     width: 500px;
 }
 
-.method-control select {
+.option-control select {
     height: 35px;
-    width: 80%;
+    width: 300px;
 }
 
 .location-control {

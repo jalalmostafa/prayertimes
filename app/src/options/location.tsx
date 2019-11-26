@@ -41,7 +41,7 @@ export class Location extends React.Component<{}, ILocationState> {
         const [lat, lng] = this.state.center
         return (
             <div className="location-picker">
-                <label htmlFor="location" className="hour-format-label">{i18n.location}</label>
+                <label htmlFor="location" className="option-label">{i18n.location}</label>
                 <div className="location-desc">{i18n.locationDesc}</div>
                 <div className="location-control" id="location">
                     <GoogleMapReact

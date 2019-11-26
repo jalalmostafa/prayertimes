@@ -105,5 +105,9 @@
     "locationDesc": {
         "message": "Place a marker on the map to specify your location (default: auto-detect your current location)",
         "description": ""
+    },
+    "hijriDateAdjustment": {
+        "message": "Hijri Date Adjustments (days)",
+        "description": ""
     }
 }

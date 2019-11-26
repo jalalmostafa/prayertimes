@@ -115,6 +115,11 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
+"@umalqura/core@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@umalqura/core/-/core-0.0.7.tgz#aedecd67145002db4bab8725de721dd819e07de8"
+  integrity sha512-o8G1J2KRzM/Hal5Taln1QHzhfJsE4+8hQH087Pl6C0ZjPhmw7tjjuejjbgj++Lc2BP4kRDswTJ3J5TuGGybA2Q==
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"

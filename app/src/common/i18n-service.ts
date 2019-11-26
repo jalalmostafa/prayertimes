@@ -77,6 +77,10 @@ class I18nService {
         return this.getAppMessage('method')
     }
 
+    get hijriDateAdjustment() {
+        return this.getAppMessage('hijriDateAdjustment')
+    }
+
     get location() {
         return this.getAppMessage('location')
     }

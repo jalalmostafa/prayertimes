@@ -5,6 +5,7 @@ import './options.css'
 import React from 'react'
 
 import { i18n } from '../common/i18n-service'
+import { AdujstHijriDate } from './adjust-hijri'
 import { HourFormat } from './hour-format'
 import { Location } from './location'
 import { Method } from './method'
@@ -30,6 +31,7 @@ export class Options extends React.Component {
                         <Location />
                         <Method />
                         <HourFormat />
+                        <AdujstHijriDate />
                     </div>
                 </div>
             </div>

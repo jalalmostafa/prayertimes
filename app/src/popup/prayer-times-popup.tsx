@@ -2,6 +2,7 @@ import '../style/flaticon.css'
 import './main.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import umalqura from '@umalqura/core'
 import moment from 'moment'
 import React from 'react'
 
@@ -12,6 +13,7 @@ import { PrayerNotifications, store } from '../common/store'
 import { PrayerTimeEntry } from './prayer-time-entry'
 
 interface IPopupState {
+    hijriAdjustments: number
     times: IAppPrayerTimes
     notifs: PrayerNotifications
 }
@@ -31,6 +33,7 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
     }
 
     state = {
+        hijriAdjustments: store.defaultHijriDateAdjustment,
         notifs: store.defaultNotifications,
         times: store.defaultPrayerTimes,
     }
@@ -63,7 +66,15 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
             <div className="container">
                 <div className={rtl ? 'row header rtl-style' : 'row header'}>
                     <i className="flaticon-small-mosque flaticon-lg main-icon" />
-                    <p className={rtl ? 'header-text cairo-style' : 'header-text'}>{i18n.header}</p>
+                    <span className="header-text">
+                        <p className={rtl ? 'cairo-style header-text-title' : 'header-text-title'}>{i18n.header}</p>
+                        <p className={rtl ? 'cairo-style header-text-date' : 'header-text-date'}>
+                            {umalqura().add(this.state.hijriAdjustments, 'day').format('d MMMM, yyyy', rtl ? 'ar' : 'en')}
+                        </p>
+                    </span>
+                    <div className="options" onClick={this.goToOptionsPage}>
+                        <FontAwesomeIcon icon="cogs" className="options-icon" />
+                    </div>
                 </div>
                 <hr className="line" />
                 <div className="content">
@@ -76,11 +87,7 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
                             notifyChanged={this.notifyChanged}
                             icon={PrayerTimesPopup.prayerIcons[p]}
                             notify={this.state.notifs[p]}
-                        />,
-                    )}
-                    <div className="options" onClick={this.goToOptionsPage}>
-                        <FontAwesomeIcon icon="cogs" className="options-icon" />
-                    </div>
+                        />)}
                 </div>
             </div>
         )
@@ -100,12 +107,13 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
     }
 
     private async loadPage() {
-        const [t, format, notifs] =
-            await Promise.all([store.prayerTimes(), store.hourFormat(), store.notifications()])
+        const [t, format, notifs, adjusts] =
+            await Promise.all([store.prayerTimes(), store.hourFormat(), store.notifications(), store.hijriDateAdjustment()])
 
         const times = this.updateTimes(t, format)
 
         this.setState({
+            hijriAdjustments: adjusts || store.defaultHijriDateAdjustment,
             notifs: notifs || store.defaultNotifications,
             times: times || store.defaultPrayerTimes,
         })

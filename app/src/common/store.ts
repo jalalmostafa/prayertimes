@@ -33,6 +33,7 @@ export namespace store {
         sunrise: false,
         sunset: false,
     }
+    export const defaultHijriDateAdjustment = 0
 
     export function prayerTimes(calcMethod?: string): Promise<IAppPrayerTimes> {
         return new Promise<IAppPrayerTimes>((resolve) => {
@@ -79,6 +80,11 @@ export namespace store {
     export async function location(latlng?: LatLng): Promise<LatLng> {
         return typeof latlng !== 'undefined' ? setField<LatLng>('location', latlng)
             : getFieldOrDefault<LatLng>('location', await calculator.location())
+    }
+
+    export async function hijriDateAdjustment(adjust?: number): Promise<number> {
+        return typeof adjust !== 'undefined' ? setField<number>('hijriDateAdjustment', adjust)
+            : getFieldOrDefault<number>('hijriDateAdjustment', defaultHijriDateAdjustment)
     }
 
     function getFieldOrDefault<T>(fieldName: string, defaultValue: T): Promise<T> {
