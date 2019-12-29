@@ -1,4 +1,5 @@
 const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ZipWebpackPlugin = require('zip-webpack-plugin')
@@ -8,7 +9,7 @@ const DotEnv = require('dotenv').config()
 const Package = require('./package.json')
 
 module.exports = {
-    devtool: 'cheap-module-source-map',
+    devtool: process.env.NODE_ENV === 'development' ? 'cheap-module-source-map' : 'none',
     mode: process.env.NODE_ENV,
     entry: {
         popup: './app/src/popup/index.tsx',
@@ -50,6 +51,7 @@ module.exports = {
         }]
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new CopyWebpackPlugin([{
             context: 'app/',
             from: '_locales',
