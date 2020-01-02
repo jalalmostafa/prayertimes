@@ -4,15 +4,20 @@
     "productName": "Prayer Times",
     "scripts": {
         "start": "yarn run build:dev",
-        "build": "cross-env NODE_ENV=production webpack --progress",
-        "build:dev": "cross-env NODE_ENV=development webpack --progress",
+        "build:chrome": "cross-env NODE_ENV=production webpack --config ./webpack.chrome.config.js --progress",
+        "build:dev:chrome": "cross-env NODE_ENV=development webpack --config ./webpack.chrome.config.js --progress",
+        "zip:chrome": "yarn run build:chrome",
+        "build:edge": "cross-env NODE_ENV=production webpack --config ./webpack.edge.config.js --progress",
+        "build:dev:edge": "cross-env NODE_ENV=development webpack --config ./webpack.edge.config.js --progress",
+        "zip:edge": "yarn run build:edge",
+        "build": "yarn run build:chrome && yarn run build:edge",
+        "build:dev": "yarn run build:dev:chrome && yarn run build:dev:edge",
         "zip": "yarn run build",
         "lint": "tslint --project tsconfig.json --type-check --force"
     },
     "devDependencies": {
         "@types/chrome": "^0.0.86",
         "@types/google-map-react": "^0.23.12",
-        "@types/moment": "^2.13.0",
         "@types/node": "^12.0.12",
         "@types/rc-switch": "^1.8.0",
         "@types/react": "^16.8.23",
@@ -31,6 +36,7 @@
         "typescript": "^3.5.2",
         "webpack": "^4.35.2",
         "webpack-cli": "^3.3.5",
+        "webpack-merge": "^4.2.2",
         "zip-webpack-plugin": "^3.0.0"
     },
     "dependencies": {
