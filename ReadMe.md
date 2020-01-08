@@ -2,7 +2,7 @@
 
 ![alt](https://raw.githubusercontent.com/jalalmostafa/chrome-prayertimes/master/web_store/small-mosque.png)
 
-In-Browser Prayer Times and Notifications
+In-Browser Prayer Times and Notifications for Google Chrome and Microsoft Edge Chromium
 
 Features:
 
@@ -11,7 +11,13 @@ Features:
 - Choose your location manually
 - A.M./P.M. and 24Hours format
 
-[![badge](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://chrome.google.com/webstore/detail/prayer-times/ipkhkglhpmngdkgclngmlpkekkpplbgm)
+[![badge-chrome](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://chrome.google.com/webstore/detail/prayer-times/ipkhkglhpmngdkgclngmlpkekkpplbgm)
+
+<a href="https://microsoftedge.microsoft.com/addons/detail/jdnolinjgdhocachcbfcalljgfmceapb">
+<img alt="badge-edge" src="https://winaero.com/blog/wp-content/uploads/2019/11/Edge-Stable-Fluent-Big-256-Icon.png" width="64" height="64"/>
+</a>
+
+By using this extension, you agree to the [Privacy Policy](https://jalalmostafa.github.io/prayertimes/PrivacyPolicy.html)
 
 ## How to Build
 
