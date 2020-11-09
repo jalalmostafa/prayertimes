@@ -1,0 +1,113 @@
+{
+    "symbol": {
+        "message": "es",
+        "description": "locale symbol"
+    },
+    "longAppName": {
+        "message": "Horario de Oraciones: Notificaciones de Salat en Tu Browser"
+    },
+    "appName": {
+        "message": "Horario de Oraciones",
+        "description": "The name of the application"
+    },
+    "appDescription": {
+        "message": "Notificaciones de Salat en Tu Browser",
+        "description": "The description of the application"
+    },
+    "fajr": {
+        "message": "Fajr",
+        "description": "Fajr Prayers"
+    },
+    "fajrNotification": {
+        "message": "Es hora de la oración del amanecer",
+        "description": "Fajr Prayer Notification"
+    },
+    "imsak": {
+        "message": "Emsak",
+        "description": "Imsak Prayers"
+    },
+    "imsakNotification": {
+        "message": "Es hora del emsak",
+        "description": "Imsak Notification"
+    },
+    "sunrise": {
+        "message": "Salida del Sol",
+        "description": "Sunrise"
+    },
+    "sunriseNotification": {
+        "message": "¡El Sol ha salido!",
+        "description": "Shrouk Notification"
+    },
+    "dhuhr": {
+        "message": "Dhuhr",
+        "description": "Dhor Prayers"
+    },
+    "dhuhrNotification": {
+        "message": "Es hora de la oración del mediodía",
+        "description": "Dhor Prayers Notification"
+    },
+    "asr": {
+        "message": "Asr",
+        "description": "Asr Prayers"
+    },
+    "asrNotification": {
+        "message": "Es hora de la oración de la tarde",
+        "description": "Asr Prayers"
+    },
+    "maghrib": {
+        "message": "Maghreb",
+        "description": "Maghrib Prayers"
+    },
+    "maghribNotification": {
+        "message": "Es hora de la oración de la puesta del Sol",
+        "description": "Maghreb Prayers Notifications"
+    },
+    "isha": {
+        "message": "Esha",
+        "description": "Isha Prayers Notifications"
+    },
+    "ishaNotification": {
+        "message": "Es hora de la oración de la noche",
+        "description": "Isha Prayers Notifications"
+    },
+    "header": {
+        "message": "Horario de Oraciones",
+        "description": "extension header"
+    },
+    "notifications": {
+        "message": "Notificaciones",
+        "description": "notifications key"
+    },
+    "notificationsMessage": {
+        "message": "¡Aquí aparecerán las notificaciones de las oraciones!",
+        "description": "onInstalled notification"
+    },
+    "updateMessage": {
+        "message": "¡Wow, Horario de Oraciones se ha actualizado!",
+        "description": "On update message"
+    },
+    "fixMessage": {
+        "message": "¡Hurra! ¡Hemos solucionado un problema!",
+        "description": "show this when updating the extensions for fixing bugs"
+    },
+    "format": {
+        "message": "A.M./P.M.",
+        "description": ""
+    },
+    "method": {
+        "message": "Cálculo",
+        "description": ""
+    },
+    "location": {
+        "message": "Ubicación",
+        "description": ""
+    },
+    "locationDesc": {
+        "message": "Coloca un marcador en el mapa para definir tu ubicación (predeterminado: detectar tu ubicación actual automáticamente)",
+        "description": ""
+    },
+    "hijriDateAdjustment": {
+        "message": "Ajustes de la Fecha Hejrí (días)",
+        "description": ""
+    }
+}
