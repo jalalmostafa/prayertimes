@@ -46,7 +46,7 @@
         "@umalqura/core": "^0.0.7",
         "google-map-react": "^1.1.4",
         "ky": "^0.11.1",
-        "moment": "^2.24.0",
+        "moment": "^2.29.2",
         "prop-types": "^15.7.2",
         "rc-switch": "^1.9.0",
         "react": "^16.8.6",
