@@ -15,7 +15,6 @@ const mapOptions = {
 }
 
 export class Location extends React.Component<{}, ILocationState> {
-
     constructor(props: {}) {
         super(props)
         this.state = {
@@ -45,17 +44,19 @@ export class Location extends React.Component<{}, ILocationState> {
                 <div className="location-desc">{i18n.locationDesc}</div>
                 <div className="location-control" id="location">
                     <GoogleMapReact
-                        bootstrapURLKeys={{ key: __GMAPS_API_KEY__ }}
+                        bootstrapURLKeys={{
+                            key: __GMAPS_API_KEY__,
+                        }}
                         options={mapOptions}
                         zoom={10}
                         center={{ lat, lng }}
                         onClick={this.mapClicked}
                         onTilesLoaded={this.loadPage}
-                    >
-                        <LocationMarker lat={lat} lng={lng} />
-                    </GoogleMapReact>
+                    ><LocationMarker lat={lat} lng={lng} /></GoogleMapReact>
+                    {/* <LocationMarker lat={lat} lng={lng} /> */}
+                    {/* </GoogleMap> */}
                 </div>
-            </div>
+            </div >
         )
     }
 }

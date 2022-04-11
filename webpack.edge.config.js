@@ -5,25 +5,27 @@ const webpackMerge = require('webpack-merge')
 const commonConfig = require('./webpack.common.config')
 const Package = require('./package.json')
 
-module.exports = webpackMerge(commonConfig, {
+module.exports = webpackMerge.merge(commonConfig, {
     output: {
         filename: '[name].bundle.js',
         path: path.join(__dirname, 'build', 'edge')
     },
     plugins: [
-        new CopyWebpackPlugin([{
-            context: 'app/',
-            from: '_locales',
-            to: path.join(__dirname, 'build', 'edge', '_locales')
-        }, {
-            context: 'app/',
-            from: 'images',
-            to: path.join(__dirname, 'build', 'edge', 'images')
-        }, {
-            context: 'app/',
-            from: 'manifest_edge.json',
-            to: path.join(__dirname, 'build', 'edge', 'manifest.json')
-        }]),
+        new CopyWebpackPlugin({
+            patterns: [{
+                context: 'app/',
+                from: '_locales',
+                to: path.join(__dirname, 'build', 'edge', '_locales')
+            }, {
+                context: 'app/',
+                from: 'images',
+                to: path.join(__dirname, 'build', 'edge', 'images')
+            }, {
+                context: 'app/',
+                from: 'manifest_edge.json',
+                to: path.join(__dirname, 'build', 'edge', 'manifest.json')
+            }],
+        }),
         new ZipWebpackPlugin({
             path: path.join(__dirname, 'dist', 'edge'),
             filename: Package.name,

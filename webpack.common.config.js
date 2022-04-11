@@ -33,14 +33,12 @@ module.exports = {
             use: 'file-loader',
         }, {
             test: /\.mp3$/,
-            use: [
-                {
-                    loader: 'file-loader',
-                    query: {
-                        name: '[name].[ext]'
-                    }
+            use: [{
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]'
                 }
-            ],
+            }],
         }]
     },
     plugins: [

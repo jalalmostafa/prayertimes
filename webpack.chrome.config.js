@@ -5,25 +5,27 @@ const webpackMerge = require('webpack-merge')
 const commonConfig = require('./webpack.common.config')
 const Package = require('./package.json')
 
-module.exports = webpackMerge(commonConfig, {
+module.exports = webpackMerge.merge(commonConfig, {
     output: {
         filename: '[name].bundle.js',
         path: path.join(__dirname, 'build', 'chrome')
     },
     plugins: [
-        new CopyWebpackPlugin([{
-            context: 'app/',
-            from: '_locales',
-            to: path.join(__dirname, 'build', 'chrome', '_locales')
-        }, {
-            context: 'app/',
-            from: 'images',
-            to: path.join(__dirname, 'build', 'chrome', 'images')
-        }, {
-            context: 'app/',
-            from: 'manifest_chrome.json',
-            to: path.join(__dirname, 'build', 'chrome', 'manifest.json')
-        }]),
+        new CopyWebpackPlugin({
+            patterns: [{
+                context: 'app/',
+                from: '_locales',
+                to: path.join(__dirname, 'build', 'chrome', '_locales')
+            }, {
+                context: 'app/',
+                from: 'images',
+                to: path.join(__dirname, 'build', 'chrome', 'images')
+            }, {
+                context: 'app/',
+                from: 'manifest_chrome.json',
+                to: path.join(__dirname, 'build', 'chrome', 'manifest.json')
+            }]
+        }),
         new ZipWebpackPlugin({
             path: path.join(__dirname, 'dist', 'chrome'),
             filename: Package.name,

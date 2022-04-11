@@ -121,7 +121,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
         if (deadline.isValid() && !now.isAfter(deadline)) {
             chrome.notifications.create(alarm.name, {
                 iconUrl: 'images/adhan-call.png',
-                message: alarmData.message,
+                message: alarmData.message || '',
                 requireInteraction: true,
                 title: alarmData.title,
                 type: 'basic',
