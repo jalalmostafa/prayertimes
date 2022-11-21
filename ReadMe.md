@@ -7,14 +7,10 @@
 <a href="https://chrome.google.com/webstore/detail/prayer-times/ipkhkglhpmngdkgclngmlpkekkpplbgm">
 <img alt="badge-chrome" src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png" />
 </a>
-<a href="https://microsoftedge.microsoft.com/addons/detail/jdnolinjgdhocachcbfcalljgfmceapb">
-<img alt="badge-edge" src="https://winaero.com/blog/wp-content/uploads/2019/11/Edge-Stable-Fluent-Big-256-Icon.png" width="64" height="64"/>
-</a>
 
 </span>
 
-In-Browser Prayer Times and Notifications for [Google Chrome](https://chrome.google.com/webstore/detail/prayer-times/ipkhkglhpmngdkgclngmlpkekkpplbgm) and [Microsoft Edge Chromium](https://microsoftedge.microsoft.com/addons/detail/jdnolinjgdhocachcbfcalljgfmceapb)
-
+In-Browser Prayer Times and Notifications for [Google Chrome](https://chrome.google.com/webstore/detail/prayer-times/ipkhkglhpmngdkgclngmlpkekkpplbgm)
 Features:
 
 - In-Browser Notifications
