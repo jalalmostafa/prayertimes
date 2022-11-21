@@ -46,7 +46,7 @@
         "file-loader": "^6.2.0",
         "google-map-react": "^2.1.10",
         "ky": "^0.30.0",
-        "moment": "^2.24.0",
+        "moment": "^2.29.4",
         "prop-types": "^15.7.2",
         "rc-switch": "^3.2.2",
         "react": "^18.0.0",
