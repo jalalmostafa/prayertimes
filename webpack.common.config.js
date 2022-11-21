@@ -6,7 +6,7 @@ const DotEnv = require('dotenv').config()
 const Package = require('./package.json')
 
 module.exports = {
-    devtool: process.env.NODE_ENV === 'development' ? 'cheap-module-source-map' : 'none',
+    devtool: process.env.NODE_ENV === 'development' ? 'cheap-module-source-map' : undefined,
     mode: process.env.NODE_ENV,
     entry: {
         popup: './app/src/popup/index.tsx',
@@ -29,8 +29,14 @@ module.exports = {
             use: 'ts-loader',
             exclude: /node_modules/
         }, {
-            test: /\.(mp3|woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+            test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
             type: 'asset/resource',
+        }, {
+            test: /\.mp3$/,
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+            },
         }]
     },
     plugins: [
