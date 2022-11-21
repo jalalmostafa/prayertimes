@@ -33,12 +33,13 @@ export namespace calculator {
                 const loc: CoordinatesTuple = [pos.coords.latitude, pos.coords.longitude]
                 resolve(loc)
             }, async () => {
+                // FIXME: use cheaper service!!
                 const data = await ky
                     .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${__GMAPS_API_KEY__}`)
                     .json<{ location: { lat: number; lng: number }, accuracy: number }>()
                 const loc: CoordinatesTuple = [data.location.lat, data.location.lng]
                 resolve(loc)
-            }, { timeout: 2000 })
+            }, { timeout: 10000 })
         })
     }
 }
