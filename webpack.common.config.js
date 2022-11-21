@@ -29,16 +29,8 @@ module.exports = {
             use: 'ts-loader',
             exclude: /node_modules/
         }, {
-            test: /\.(eot|ttf|woff)$/,
-            use: 'file-loader',
-        }, {
-            test: /\.mp3$/,
-            use: [{
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]'
-                }
-            }],
+            test: /\.(mp3|woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+            type: 'asset/resource',
         }]
     },
     plugins: [

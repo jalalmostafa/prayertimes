@@ -1,11 +1,11 @@
 @font-face {
     font-family: "cairo";
-    src: url('../../fonts/Cairo/Cairo-Light.ttf');
+    src: url('../../fonts/Cairo/Cairo-Light.ttf') format('truetype');
 }
 
 @font-face {
     font-family: "roboto";
-    src: url('../../fonts/Roboto/Roboto-Thin.ttf');
+    src: url('../../fonts/Roboto/Roboto-Thin.ttf') format('truetype');
 }
 
 .rtl-style {
