@@ -6,6 +6,8 @@ import { LatLng } from '../common/calculator'
 import { i18n } from '../common/i18n-service'
 import { store } from '../common/store'
 
+const GoogleMap = GoogleMapReact as any
+
 interface ILocationState {
     center: LatLng
 }
@@ -43,7 +45,7 @@ export class Location extends React.Component<{}, ILocationState> {
                 <label htmlFor="location" className="option-label">{i18n.location}</label>
                 <div className="location-desc">{i18n.locationDesc}</div>
                 <div className="location-control" id="location">
-                    <GoogleMapReact
+                    <GoogleMap
                         bootstrapURLKeys={{
                             key: __GMAPS_API_KEY__,
                         }}
@@ -51,10 +53,9 @@ export class Location extends React.Component<{}, ILocationState> {
                         zoom={10}
                         center={{ lat, lng }}
                         onClick={this.mapClicked}
-                        onTilesLoaded={this.loadPage}
-                    ><LocationMarker lat={lat} lng={lng} /></GoogleMapReact>
-                    {/* <LocationMarker lat={lat} lng={lng} /> */}
-                    {/* </GoogleMap> */}
+                        onTilesLoaded={this.loadPage}>
+                        <LocationMarker lat={lat} lng={lng} />
+                    </GoogleMap>
                 </div>
             </div >
         )

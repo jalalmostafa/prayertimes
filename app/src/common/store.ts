@@ -97,7 +97,7 @@ export namespace store {
 
     function setField<T>(fieldName: string, value: T): Promise<T> {
         return new Promise<T>((resolve) => {
-            const obj = {}
+            const obj: any = {}
             obj[fieldName] = value
             chrome.storage.local.set(obj, () => {
                 resolve(obj[fieldName] as T)

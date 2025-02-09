@@ -114,7 +114,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     if (alarm.name === 'tomorrow') {
         run()
     } else {
-        const alarmData: ILocalized = i18n[alarm.name]
+        const alarmData: ILocalized = i18n[alarm.name] as ILocalized
         const now = moment()
         const deadline = moment(alarm.scheduledTime).add(5, 'minutes')
 

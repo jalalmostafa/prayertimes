@@ -6,6 +6,8 @@ export interface ILocalized {
 }
 
 class I18nService {
+    [key: string]: any
+
     getAppMessage(key: string): string {
         return chrome.i18n.getMessage(key)
     }

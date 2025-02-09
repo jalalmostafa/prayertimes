@@ -6,7 +6,6 @@
     "declaration": false,
     "noImplicitAny": true,
     "noImplicitReturns": true,
-    "suppressImplicitAnyIndexErrors": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "noImplicitThis": true,
@@ -16,7 +15,7 @@
     "moduleResolution": "node",
     "pretty": true,
     "target": "es2015",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "esModuleInterop": true
   },
   "include": [

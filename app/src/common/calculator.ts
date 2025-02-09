@@ -5,6 +5,7 @@ import prayTimes, { CoordinatesTuple, DateTuple, IPrayerTimes, MethodType } from
 
 export interface IAppPrayerTimes extends IPrayerTimes {
     date: string
+    [key: string]: string
 }
 
 export type LatLng = [number, number]

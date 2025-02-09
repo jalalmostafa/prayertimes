@@ -1,6 +1,5 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBell, faCogs } from '@fortawesome/free-solid-svg-icons'
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import { PrayerTimesPopup } from './prayer-times-popup'
