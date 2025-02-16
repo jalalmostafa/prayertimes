@@ -1,13 +1,26 @@
 {
     "name": "__MSG_longAppName__",
     "short_name": "__MSG_appName__",
-    "homepage_url": "https://github.com/jalalmostafa/chrome-prayertimes",
+    "homepage_url": "https://github.com/jalalmostafa/prayertimes",
     "minimum_chrome_version": "109",
     "version": "3.0.0",
     "version_name": "v3.0.0",
     "manifest_version": 3,
     "author": "Prayer Times",
     "description": "__MSG_appDescription__",
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "*.woff",
+                "*.ttf",
+                "*.eot",
+                "*.mp3"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
     "content_security_policy": {
         "extension_pages": "script-src 'self'; object-src 'none';"
     },
@@ -39,6 +52,7 @@
         "scripting"
     ],
     "host_permissions": [
-        "https://maps.googleapis.com/"
+        "https://maps.googleapis.com/",
+        "http://ip-api.com/"
     ]
 }

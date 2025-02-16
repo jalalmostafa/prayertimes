@@ -8,7 +8,7 @@ import { Prayer } from '../common/prayer-times'
 import { PrayerNotifications, store } from '../common/store'
 
 const playDefaultSound = () => {
-    new Audio('solemn.mp3').play()
+    new Audio('chrome-extension://__MSG_@@extension_id__/solemn.mp3').play()
 }
 
 const onInstallUpdate = (msg: string, header: string) => {

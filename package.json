@@ -13,15 +13,16 @@
         "build": "yarn run build:chrome && yarn run build:edge",
         "build:dev": "yarn run build:dev:chrome && yarn run build:dev:edge",
         "zip": "yarn run build",
-        "lint": "tslint --project tsconfig.json --type-check --force"
+        "lint": "tslint --project tsconfig.json --type-check --force",
+        "clean": "rm -rf dist/ build/"
     },
     "devDependencies": {
-        "@types/chrome": "^0.0.180",
+        "@types/chrome": "^0.0.304",
+        "@types/google-map-react": "^2.1.10",
         "@types/node": "^17.0.23",
         "@types/rc-switch": "^1.8.0",
         "@types/react": "^18.0.1",
         "@types/react-dom": "^18.0.0",
-        "@types/google-map-react": "^2.1.10",
         "clean-webpack-plugin": "^4.0.0",
         "copy-webpack-plugin": "^10.2.4",
         "cross-env": "^7.0.3",
@@ -39,9 +40,9 @@
         "zip-webpack-plugin": "^4.0.1"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^6.1.1",
-        "@fortawesome/free-solid-svg-icons": "^6.1.1",
-        "@fortawesome/react-fontawesome": "^0.1.4",
+        "@fortawesome/fontawesome-svg-core": "^6.7.2",
+        "@fortawesome/free-solid-svg-icons": "^6.7.2",
+        "@fortawesome/react-fontawesome": "^0.2.2",
         "@umalqura/core": "^0.0.7",
         "file-loader": "^6.2.0",
         "google-map-react": "^2.1.10",
@@ -50,6 +51,7 @@
         "prop-types": "^15.7.2",
         "rc-switch": "^3.2.2",
         "react": "^18.0.0",
-        "react-dom": "^18.0.0"
+        "react-dom": "^18.0.0",
+        "react-google-autocomplete": "^2.7.4"
     }
 }

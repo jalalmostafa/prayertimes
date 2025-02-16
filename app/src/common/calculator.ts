@@ -10,6 +10,15 @@ export interface IAppPrayerTimes extends IPrayerTimes {
 
 export type LatLng = [number, number]
 
+export interface IpApiResponse {
+    status: 'success' | 'fail'
+    message: string
+    countryCode: string
+    zip: string
+    lat: number
+    lon: number
+}
+
 export namespace calculator {
 
     function getTimes(loc: CoordinatesTuple): IAppPrayerTimes {
@@ -29,18 +38,12 @@ export namespace calculator {
     }
 
     export function location(): Promise<LatLng> {
-        return new Promise<LatLng>((resolve) => {
-            navigator.geolocation.getCurrentPosition((pos) => {
-                const loc: CoordinatesTuple = [pos.coords.latitude, pos.coords.longitude]
-                resolve(loc)
-            }, async () => {
-                // FIXME: use cheaper service!!
-                const data = await ky
-                    .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${__GMAPS_API_KEY__}`)
-                    .json<{ location: { lat: number; lng: number }, accuracy: number }>()
-                const loc: CoordinatesTuple = [data.location.lat, data.location.lng]
-                resolve(loc)
-            }, { timeout: 10000 })
+        return new Promise<LatLng>(async (resolve) => {
+            const data = await ky
+                .post(`http://ip-api.com/json/?fields=status,message,countryCode,zip,lat,lon`)
+                .json<IpApiResponse>()
+            const loc: CoordinatesTuple = [data.lat, data.lon]
+            resolve(loc)
         })
     }
 }

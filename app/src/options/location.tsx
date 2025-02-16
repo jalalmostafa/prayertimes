@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import GoogleMapReact, { ChildComponentProps, ClickEventValue } from 'google-map-react'
 import React from 'react'
+// import Autocomplete from 'react-google-autocomplete'
 
 import { LatLng } from '../common/calculator'
 import { i18n } from '../common/i18n-service'
@@ -56,6 +57,10 @@ export class Location extends React.Component<{}, ILocationState> {
                         onTilesLoaded={this.loadPage}>
                         <LocationMarker lat={lat} lng={lng} />
                     </GoogleMap>
+                    {/* <Autocomplete
+                        apiKey={__GMAPS_API_KEY__}
+                        onPlaceSelected={(place: any) => console.log(place)}
+                    /> */}
                 </div>
             </div >
         )

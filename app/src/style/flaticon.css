@@ -5,10 +5,7 @@
 
 @font-face {
     font-family: "Flaticon";
-    src: url("../../webfonts/ramadan/Flaticon.eot");
-    src: url("../../webfonts/ramadan/Flaticon.eot?#iefix") format("embedded-opentype"),
-        url("../../webfonts/ramadan/Flaticon.woff") format("woff"),
-        url("../../webfonts/ramadan/Flaticon.ttf") format("truetype");
+    src: url("../../webfonts/ramadan/Flaticon.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
