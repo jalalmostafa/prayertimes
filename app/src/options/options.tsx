@@ -23,7 +23,7 @@ export class Options extends React.Component {
                 <div className="header">
                     <span className="header-content">
                         <i className="flaticon-small-mosque flaticon-lg main-icon header-icon" />
-                        <h1 className={rtl ? 'cairo-style' : ''}>{i18n.header}</h1>
+                        <h1 className={rtl ? 'cairo-style' : 'roboto-style'}>{i18n.header}</h1>
                     </span>
                 </div>
                 <div className="options-container">
