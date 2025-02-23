@@ -30,9 +30,7 @@ const createAlarm = (alarmName: Prayer | 'tomorrow', momentObj: Moment) => {
 }
 
 const run = async () => {
-    const results = await Promise.all([store.prayerTimes(), store.notifications()])
-    const times = results[0] as IAppPrayerTimes
-    const notifications = results[1] as PrayerNotifications
+    const [times, notifications]: [IAppPrayerTimes, PrayerNotifications] = await Promise.all([store.prayerTimes(), store.notifications()])
     const format = 'HH:mm'
 
     const now = moment()
@@ -78,16 +76,14 @@ const run = async () => {
 
 chrome.runtime.onConnect.addListener((port) => {
     if (port.name === 'background') {
-        port.onMessage.addListener((msg) => {
+        port.onMessage.addListener(async (msg) => {
             if (msg.command === 'config-changed') {
-                chrome.alarms.clearAll((wasCleared) => {
-                    wasCleared ? port.postMessage({
-                        changed: true,
-                    }) : port.postMessage({
-                        changed: false,
-                    })
-                    run()
+                const wasCleared = await chrome.alarms.clearAll()
+                port.postMessage({
+                    changed: wasCleared,
                 })
+                await store.clearTimes()
+                await run()
             }
         })
     }
@@ -110,9 +106,9 @@ chrome.runtime.onInstalled.addListener((details) => {
     }
 })
 
-chrome.alarms.onAlarm.addListener((alarm) => {
+chrome.alarms.onAlarm.addListener(async (alarm) => {
     if (alarm.name === 'tomorrow') {
-        run()
+        await run()
     } else {
         const alarmData: ILocalized = i18n[alarm.name] as ILocalized
         const now = moment()

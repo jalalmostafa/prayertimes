@@ -103,7 +103,7 @@
         "description": ""
     },
     "locationDesc": {
-        "message": "Coloca un marcador en el mapa para definir tu ubicación (predeterminado: detectar tu ubicación actual automáticamente)",
+        "message": "Especifique el nombre de una ciudad (predeterminado: detectar tu ubicación actual automáticamente)",
         "description": ""
     },
     "hijriDateAdjustment": {

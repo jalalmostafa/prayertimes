@@ -51,7 +51,7 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
         this.setState({
             notifs: newNotifs,
         })
-        store.notifyBackground()
+        await store.notifyBackground()
     }
 
     goToOptionsPage = () => {

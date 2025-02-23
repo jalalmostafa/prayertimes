@@ -103,7 +103,7 @@
         "description": ""
     },
     "locationDesc": {
-        "message": "Place a marker on the map to specify your location (default: auto-detect your current location)",
+        "message": "Specify a city name (default: auto-detect your current location)",
         "description": ""
     },
     "hijriDateAdjustment": {

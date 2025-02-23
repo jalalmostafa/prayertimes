@@ -5,6 +5,12 @@ import { MethodType, Prayer } from './prayer-times'
 
 export type PrayerNotifications = Record<Prayer, boolean>
 
+export interface Place {
+    name: string
+    placeId: string
+    location?: LatLng
+}
+
 export namespace store {
     const dateFormat = 'YYYY-MM-DD'
 
@@ -43,11 +49,11 @@ export namespace store {
             return result.times
 
         const methd = (typeof calcMethod === 'undefined' ? result.method : calcMethod as MethodType) || defaultMethod
-        const loc = await location()
-        const times = await calculator.prayerTimes(methd, loc)
+        const loc = await place()
+        const times = await calculator.prayerTimes(methd, loc.location as LatLng)
 
         await chrome.storage.local.set({ method: methd, times })
-        return result.times
+        return times
     }
 
     export function hourFormat(format?: boolean): Promise<boolean> {
@@ -60,7 +66,6 @@ export namespace store {
         }
 
         const methd = setField<string>('method', calcMethod)
-        notifyBackground()
         return methd
     }
 
@@ -69,9 +74,19 @@ export namespace store {
             : getFieldOrDefault<PrayerNotifications>('notifications', defaultNotifications)
     }
 
-    export async function location(latlng?: LatLng): Promise<LatLng> {
-        return typeof latlng !== 'undefined' ? setField<LatLng>('location', latlng)
-            : getFieldOrDefault<LatLng>('location', await calculator.location())
+    export async function place(place?: Place): Promise<Place> {
+        if (typeof place !== 'undefined')
+            return setField<Place>('place', place)
+
+        return getFieldOrDefault<Place>('place', {
+            name: '',
+            placeId: '',
+            location: await calculator.location()
+        })
+    }
+
+    export function clearTimes(): Promise<void> {
+        return chrome.storage.local.remove('times')
     }
 
     export async function hijriDateAdjustment(adjust?: number): Promise<number> {
@@ -80,7 +95,7 @@ export namespace store {
     }
 
     async function getFieldOrDefault<T>(fieldName: string, defaultValue: T): Promise<T> {
-        return (await chrome.storage.local.get(fieldName))['fieldName'] as T || defaultValue
+        return ((await chrome.storage.local.get(fieldName))[fieldName] as T) || defaultValue
     }
 
     async function setField<T>(fieldName: string, value: T): Promise<T> {

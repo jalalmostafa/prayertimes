@@ -103,7 +103,7 @@
         "description": ""
     },
     "locationDesc": {
-        "message": "Placez un marqueur sur la carte pour spécifier votre position (par défaut: automatiquement votre position actuelle)",
+        "message": "Spécifier un nom de ville (par défaut: automatiquement votre position actuelle)",
         "description": ""
     },
     "hijriDateAdjustment": {

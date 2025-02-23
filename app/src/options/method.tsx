@@ -21,7 +21,7 @@ export class Method extends React.Component<{}, IMethodState> {
     methodChanged = async (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target
         await store.prayerTimes(value)
-        store.notifyBackground()
+        await store.notifyBackground()
         const method = (value || store.defaultMethod) as MethodType
         this.setState({
             value: method,
@@ -31,7 +31,9 @@ export class Method extends React.Component<{}, IMethodState> {
     render() {
         return (
             <div className="option-container">
-                <label htmlFor="method" className="option-label">{i18n.method}</label>
+                <span className="option-label-wrapper">
+                    <label htmlFor="method" className="option-label">{i18n.method}</label>
+                </span>
                 <span className="option-control">
                     <select
                         id="method"

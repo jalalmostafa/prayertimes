@@ -28,7 +28,9 @@ export class HourFormat extends React.Component<{}, IFormatState> {
     render() {
         return (
             <div className="option-container">
-                <label htmlFor="hourFormat" className="option-label">{i18n.format}</label>
+                <span className="option-label-wrapper">
+                    <label htmlFor="hourFormat" className="option-label">{i18n.format}</label>
+                </span>
                 <span className="option-control">
                     <span id="hourFormat" className="green small">
                         <Switch

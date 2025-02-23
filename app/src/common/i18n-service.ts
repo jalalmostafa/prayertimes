@@ -19,6 +19,11 @@ class I18nService {
         }
     }
 
+    get languageCode() {
+        const language = chrome.i18n.getUILanguage()
+        return language.includes('_') ? language.split('_')[0] : language
+    }
+
     get fajr() {
         return this.getPrayerMessage('fajr', 'fajrNotification')
     }

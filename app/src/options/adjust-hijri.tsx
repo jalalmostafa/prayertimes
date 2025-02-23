@@ -28,7 +28,9 @@ export class AdujstHijriDate extends React.Component<{}, IAdjustHijriDateState> 
     render() {
         return (
             <div className="option-container">
-                <label htmlFor="hijriDateAdjustment" className="option-label">{i18n.hijriDateAdjustment}</label>
+                <span className="option-label-wrapper">
+                    <label htmlFor="hijriDateAdjustment" className="option-label">{i18n.hijriDateAdjustment}</label>
+                </span>
                 <span className="option-control">
                     <span id="hijriDateAdjustment" className="green small">
                         <select value={this.state.value} onChange={this.adjustmentChanged}>
