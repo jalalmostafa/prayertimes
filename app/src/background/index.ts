@@ -1,5 +1,3 @@
-import '../../assets/solemn.mp3'
-
 import moment, { Moment } from 'moment'
 
 import { IAppPrayerTimes } from '../common/calculator'
@@ -7,8 +5,24 @@ import { i18n, ILocalized } from '../common/i18n-service'
 import { Prayer } from '../common/prayer-times'
 import { PrayerNotifications, store } from '../common/store'
 
-const playDefaultSound = () => {
-    new Audio('chrome-extension://__MSG_@@extension_id__/solemn.mp3').play()
+async function createOffscreen() {
+    if (await chrome.offscreen.hasDocument())
+        return;
+
+    await chrome.offscreen.createDocument({
+        url: chrome.runtime.getURL('offscreen.html'),
+        reasons: [chrome.offscreen.Reason.AUDIO_PLAYBACK],
+        justification: 'testing' // details for using the API
+    });
+}
+
+const playDefaultSound = async () => {
+    await createOffscreen();
+    await chrome.runtime.sendMessage({
+        cmd: 'play-sound',
+        sound: chrome.runtime.getURL('solemn.mp3')
+    });
+
 }
 
 const onInstallUpdate = (msg: string, header: string) => {
@@ -17,8 +31,8 @@ const onInstallUpdate = (msg: string, header: string) => {
         message: msg,
         title: header,
         type: 'basic',
-    }, () => {
-        playDefaultSound()
+    }, async () => {
+        await playDefaultSound()
     })
 }
 
@@ -121,8 +135,8 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
                 requireInteraction: true,
                 title: alarmData.title,
                 type: 'basic',
-            }, () => {
-                playDefaultSound()
+            }, async () => {
+                await playDefaultSound()
             })
         }
     }

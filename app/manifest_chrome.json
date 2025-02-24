@@ -49,7 +49,8 @@
         "geolocation",
         "alarms",
         "notifications",
-        "scripting"
+        "scripting",
+        "offscreen"
     ],
     "host_permissions": [
         "https://maps.googleapis.com/",
