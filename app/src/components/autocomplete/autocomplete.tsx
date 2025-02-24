@@ -49,10 +49,16 @@ export function Autocomplete<T extends AutocompleteElement>(props: AutocompleteP
         }
     }
 
+    const _lostFocus: React.FocusEventHandler<HTMLInputElement> = _ => {
+        setElements([])
+    }
+
     return (
         <div className="autocomplete">
             <span className="autocomplete-input-wrapper">
-                <input ref={inputRef} type="text" className="autocomplete-input" onKeyDown={_onKeyDown} defaultValue={value?.name} />
+                <input ref={inputRef} type="text" className="autocomplete-input"
+                    onKeyDown={_onKeyDown} onBlur={_lostFocus}
+                    defaultValue={value?.name || props.initialValue?.name} />
             </span>
             <div className="autocomplete-elements">
                 {
