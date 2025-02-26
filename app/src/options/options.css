@@ -62,10 +62,16 @@ body {
     color: var(--color-shadow);
 }
 
-.options-wrapper {
-    font-family: 'roboto';
+.options-section {
+    margin-top: 30px;
 }
 
-.options-wrapper>* {
+.options-section>* {
     margin-bottom: 15px;
+}
+
+.options-section-header {
+    font-size: 22pt;
+    margin-bottom: 20px;
+    margin-top: 0px;
 }

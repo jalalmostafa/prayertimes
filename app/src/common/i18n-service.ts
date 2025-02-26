@@ -97,9 +97,16 @@ class I18nService {
     }
 
     get isRtl() {
-        const locale = chrome.i18n.getUILanguage()
-        const lang = locale.split('-')[0] || locale
+        const lang = this.languageCode
         return lang === 'ar' || lang === 'fa'
+    }
+
+    get calculationOptionSectionHeader() {
+        return this.getAppMessage('calculationOptionSectionHeader')
+    }
+
+    get othersOptionSectionHeader() {
+        return this.getAppMessage('othersOptionSectionHeader')
     }
 }
 

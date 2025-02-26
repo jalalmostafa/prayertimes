@@ -109,5 +109,13 @@
     "hijriDateAdjustment": {
         "message": "تنظیمات تاریخ هجری (روز(",
         "description": ""
+    },
+    "calculationOptionSectionHeader": {
+        "message": "محاسبه",
+        "description": ""
+    },
+    "othersOptionSectionHeader": {
+        "message": "دیگران",
+        "description": ""
     }
 }

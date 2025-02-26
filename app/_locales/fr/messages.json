@@ -109,5 +109,13 @@
     "hijriDateAdjustment": {
         "message": "Ajustements de date Hijri (jours)",
         "description": ""
+    },
+    "calculationOptionSectionHeader": {
+        "message": "Calcul",
+        "description": ""
+    },
+    "othersOptionSectionHeader": {
+        "message": "Autres",
+        "description": ""
     }
 }
