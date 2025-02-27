@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom/client'
 
 
 const playDefaultSound = (sound: string) => {
-    console.log(sound)
     const a = new Audio(sound)
     a.volume = 1
     a.play()

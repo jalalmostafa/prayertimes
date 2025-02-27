@@ -20,7 +20,7 @@ export class Method extends React.Component<{}, IMethodState> {
 
     methodChanged = async (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = e.target
-        await store.prayerTimes(value)
+        await store.method(value)
         await store.notifyBackground()
         const method = (value || store.defaultMethod) as MethodType
         this.setState({

@@ -1,7 +1,7 @@
 import moment from 'moment'
 
 import { calculator, IAppPrayerTimes, LatLng } from './calculator'
-import { MethodType, Prayer } from './prayer-times'
+import { Prayer } from './prayer-times'
 
 export type PrayerNotifications = Record<Prayer, boolean>
 
@@ -40,19 +40,22 @@ export namespace store {
         sunset: false,
     }
     export const defaultHijriDateAdjustment = 0
+    export const defaultAsrFactor = false
 
-    export async function prayerTimes(calcMethod?: string): Promise<IAppPrayerTimes> {
-        const result = await chrome.storage.local.get(['times', 'format', 'method'])
+    export async function prayerTimes(): Promise<IAppPrayerTimes> {
+        const result = await chrome.storage.local.get(['times', 'method', 'hanafiAdjustments'])
+
         if (result.times &&
-            result.times.date === moment().format(dateFormat) &&
-            result.method === calcMethod)
+            result.times.date === moment().format(dateFormat))
             return result.times
 
-        const methd = (typeof calcMethod === 'undefined' ? result.method : calcMethod as MethodType) || defaultMethod
-        const loc = await place()
-        const times = await calculator.prayerTimes(methd, loc.location as LatLng)
+        const method = result.method || defaultMethod
+        const hanafi = result.hanafiAdjustments || defaultAsrFactor
 
-        await chrome.storage.local.set({ method: methd, times })
+        const loc = await place()
+        const times = await calculator.prayerTimes(method, hanafi, loc.location as LatLng)
+
+        await chrome.storage.local.set({ method, times, hanafiAdjustments: hanafi })
         return times
     }
 
@@ -112,5 +115,12 @@ export namespace store {
                 command: 'config-changed',
             })
         }
+    }
+
+    export function hanafiAdjustments(hanafi?: boolean) {
+        if (typeof hanafi !== 'undefined')
+            return setField('hanafiAdjustments', hanafi)
+
+        return getFieldOrDefault('hanafiAdjustments', false)
     }
 }

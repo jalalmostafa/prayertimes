@@ -117,5 +117,9 @@
     "othersOptionSectionHeader": {
         "message": "Others",
         "description": ""
+    },
+    "hanafiAdjustments": {
+        "message": "Hanafi Adjustments",
+        "description": ""
     }
 }

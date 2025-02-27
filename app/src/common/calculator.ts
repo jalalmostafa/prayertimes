@@ -29,10 +29,13 @@ export namespace calculator {
         } as IAppPrayerTimes
     }
 
-    export async function prayerTimes(method: MethodType, loc: LatLng): Promise<IAppPrayerTimes> {
+    export function prayerTimes(method: MethodType, useHanafi: boolean, loc: LatLng): Promise<IAppPrayerTimes> {
         prayTimes.method = method
+        if (useHanafi)
+            prayTimes.adjust({ asr: 'Hanafi', })
+
         const times: IAppPrayerTimes = getTimes(loc)
-        return times
+        return Promise.resolve(times)
     }
 
     export async function location(): Promise<LatLng> {

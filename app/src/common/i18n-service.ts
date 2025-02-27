@@ -108,6 +108,10 @@ class I18nService {
     get othersOptionSectionHeader() {
         return this.getAppMessage('othersOptionSectionHeader')
     }
+
+    get hanafiAdjustments() {
+        return this.getAppMessage('hanafiAdjustments')
+    }
 }
 
 export const i18n = new I18nService()

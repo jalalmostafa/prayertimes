@@ -9,6 +9,7 @@ import { AdujstHijriDate } from './adjust-hijri'
 import { HourFormat } from './hour-format'
 import { Location } from './location'
 import { Method } from './method'
+import { HanafiAdjustments } from './hanafi'
 
 export function Options() {
     const rtl = i18n.isRtl
@@ -25,6 +26,7 @@ export function Options() {
                     <h2 className="options-section-header">{i18n.calculationOptionSectionHeader}</h2>
                     <Location />
                     <Method />
+                    <HanafiAdjustments />
                 </div>
                 <div className="options-section" >
                     <h2 className="options-section-header">{i18n.othersOptionSectionHeader}</h2>
