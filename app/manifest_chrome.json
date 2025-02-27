@@ -49,7 +49,6 @@
         "geolocation",
         "alarms",
         "notifications",
-        "scripting",
         "offscreen"
     ],
     "host_permissions": [
