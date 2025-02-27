@@ -5,9 +5,19 @@ import prayTimes, { CoordinatesTuple, DateTuple, IPrayerTimes, MethodType } from
 
 export interface IAppPrayerTimes extends IPrayerTimes {
     date: string
+    [key: string]: string
 }
 
 export type LatLng = [number, number]
+
+export interface IpApiResponse {
+    status: 'success' | 'fail'
+    message: string
+    countryCode: string
+    zip: string
+    lat: number
+    lon: number
+}
 
 export namespace calculator {
 
@@ -19,27 +29,20 @@ export namespace calculator {
         } as IAppPrayerTimes
     }
 
-    export function prayerTimes(method: MethodType, loc: LatLng): Promise<IAppPrayerTimes> {
-        return new Promise<IAppPrayerTimes>(async (resolve) => {
-            prayTimes.method = method
-            const times = getTimes(loc)
-            resolve(times)
-        })
+    export function prayerTimes(method: MethodType, useHanafi: boolean, loc: LatLng): Promise<IAppPrayerTimes> {
+        prayTimes.method = method
+        if (useHanafi)
+            prayTimes.adjust({ asr: 'Hanafi', })
+
+        const times: IAppPrayerTimes = getTimes(loc)
+        return Promise.resolve(times)
     }
 
-    export function location(): Promise<LatLng> {
-        return new Promise<LatLng>((resolve) => {
-            navigator.geolocation.getCurrentPosition((pos) => {
-                const loc: CoordinatesTuple = [pos.coords.latitude, pos.coords.longitude]
-                resolve(loc)
-            }, async () => {
-                // FIXME: use cheaper service!!
-                const data = await ky
-                    .post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${__GMAPS_API_KEY__}`)
-                    .json<{ location: { lat: number; lng: number }, accuracy: number }>()
-                const loc: CoordinatesTuple = [data.location.lat, data.location.lng]
-                resolve(loc)
-            }, { timeout: 10000 })
-        })
+    export async function location(): Promise<LatLng> {
+        const data = await ky
+            .post(`http://ip-api.com/json/?fields=status,message,countryCode,zip,lat,lon`)
+            .json<IpApiResponse>()
+        const loc: CoordinatesTuple = [data.lat, data.lon]
+        return loc
     }
 }

@@ -16,10 +16,14 @@
     font-family: 'cairo' !important;
 }
 
+.roboto-style {
+    font-family: 'roboto' !important;
+}
+
 :root {
     --color-accent: rgb(100, 189, 99);
     --color-off: #B0BEC5;
     --color-line: #ECEFF1;
-    --color-shadow: #bbb;
+    --color-shadow: #555;
     --margin-border: 10px;
 }

@@ -1,9 +1,15 @@
 import moment from 'moment'
 
 import { calculator, IAppPrayerTimes, LatLng } from './calculator'
-import { MethodType, Prayer } from './prayer-times'
+import { Prayer } from './prayer-times'
 
 export type PrayerNotifications = Record<Prayer, boolean>
+
+export interface Place {
+    name: string
+    placeId: string
+    location?: LatLng
+}
 
 export namespace store {
     const dateFormat = 'YYYY-MM-DD'
@@ -34,28 +40,23 @@ export namespace store {
         sunset: false,
     }
     export const defaultHijriDateAdjustment = 0
+    export const defaultAsrFactor = false
 
-    export function prayerTimes(calcMethod?: string): Promise<IAppPrayerTimes> {
-        return new Promise<IAppPrayerTimes>((resolve) => {
-            chrome.storage.local.get(['times', 'format', 'method'], async (result) => {
-                if (result.times &&
-                    result.times.date === moment().format(dateFormat) &&
-                    result.method === calcMethod) {
-                    resolve(result.times)
-                } else {
-                    const methd = (typeof calcMethod === 'undefined' ? result.method : calcMethod as MethodType) || defaultMethod
-                    const loc = await location()
-                    const times = await calculator.prayerTimes(methd, loc)
+    export async function prayerTimes(): Promise<IAppPrayerTimes> {
+        const result = await chrome.storage.local.get(['times', 'method', 'hanafiAdjustments'])
 
-                    chrome.storage.local.set({
-                        method: methd,
-                        times,
-                    }, () => {
-                        resolve(times)
-                    })
-                }
-            })
-        })
+        if (result.times &&
+            result.times.date === moment().format(dateFormat))
+            return result.times
+
+        const method = result.method || defaultMethod
+        const hanafi = result.hanafiAdjustments || defaultAsrFactor
+
+        const loc = await place()
+        const times = await calculator.prayerTimes(method, hanafi, loc.location as LatLng)
+
+        await chrome.storage.local.set({ method, times, hanafiAdjustments: hanafi })
+        return times
     }
 
     export function hourFormat(format?: boolean): Promise<boolean> {
@@ -68,7 +69,6 @@ export namespace store {
         }
 
         const methd = setField<string>('method', calcMethod)
-        notifyBackground()
         return methd
     }
 
@@ -77,9 +77,19 @@ export namespace store {
             : getFieldOrDefault<PrayerNotifications>('notifications', defaultNotifications)
     }
 
-    export async function location(latlng?: LatLng): Promise<LatLng> {
-        return typeof latlng !== 'undefined' ? setField<LatLng>('location', latlng)
-            : getFieldOrDefault<LatLng>('location', await calculator.location())
+    export async function place(place?: Place): Promise<Place> {
+        if (typeof place !== 'undefined')
+            return setField<Place>('place', place)
+
+        return getFieldOrDefault<Place>('place', {
+            name: '',
+            placeId: '',
+            location: await calculator.location()
+        })
+    }
+
+    export function clearTimes(): Promise<void> {
+        return chrome.storage.local.remove('times')
     }
 
     export async function hijriDateAdjustment(adjust?: number): Promise<number> {
@@ -87,22 +97,15 @@ export namespace store {
             : getFieldOrDefault<number>('hijriDateAdjustment', defaultHijriDateAdjustment)
     }
 
-    function getFieldOrDefault<T>(fieldName: string, defaultValue: T): Promise<T> {
-        return new Promise<T>((resolve) => {
-            chrome.storage.local.get(fieldName, (result) => {
-                resolve(result[fieldName] as T || defaultValue)
-            })
-        })
+    async function getFieldOrDefault<T>(fieldName: string, defaultValue: T): Promise<T> {
+        return ((await chrome.storage.local.get(fieldName))[fieldName] as T) || defaultValue
     }
 
-    function setField<T>(fieldName: string, value: T): Promise<T> {
-        return new Promise<T>((resolve) => {
-            const obj = {}
-            obj[fieldName] = value
-            chrome.storage.local.set(obj, () => {
-                resolve(obj[fieldName] as T)
-            })
-        })
+    async function setField<T>(fieldName: string, value: T): Promise<T> {
+        const obj: any = {}
+        obj[fieldName] = value
+        await chrome.storage.local.set(obj)
+        return obj[fieldName] as T
     }
 
     export function notifyBackground() {
@@ -112,5 +115,12 @@ export namespace store {
                 command: 'config-changed',
             })
         }
+    }
+
+    export function hanafiAdjustments(hanafi?: boolean) {
+        if (typeof hanafi !== 'undefined')
+            return setField('hanafiAdjustments', hanafi)
+
+        return getFieldOrDefault('hanafiAdjustments', false)
     }
 }

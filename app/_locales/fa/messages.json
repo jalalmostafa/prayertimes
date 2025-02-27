@@ -83,7 +83,7 @@
         "description": "onInstalled notification"
     },
     "updateMessage": {
-        "message": "شگفت انگیز! روزرسانی نو برای این برنامه هست",
+        "message": "انتشار رمضان 1446: فلسطین و لبنان را در دعاهای خود فراموش نکنید",
         "description": "On update message"
     },
     "fixMessage": {
@@ -103,11 +103,23 @@
         "description": ""
     },
     "locationDesc": {
-        "message": "برای مشخص کردن موقعیت مکانی خود، یک نشانگر را روی نقشه قرار دهید (پیش فرض: شناسایی خودکار مکان فعلی شما)",
+        "message": "نام شهر را مشخص کنید (پیش فرض: شناسایی خودکار مکان فعلی شما)",
         "description": ""
     },
     "hijriDateAdjustment": {
         "message": "تنظیمات تاریخ هجری (روز(",
+        "description": ""
+    },
+    "calculationOptionSectionHeader": {
+        "message": "محاسبه",
+        "description": ""
+    },
+    "othersOptionSectionHeader": {
+        "message": "دیگران",
+        "description": ""
+    },
+    "hanafiAdjustments": {
+        "message": "تنظیمات حنفی",
         "description": ""
     }
 }

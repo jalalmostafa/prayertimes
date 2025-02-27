@@ -6,6 +6,8 @@ export interface ILocalized {
 }
 
 class I18nService {
+    [key: string]: any
+
     getAppMessage(key: string): string {
         return chrome.i18n.getMessage(key)
     }
@@ -15,6 +17,11 @@ class I18nService {
             message: chrome.i18n.getMessage(messageKey),
             title: chrome.i18n.getMessage(key),
         }
+    }
+
+    get languageCode() {
+        const language = chrome.i18n.getUILanguage()
+        return language.includes('_') ? language.split('_')[0] : language
     }
 
     get fajr() {
@@ -90,9 +97,20 @@ class I18nService {
     }
 
     get isRtl() {
-        const locale = chrome.i18n.getUILanguage()
-        const lang = locale.split('-')[0] || locale
+        const lang = this.languageCode
         return lang === 'ar' || lang === 'fa'
+    }
+
+    get calculationOptionSectionHeader() {
+        return this.getAppMessage('calculationOptionSectionHeader')
+    }
+
+    get othersOptionSectionHeader() {
+        return this.getAppMessage('othersOptionSectionHeader')
+    }
+
+    get hanafiAdjustments() {
+        return this.getAppMessage('hanafiAdjustments')
     }
 }
 

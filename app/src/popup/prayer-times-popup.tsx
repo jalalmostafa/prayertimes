@@ -22,7 +22,7 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
 
     static visiblePrayers: Prayer[] = ['imsak', 'fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha']
 
-    static prayerIcons = {
+    static prayerIcons: Record<string, string> = {
         asr: 'flaticon-ramadn-azhar',
         dhuhr: 'flaticon-zuhar-prayer',
         fajr: 'flaticon-subah-prayer',
@@ -51,7 +51,7 @@ export class PrayerTimesPopup extends React.Component<{}, IPopupState> {
         this.setState({
             notifs: newNotifs,
         })
-        store.notifyBackground()
+        await store.notifyBackground()
     }
 
     goToOptionsPage = () => {

@@ -83,7 +83,7 @@
         "description": "onInstalled notification"
     },
     "updateMessage": {
-        "message": "¡Wow, Horario de Oraciones se ha actualizado!",
+        "message": "Comunicado de Ramadán 1446: No olvidéis a Palestina y al Líbano en vuestras oraciones.",
         "description": "On update message"
     },
     "fixMessage": {
@@ -103,11 +103,23 @@
         "description": ""
     },
     "locationDesc": {
-        "message": "Coloca un marcador en el mapa para definir tu ubicación (predeterminado: detectar tu ubicación actual automáticamente)",
+        "message": "Especifique el nombre de una ciudad (predeterminado: detectar tu ubicación actual automáticamente)",
         "description": ""
     },
     "hijriDateAdjustment": {
         "message": "Ajustes de la Fecha Hejrí (días)",
+        "description": ""
+    },
+    "calculationOptionSectionHeader": {
+        "message": "Cálculo",
+        "description": ""
+    },
+    "othersOptionSectionHeader": {
+        "message": "Otros",
+        "description": ""
+    },
+    "hanafiAdjustments": {
+        "message": "Ajustes hanafíes",
         "description": ""
     }
 }

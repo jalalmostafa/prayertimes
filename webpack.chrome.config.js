@@ -1,16 +1,26 @@
 const path = require('path')
 const ZipWebpackPlugin = require('zip-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 const webpackMerge = require('webpack-merge')
 const commonConfig = require('./webpack.common.config')
 const Package = require('./package.json')
 
 module.exports = webpackMerge.merge(commonConfig, {
+    entry: {
+        offscreen: './app/src/background/offscreen/index.tsx',
+    },
     output: {
         filename: '[name].bundle.js',
         path: path.join(__dirname, 'build', 'chrome')
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            chunks: ['offscreen'],
+            filename: 'offscreen.html',
+            title: Package.productName
+        }),
         new CopyWebpackPlugin({
             patterns: [{
                 context: 'app/',

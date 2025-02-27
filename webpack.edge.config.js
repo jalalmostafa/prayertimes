@@ -1,4 +1,5 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ZipWebpackPlugin = require('zip-webpack-plugin')
 const webpackMerge = require('webpack-merge')
@@ -11,6 +12,11 @@ module.exports = webpackMerge.merge(commonConfig, {
         path: path.join(__dirname, 'build', 'edge')
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            chunks: ['background'],
+            filename: 'background.html',
+            title: Package.productName,
+        }),
         new CopyWebpackPlugin({
             patterns: [{
                 context: 'app/',

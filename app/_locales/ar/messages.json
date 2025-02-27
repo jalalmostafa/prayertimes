@@ -83,7 +83,7 @@
         "description": "onInstalled notification"
     },
     "updateMessage": {
-        "message": "مذهل! تحديث جديد لتطبيق مواقيت الصلاة",
+        "message": "اصدار شهر رمضان 1446: لا تنسوا أهل فلسطين ولبنان من دعاؤكم",
         "description": "On update message"
     },
     "fixMessage": {
@@ -103,11 +103,23 @@
         "description": ""
     },
     "locationDesc": {
-        "message": "ضع علامة على الخريطة لتحديد مكانك (التحديد الآلي لمكانك الحالي سيستخدم إفتراضياً)",
+        "message": "حدد اسم مدينتك (التحديد الآلي لمكانك الحالي سيستخدم إفتراضياً)",
         "description": ""
     },
     "hijriDateAdjustment": {
         "message": "تنظيم التاريخ الهجري (أيام)",
+        "description": ""
+    },
+    "calculationOptionSectionHeader": {
+        "message": "الحساب",
+        "description": ""
+    },
+    "othersOptionSectionHeader": {
+        "message": "أخرى",
+        "description": ""
+    },
+    "hanafiAdjustments": {
+        "message": "التعديلات الحنفية",
         "description": ""
     }
 }

@@ -1,70 +1,47 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import GoogleMapReact, { ChildComponentProps, ClickEventValue } from 'google-map-react'
-import React from 'react'
+import { useEffect, useState } from 'react'
 
-import { LatLng } from '../common/calculator'
 import { i18n } from '../common/i18n-service'
-import { store } from '../common/store'
+import { store, Place } from '../common/store'
+import { Autocomplete } from '../components'
+import { GoogleMapsPlaces } from '../common/google-maps-places'
 
-interface ILocationState {
-    center: LatLng
-}
+export function Location() {
+    const googleApi = new GoogleMapsPlaces(__GMAPS_API_KEY__)
 
-const mapOptions = {
-    fullscreenControl: false,
-}
-
-export class Location extends React.Component<{}, ILocationState> {
-    constructor(props: {}) {
-        super(props)
-        this.state = {
-            center: [0, 0],
+    const [place, setPlace] = useState<Place>()
+    useEffect(() => {
+        const wrapper = async () => {
+            const place = await store.place()
+            setPlace(place)
         }
+        wrapper()
+    }, [])
+
+    const fetchCities = async (input: string): Promise<Place[]> => {
+        return await googleApi.autoCompleteCity(input)
     }
 
-    mapClicked = async (e: ClickEventValue) => {
-        const location = await store.location([e.lat, e.lng])
-        this.setState({
-            center: location,
-        })
+    const userSelect = async (choice: Place) => {
+        choice.location = await googleApi.location(choice.placeId)
+        await store.place(choice)
+        setPlace(choice)
+        await store.notifyBackground()
     }
 
-    loadPage = async () => {
-        const coords = await store.location()
-        this.setState({
-            center: coords,
-        })
-    }
-
-    render() {
-        const [lat, lng] = this.state.center
-        return (
-            <div className="location-picker">
-                <label htmlFor="location" className="option-label">{i18n.location}</label>
-                <div className="location-desc">{i18n.locationDesc}</div>
-                <div className="location-control" id="location">
-                    <GoogleMapReact
-                        bootstrapURLKeys={{
-                            key: __GMAPS_API_KEY__,
-                        }}
-                        options={mapOptions}
-                        zoom={10}
-                        center={{ lat, lng }}
-                        onClick={this.mapClicked}
-                        onTilesLoaded={this.loadPage}
-                    ><LocationMarker lat={lat} lng={lng} /></GoogleMapReact>
-                    {/* <LocationMarker lat={lat} lng={lng} /> */}
-                    {/* </GoogleMap> */}
-                </div>
-            </div >
-        )
-    }
-}
-
-function LocationMarker(_props: ChildComponentProps): JSX.Element {
     return (
-        <span>
-            <FontAwesomeIcon className="location-marker" icon="map-marker-alt" />
-        </span>
+        <div className="option-container">
+            <span className="option-label-wrapper">
+                <label htmlFor="location" className="option-label">{i18n.location}</label>
+                <span className="option-desc">{i18n.locationDesc}</span>
+            </span>
+            <div className="option-control" id="location">
+                <Autocomplete<Place>
+                    initialValue={place}
+                    debounce={300}
+                    fetchElements={fetchCities}
+                    onUserSelect={userSelect}
+                />
+            </div>
+        </div >
     )
 }

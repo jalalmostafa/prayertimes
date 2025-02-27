@@ -29,8 +29,11 @@ module.exports = {
             use: 'ts-loader',
             exclude: /node_modules/
         }, {
-            test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+            test: /\.(eot|ttf|woff)$/,
             type: 'asset/resource',
+            generator: {
+                filename: '[name].[ext]',
+            },
         }, {
             test: /\.mp3$/,
             loader: 'file-loader',
@@ -41,11 +44,6 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            chunks: ['background'],
-            filename: 'background.html',
-            title: Package.productName,
-        }),
         new HtmlWebpackPlugin({
             chunks: ['popup'],
             filename: 'popup.html',

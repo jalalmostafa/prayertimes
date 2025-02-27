@@ -17,6 +17,8 @@ body {
 
 .header-icon {
     color: var(--color-accent);
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .options-container {
@@ -30,10 +32,15 @@ body {
     align-items: center;
 }
 
+.option-label-wrapper {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
 .option-label {
     font-size: 16pt;
     font-weight: bold;
-    width: 300px;
 }
 
 .option-control {
@@ -42,35 +49,29 @@ body {
     width: 500px;
 }
 
-.option-control select {
+.option-control select,
+.option-control input[type="text"] {
     height: 35px;
     width: 300px;
 }
 
-.location-control {
-    height: 300px;
-    border: 1px solid var(--color-line);
-    margin-top: var(--margin-border);
-}
-
-.location-desc {
+.option-desc {
+    font-weight: bold;
     font-size: 12pt;
     font-style: oblique;
     color: var(--color-shadow);
 }
 
-.location-marker {
-    font-size: 45px;
-    color: var(--color-accent);
-    position: absolute;
-    top: -45px;
-    left: -15px;
+.options-section {
+    margin-top: 30px;
 }
 
-.options-wrapper {
-    font-family: 'roboto';
-}
-
-.options-wrapper>* {
+.options-section>* {
     margin-bottom: 15px;
+}
+
+.options-section-header {
+    font-size: 22pt;
+    margin-bottom: 20px;
+    margin-top: 0px;
 }

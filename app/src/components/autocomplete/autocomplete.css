@@ -1,0 +1,23 @@
+.autocomplete-option input[type="radio"] {
+    display: none;
+}
+
+.autocomplete-option {
+    padding: 5px 1px 5px 5px;
+    display: block;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+.autocomplete-option:hover {
+    background-color: #eee;
+}
+
+.autocomplete-options {
+    position: absolute;
+    min-width: 306px;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 10px 10px;
+    z-index: 10;
+}

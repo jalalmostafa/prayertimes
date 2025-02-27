@@ -8,10 +8,10 @@ Developer: Hamid Zarrabi-Zadeh
 License: GNU LGPL v3.0
 
 TERMS OF USE:
-	Permission is granted to use this code, with or
-	without modification, in any website or application
-	provided that credit is given to the original work
-	with a link back to PrayTimes.org.
+    Permission is granted to use this code, with or
+    without modification, in any website or application
+    provided that credit is given to the original work
+    with a link back to PrayTimes.org.
 
 This program is distributed in the hope that it will
 be useful, but WITHOUT ANY WARRANTY.
@@ -31,8 +31,14 @@ export type MethodType = 'MWL' | 'ISNA' | 'Egypt' | 'Makkah' | 'Karachi' | 'Tehr
 export type Prayer = 'asr' | 'dhuhr' | 'fajr' | 'imsak' | 'isha' | 'maghrib' | 'midnight' | 'sunrise' | 'sunset'
 
 export type IPrayerTimes = Record<Prayer, string>
-type IRawPrayerTimes = Record<Prayer, number>
-type ISettings = Partial<Record<Prayer | 'highLats', ParamType>>
+
+interface IRawPrayerTimes extends Record<Prayer, number> {
+    [key: string]: number
+}
+
+interface ISettings extends Partial<Record<Prayer | 'highLats', ParamType>> {
+    [key: string]: ParamType | undefined
+}
 
 export namespace DMath {
 
@@ -102,7 +108,16 @@ export const timeNames = {
     sunset: 'Sunset',
 }
 
-export const methods = {
+export interface Method {
+    name: string
+    params: ISettings
+}
+
+export interface MethodMap {
+    [key: string]: Method
+}
+
+export const methods: MethodMap = {
     Egypt: {
         name: 'Egyptian General Authority of Survey',
         params: { fajr: 19.5, isha: 17.5 },
@@ -133,7 +148,13 @@ export const methods = {
     },
 }
 
-export const defaultParams = {
+export interface DefaultParams {
+    maghrib: string
+    midnight: string
+    [key: string]: string
+}
+
+export const defaultParams: DefaultParams = {
     maghrib: '0 min',
     midnight: 'Standard',
 }
@@ -152,7 +173,7 @@ class PrayerTimes {
     private invalidTime = '-----'
 
     private numIterations = 1
-    private offset = {}
+    private offset: Record<string, number> = {}
 
     // Local
     private lat: number
@@ -251,7 +272,7 @@ class PrayerTimes {
 
     // return prayer times for a given date
     public getTimes(date: Date | DateTuple, coords: CoordinatesTuple, timezone?: OptionalArgumentType,
-                    dst?: OptionalArgumentType, format?: FormatType): PrayerTimes {
+        dst?: OptionalArgumentType, format?: FormatType): PrayerTimes {
         this.lat = 1 * coords[0]
         this.lng = 1 * coords[1]
         this.elv = coords[2] ? 1 * coords[2] : 0
