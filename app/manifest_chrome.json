@@ -46,7 +46,6 @@
     },
     "permissions": [
         "storage",
-        "geolocation",
         "alarms",
         "notifications",
         "offscreen"
