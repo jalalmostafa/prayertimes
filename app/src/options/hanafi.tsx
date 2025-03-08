@@ -25,10 +25,10 @@ export function HanafiAdjustments() {
     return (
         <div className="option-container">
             <span className="option-label-wrapper">
-                <label htmlFor="hanafiAdjust" className="option-label">{i18n.hanafiAdjustments}</label>
+                <span className="option-label">{i18n.hanafiAdjustments}</span>
             </span>
             <span className="option-control">
-                <span id="hanafiAdjust" className="green small">
+                <span className="green small">
                     <Switch
                         checked={useHanafi}
                         checkedChildren=""

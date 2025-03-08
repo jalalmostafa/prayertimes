@@ -32,14 +32,10 @@ export class Method extends React.Component<{}, IMethodState> {
         return (
             <div className="option-container">
                 <span className="option-label-wrapper">
-                    <label htmlFor="method" className="option-label">{i18n.method}</label>
+                    <span className="option-label">{i18n.method}</span>
                 </span>
                 <span className="option-control">
-                    <select
-                        id="method"
-                        value={this.state.value}
-                        onChange={this.methodChanged}
-                    >
+                    <select value={this.state.value} onChange={this.methodChanged}>
                         {Object.keys(methods).map((m) => <option key={m} value={m}>{methods[m].name}</option>)}
                     </select>
                 </span>

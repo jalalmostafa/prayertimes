@@ -31,10 +31,10 @@ export function Location() {
     return (
         <div className="option-container">
             <span className="option-label-wrapper">
-                <label htmlFor="location" className="option-label">{i18n.location}</label>
+                <span className="option-label">{i18n.location}</span>
                 <span className="option-desc">{i18n.locationDesc}</span>
             </span>
-            <div className="option-control" id="location">
+            <div className="option-control">
                 <Autocomplete<Place>
                     initialValue={place}
                     debounce={300}

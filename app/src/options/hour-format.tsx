@@ -29,10 +29,10 @@ export class HourFormat extends React.Component<{}, IFormatState> {
         return (
             <div className="option-container">
                 <span className="option-label-wrapper">
-                    <label htmlFor="hourFormat" className="option-label">{i18n.format}</label>
+                    <span className="option-label">{i18n.format}</span>
                 </span>
                 <span className="option-control">
-                    <span id="hourFormat" className="green small">
+                    <span className="green small">
                         <Switch
                             checked={this.state.value}
                             checkedChildren=""
