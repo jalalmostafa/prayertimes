@@ -4,10 +4,10 @@
         "description": "locale symbol"
     },
     "longAppName": {
-        "message": "Prayer Times: In-Browser Prayer Notifications"
+        "message": "Al-Hadi Prayer Times"
     },
     "appName": {
-        "message": "Prayer Times",
+        "message": "Al-Hadi",
         "description": "The name of the application"
     },
     "appDescription": {
@@ -71,7 +71,7 @@
         "description": "Isha Prayers Notifications"
     },
     "header": {
-        "message": "Prayer Times",
+        "message": "Al-Hadi",
         "description": "extension header"
     },
     "notifications": {

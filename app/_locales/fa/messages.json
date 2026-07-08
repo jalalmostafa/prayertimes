@@ -4,10 +4,10 @@
         "description": "locale symbol"
     },
     "longAppName": {
-        "message": "اوقات شرعی: اطلاعیه ها اوقات شرعی داخل برنامه"
+        "message": " الهادي اوقات شرعی"
     },
     "appName": {
-        "message": "اوقات شرعی",
+        "message": "الهادي",
         "description": "The name of the application"
     },
     "appDescription": {
@@ -71,7 +71,7 @@
         "description": "Isha Prayers Notifications"
     },
     "header": {
-        "message": "اوقات شرعی",
+        "message": "الهادي",
         "description": "extension header"
     },
     "notifications": {

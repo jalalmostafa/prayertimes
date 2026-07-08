@@ -4,10 +4,10 @@
         "description": "locale symbol"
     },
     "longAppName": {
-        "message": "Horario de Oraciones: Notificaciones de Salat en Tu Browser"
+        "message": "Al-Hadi Horario de Oraciones"
     },
     "appName": {
-        "message": "Horario de Oraciones",
+        "message": "Al-Hadi",
         "description": "The name of the application"
     },
     "appDescription": {
@@ -71,7 +71,7 @@
         "description": "Isha Prayers Notifications"
     },
     "header": {
-        "message": "Horario de Oraciones",
+        "message": "Al-Hadi",
         "description": "extension header"
     },
     "notifications": {

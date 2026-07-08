@@ -1,7 +1,7 @@
 {
     "name": "__MSG_longAppName__",
     "short_name": "__MSG_appName__",
-    "homepage_url": "https://github.com/jalalmostafa/prayertimes",
+    "homepage_url": "",
     "minimum_chrome_version": "109",
     "version": "3.0.1",
     "version_name": "v3.0.1",
@@ -25,15 +25,15 @@
         "extension_pages": "script-src 'self'; object-src 'none';"
     },
     "icons": {
-        "16": "images/small-mosque.png",
-        "128": "images/small-mosque.png"
+        "16": "images/hadi-icon02.png",
+        "128": "images/hadi-icon02.png"
     },
     "action": {
         "default_icon": {
-            "19": "images/small-mosque.png",
-            "38": "images/small-mosque.png"
+            "19": "images/hadi-icon.png",
+            "38": "images/hadi-icon.png"
         },
-        "default_title": "Prayer Times",
+        "default_title": "Al-Hadi Prayer Times",
         "default_popup": "popup.html"
     },
     "default_locale": "ar",

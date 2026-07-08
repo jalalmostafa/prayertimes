@@ -4,10 +4,10 @@
         "description": "locale symbol"
     },
     "longAppName": {
-        "message": "مواقيت الصلاة: إشعارات الصلاة في المتصفح"
+        "message": " الهادي: مواقيت الصلاة"
     },
     "appName": {
-        "message": "مواقيت الصلاة",
+        "message": "الهادي",
         "description": "The name of the application"
     },
     "appDescription": {
@@ -71,7 +71,7 @@
         "description": "Isha Prayers Notifications"
     },
     "header": {
-        "message": "مواقيت الصلاة",
+        "message": "الهادي",
         "description": "extension header"
     },
     "notifications": {
